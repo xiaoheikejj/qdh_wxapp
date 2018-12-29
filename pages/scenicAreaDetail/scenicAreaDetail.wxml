@@ -1,0 +1,188 @@
+<!--千岛概述-->
+<view class="body">
+  <!-- 淳安千岛湖旅游概况 -->
+  <view class="image-overview">
+    <view class="displayType">
+      <image wx:if="{{sliderType == 1}}" src="{{ sliderSRC }}"></image>    
+      <video wx:else src="{{ sliderSRC }}"></video>
+    </view>
+    <!-- 轮播图 -->
+    <view class="scroll-box">
+      <scroll-view class="swiper-top" scroll-x>
+        <view wx:for="{{ introImgList }}" wx:key="" class="{{swiperItem_active==item.id?'active':''}}">
+          <image src="{{ item.sliderInfoUrl }}" mode="aspectFill" data-id="{{ item.id }}" bindtap="getVideoResource"></image>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  
+  <view class="travel-overview">
+    <!-- 语音地图导览,热门景点,景区购票说明 -->
+    <view style="margin: 0 30rpx" bindtap="turnToAudio">
+      <view class="audioMap" style="margin: 60rpx 0 0">
+        <view class="left">
+          <text></text>
+          <text>{{ scenicAudioTitle }}</text>
+        </view> 
+        <image src="../../images/yjt.png"></image>
+      </view>
+      <!-- <image class="map" mode="aspectFill" src="{{ scenicAudioImgUrl }}"></image> -->
+      <map class="map" enable-zoom="{{zoom_scroll}}" enable-scroll="{{zoom_scroll}}" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}"></map>
+    </view>
+    <view class="audioMap hotSpot">
+      <view class="left">
+        <text></text>
+        <text>最佳摄影点</text>
+      </view>
+    </view>
+    <!-- 热门景点轮播图 -->
+    <view class="scroll-box hot-spot-box">
+      <scroll-view class="swiperSpot" scroll-x>
+        <block wx:for="{{ hotSpotList }}" wx:key="">
+          <view data-name="{{item.infoName}}" data-id="{{ item.id }}" bindtap="turnSpot">
+            <image mode="aspectFill" src="{{ item.infoImgUrl }}" mode="aspectFill" ></image>
+            <text>{{ item.infoName }}</text>
+            <!-- <text>{{item.infoAddress}}</text> -->
+          </view>
+        </block> 
+      </scroll-view>
+    </view>
+    <!-- 景区购票说明 -->
+    <view class="audioMap hotSpot">
+      <view class="left">
+        <text></text>
+        <text>{{ scenicTicketName }}</text>
+      </view>
+    </view>
+    <view class="ticketEntry" bindtap="turnToBuyTickets">
+      <view>
+        <image mode="aspectFill" src="{{ scenicTicketImgUrl }}"></image>        
+      </view>
+      <view>
+        <view>{{ scenicTicketTitle }}</view>
+        <view>{{ scenicTicketDesc }}</view>
+      </view>
+    </view>
+    <!-- 景区门票 -->
+    <view>
+      <view class="audioMap">
+        <view class="left">
+          <text></text>
+          <text>景区门票</text>
+        </view>
+      </view>
+      <scroll-view scroll-x class="tickets-scroll">
+        <block wx:for="{{tickets_list}}" wx:key="">
+          <view class="tickets">
+            <image src="../../images/pre_ticket.png"></image>
+            <view class="tickets-box">
+              <view class="left"><text style="font-size: 24rpx">￥</text>{{item.ticketPrize}}</view>
+              <view class="center">
+                <text>{{item.ticketName}}</text>
+                <text>成人票</text>
+                <view class="label">
+                  <text>{{item.ticketLabel}}</text>
+                  <!-- <text>一码通</text>
+                  <text>可订今日门票</text>               -->
+                </view>
+              </view>
+              <view class="right">立即购买</view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <view class="audioMap">
+      <view class="left">
+        <text></text>
+        <text>景区介绍</text>
+      </view>
+    </view>
+    <!-- 语音 -->
+    <view class="audio">
+      <image src="{{audioPoster}}"></image>
+      <view class="control">
+        <view class="name">{{audioInfoName}}</view>
+        <view class="time">{{currentTime}} / {{duration}}</view>
+        <slider block-color="rgb(112,164,255)" block-size="12" activeColor="rgb(112,164,255)" value="{{sliderVal}}" bindchange="listenerSlider" disabled="{{sliderDis}}"></slider>
+        <view class="buttonIcon">
+          <image mode="aspectFill" src="{{pauseOrPlay}}" bindtap="pauseButton"></image>     
+        </view>
+      </view>
+    </view>
+    <!-- 文字简介 -->
+    <view class="recommendText">{{scenicDesc}}</view>
+    <!-- 出行贴士 -->
+    <view class="travelTips">
+      <view class="left">
+        <text></text>
+        <text>出行贴士</text>
+      </view>
+      <view wx:if="{{scenicViewTime}}" class="title">最佳旅行时间</view>
+      <view class="mainBody">{{ scenicViewTime }}</view>
+      <view wx:if="{{scenicViewRes}}" class="title">必备物品</view>
+      <view class="mainBody">{{ scenicViewRes }}</view>
+    </view>
+  </view>
+  <!-- 游记攻略 -->
+  <view class="travel-strategy">
+    <view class="travel-title">
+      <text></text>
+      <text>攻略游记</text>   
+    </view>
+    <view class="ul">
+      <view class="li" wx:for="{{ tourism }}" wx:key="">
+        <!-- 头部标题 -->
+        <view style="position: relative" data-id="{{ item.id }}" data-type="{{item.strategyType}}" bindtap="turnToDetail">
+          <!-- 图片 -->
+          <video wx:if="{{ item.strategyType == 2 }}" src="{{ item.strategyImgUrl }}"></video>
+          <image wx:if="{{ item.strategyType == 1 }}" src="{{ item.strategyImgUrl }}"></image>
+          <cover-view class="title">{{ item.strategyTitle }}</cover-view>
+          <cover-view class="label {{item.strategyType==2?'video':''}}">{{item.strategyTypeName}}</cover-view>
+        </view>
+        <!-- 人数 -->
+        <view class="numPeople">
+          <view class="left">
+            <view class="like" bindtap="clickLike" data-id="{{ item.id }}">
+              <image src="{{ item.imageSRC }}"></image>
+              <text>{{ item.strategyLikeNumber }}</text>
+            </view>
+            <view class="eyes">
+              <image src="../../images/yj.png"></image>
+              <text>{{ item.strategyViewNumber }}</text>
+            </view>
+          </view>
+          <view class="right">
+            <text class="time">{{item.timeStamp}}天前</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="bottomBtn {{label_x?'x':''}}">
+  <view class="share" bindtap="getPoster">
+    <image src="../../images/beautyspot_detail_download.png"></image>
+    <text>生成海报</text>
+  </view>
+  <view class="location" bindtap="openMap">
+    <image src="../../images/navi.png"></image>
+    <text>导航</text>
+  </view>
+</view>
+
+<view class="canvas-box {{poster_show?'':'hidden'}}">
+  <view class="canvas">
+    <view class="remove">
+      <image src="../../images/remove.png" bindtap="removePoseter"></image>
+    </view>
+    <canvas canvas-id="myCanvas" />
+    <view class="btn">
+      <button bindtap="saveImage">保存图片至相册</button>
+    </view>
+  </view>
+   <view class="shadom">
+  
+  </view>
+</view>

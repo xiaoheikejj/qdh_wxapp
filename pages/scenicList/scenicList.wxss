@@ -1,0 +1,82 @@
+.search {
+  width: 100%;
+  background-color: #efeff4;
+  padding: 14rpx 16rpx;
+}
+.search view {
+  width: 718rpx;
+  height: 60rpx;
+  background-color: #fff;
+  border-radius: 60rpx;
+  display: flex;
+  align-items: center;
+}
+.search view image {
+  width: 28rpx;
+  height: 28rpx;
+  margin: 0 14rpx 0 16rpx;
+}
+/* ::placeholder class */
+.search .placeholder {
+  color: #a2a2a2;
+  font-size: 26rpx;
+}
+.search view input {
+  font-size: 26rpx;
+  color:#a2a2a2;
+  width: 600rpx;
+}
+
+/* 列表 */
+.ul {
+  background-color: #fafafa;
+  padding: 0 16rpx;
+  overflow: hidden;
+  padding-bottom: 20rpx;
+}
+.ul .li {
+  width: 666rpx;
+  background-color: #fff;
+  border: solid 1px #efeff4;
+  margin-top: 16rpx;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  display: flex;
+}
+.ul .li .left {
+  width: 233rpx;
+  height: 156rpx;
+  border-radius: 8rpx;
+}
+.ul .li .right {
+  margin-left: 15rpx;
+  position: relative;
+  width: 436rpx;
+}
+.ul .li .right .name {
+  font-size: 32rpx;
+  color: #000;
+  margin-top: 10rpx;
+  font-weight: bold;
+}
+.ul .li .right .des {
+  font-size: 24rpx;
+  color: #a2a2a2;
+  margin-top: 30rpx;
+}
+.ul .li .right .distance {
+  font-size: 24rpx;
+  color: #a2a2a2;
+  position: absolute;
+  right: 0;
+  top: 10rpx;
+}
+.ul .li .right .distance image {
+  width: 20rpx;
+  height: 26rpx;
+  vertical-align: middle;
+  margin-right: 8rpx;
+}
+.ul .li .right .distance text {
+  vertical-align: middle;
+}

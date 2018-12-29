@@ -1,0 +1,22 @@
+<!-- 景区列表 -->
+<view class="search">
+  <view>
+    <image src="../../images/sous.png"></image>
+    <input placeholder="搜索景区" placeholder-class="placeholder" confirm-type="search" bindconfirm="searchKeyWord"></input>
+  </view>
+</view>
+<view class="ul">
+  <block wx:for="{{list}}" wx:key="">
+    <view class="li" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}" bindtap="saveLngLat">
+      <image class="left" src="{{item.headImgUrl}}" mode="aspectFill"></image>
+      <view class="right">
+        <view class="name">{{item.infoName}}</view>
+        <view class="des">{{item.infoDesc}}</view>
+        <view class="distance">
+          <image src="../../images/my_adress_info.png"></image>
+          <text>距离{{item.distance}}km</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

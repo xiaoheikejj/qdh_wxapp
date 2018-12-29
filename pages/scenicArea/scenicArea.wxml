@@ -1,0 +1,27 @@
+<!--景区-->
+<scroll-view scroll-y class="box">
+  <view class="search">
+    <image src="../../images/sous.png"></image>
+    <input placeholder="搜索千岛湖内景点" placeholder-class="placeholder-class" disabled bindtap="turnToSearch"></input>
+  </view>
+  <i-tabs current="{{ current }}" scroll bindchange="handleChange">
+      <i-tab wx:for="{{ tabList }}" wx:key="" key="{{ item.id }}" title="{{ item.parentName }}"></i-tab>
+  </i-tabs>
+  <!-- 景点 -->
+  <view class="attractionsList clearfix">
+    <block wx:for="{{ scenicList }}" wx:key="">
+      <view class="attractionsList-child" data-name="{{item.childName}}" data-id="{{ item.id }}" bindtap="turnScenicSpot">
+        <image src="{{ item.childImgUrl }}" class="beauty-image"></image>
+        <view class="intro">
+          <text class="title">{{ item.childName }}</text>
+          <block wx:if="{{ item.childIsHot == 1 }}">
+            <image src="../../images/rq.png" class="sentiment"></image>       
+          </block>
+        </view>
+        <view class="rate-box">
+          <i-rate value="{{ item.childGrade }}" size="12" i-class="rate"></i-rate>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>

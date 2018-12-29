@@ -1,0 +1,2 @@
+<!-- 购票说明 -->
+<rich-text nodes="{{childTicketInfo}}"></rich-text>

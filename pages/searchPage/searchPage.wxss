@@ -1,0 +1,321 @@
+.box {
+  height: 100%;
+  background-color: #fafafa;
+}
+.search-input {
+  width: 750rpx;
+  height: 88rpx;
+  background-color: #efeff4;
+  position: relative;
+  overflow: hidden;
+}
+.search-input .search-image {
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 32rpx;
+}
+.search-input .search-remove-image {
+  width: 24rpx;
+  height: 24rpx;
+  position: absolute;
+  top: 32rpx;
+  right: 124rpx;
+  z-index: 100;
+}
+.search-input input {
+  width: 570rpx;
+  height: 60rpx;
+  background-color: #fff;
+  border-radius: 60rpx;
+  margin-left: 16rpx;
+  margin-top: 14rpx;
+  padding-left: 60rpx;
+  font-size: 28rpx;
+}
+.placeholder {
+  color: #8e8e93;
+  font-size: 28rpx;
+}
+.search-input text {
+  font-size: 32rpx;
+  color: #81a2fc;
+  position: absolute;
+  right: 24rpx;
+  top: 24rpx;
+}
+
+
+.select.ul {
+  background-color: #fff;
+  width: 702rpx;
+  padding: 0 24rpx;
+  display: flex;
+}
+.select.ul .li {
+  flex: 1;
+  overflow: hidden;
+  padding: 20rpx 0;
+}
+.select.ul .li .text {
+  text-align: center;
+  font-size: 24rpx;
+  margin: 0 auto;
+  width: 108rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background-color: #efeff4;
+  color: #898989;
+  border-radius: 20rpx;
+}
+.select.ul .li .text.active {
+  background: #6aa5fc;
+  color: #fff;
+}
+.select.ul .li .line {
+  width: 54rpx;
+	height: 4rpx;
+	background-color: #fff;
+  margin: 22rpx auto 6rpx;
+}
+.select.ul .li .line.active {
+  color: #6aa5fc;
+  background-color: #6aa5fc;
+}
+
+
+
+.hotel {
+  padding-top: 191rpx;
+  margin-bottom: 30rpx;
+}
+.hotel .ul .li {
+  padding: 25rpx 20rpx;
+  box-shadow: 0 0 10rpx 1rpx rgba(79,79,79,.07);
+  display: flex;
+  margin-top: 20rpx;
+  position: relative;
+  background-color: #fff;
+}
+.hotel .ul .li > image {
+  width: 145rpx;
+  height: 145rpx;
+  position: absolute;
+  top: 25rpx;
+  left: 20rpx;
+}
+.hotel .ul .li .title {
+  font-size: 28rpx;
+  color: rgb(51,51,51);
+}
+.hotel .li-desc {
+  height: 145rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 185rpx;
+}
+.hotel .li .li-desc .hotel-rate {
+  display: flex;
+  align-items: center;
+}
+.hotel .li .li-desc .hotel-rate text {
+  font-size: 24rpx;
+  color: rgb(129,162,252);
+  display: inline-block;
+  margin-left: 20rpx;
+}
+.hotel .li .reserve {
+  position: absolute;
+  right: 20rpx;
+  top: 25rpx;
+  font-size: 22rpx;
+  line-height: 145rpx;
+  color: rgb(249,216,94);
+  display: flex;
+  align-items: center;
+}
+.hotel .li .reserve text {
+  padding-left: 10rpx;
+}
+.hotel .tags {
+  margin-right: 20rpx;
+  font-size: 20rpx;
+  color: rgb(102,102,102);
+}
+
+
+.food {
+  padding-top: 191rpx;
+  margin-bottom: 30rpx;
+}
+.food .ul .li {
+  padding: 25rpx 20rpx;
+  box-shadow: 0 0 10rpx 1rpx rgba(79,79,79,.07);
+  display: flex;
+  margin-top: 20rpx;
+  position: relative;
+  background-color: #fff; 
+}
+.food .ul .li>image {
+  width: 145rpx;
+  height: 145rpx;
+  position: absolute;
+  top: 25rpx;
+  left: 20rpx;
+}
+.food .ul .li .title {
+  font-size: 28rpx;
+  color: rgb(51,51,51);
+}
+.food .li-desc {
+  height: 145rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 185rpx;
+}
+.food .li .reserve {
+  padding-left: 50rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 25rpx;
+  font-size: 22rpx;
+  line-height: 145rpx;
+  color: rgb(249,216,94);
+  background: url("https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/yd.png") center left no-repeat/42rpx 42rpx;
+}
+.food .li-desc .businessTime {
+  font-size: 18rpx;
+  color: rgb(102,102,102);
+  background: url("https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/yysj.png") center left no-repeat/20rpx 20rpx;
+  padding-left: 30rpx;
+}
+.food .tags {
+  margin-right: 10rpx;
+  font-size: 20rpx;
+  color: rgb(102,102,102);
+}
+
+
+/* 景点列表 */
+.attractionsList {
+  padding: 0 30rpx;
+  font-size: 12px;
+  margin-right: -50rpx;
+  margin-top: 176rpx;
+  margin-bottom: 30rpx;
+}
+.attractionsList .attractionsList-child {
+  float: left;
+  margin-right: 18rpx;
+  margin-top: 30rpx;
+  border-radius: 8rpx;
+	background-color: #fff;
+}
+.attractionsList .attractionsList-child .beauty-image {
+  width: 336rpx;
+  height: 228rpx;
+  border-radius: 8rpx;
+}
+.attractionsList .attractionsList-child .title {
+  margin-left: 20rpx;
+  font-weight: bold;
+  max-width: 126rpx;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.attractionsList .attractionsList-child .intro {
+  font-size: 28rpx;
+  color: rgb(54,54,54);
+  margin-top: 18rpx;
+  position: relative;
+}
+.attractionsList .attractionsList-child .intro text {
+  vertical-align: middle;
+}
+.attractionsList .attractionsList-child .intro image {
+  vertical-align: middle;
+}
+.attractionsList .attractionsList-child .intro .five-a {
+  display: inline-block;
+  background: url(' https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/xx.png') center no-repeat/100% 100%;
+  color: #fff;
+  font-size: 18rpx;
+  width: 34rpx;
+  height: 34rpx;
+  text-align: center;
+  line-height: 34rpx;
+  position: absolute;
+  top: 0;
+  left: 152rpx;
+}
+.attractionsList .attractionsList-child .rate-box {
+  margin-left: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.rate {
+  margin-top: 15rpx !important;
+}
+
+.sentiment {
+  width: 55rpx;
+  height: 25rpx;
+  margin-left: 10rpx;
+}
+
+
+
+
+.activityList {
+  padding-top: 191rpx;
+}
+.activityList .list {
+  display: flex;
+  box-shadow: 0 0 10rpx 5rpx rgba(192,162,252,.11);
+  padding: 12rpx;
+  margin: 0 30rpx 20rpx;
+}
+.activityList .list image {
+  width: 322rpx;
+  height: 197rpx;
+}
+.activityList .list .time-info {
+  margin-left: 32rpx;
+}
+.activityList .list .title {
+  font-size: 30rpx;
+  color: #313131;
+  width: 300rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.activityList .list .timeText {
+  margin-top: 5rpx;
+  font-size: 20rpx;
+  color: #a2a2a2;
+}
+.activityList .list .timeText.beginTime {
+  margin-top: 20rpx;
+}
+.activityList .list button {
+  width: 200rpx;
+  height: 58rpx;
+  font-size: 28rpx;
+  border-radius: 8rpx;
+  line-height: 56rpx;
+  color: rgb(102, 102, 102);
+  margin-top: 20rpx;
+  border: 2rpx solid #81a2fc;
+  background-color: #fff;
+  margin-left: 0;
+}
+.blue {
+  background-color: #81a2fc;
+  color: #fff !important;
+}

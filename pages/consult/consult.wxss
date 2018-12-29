@@ -1,0 +1,36 @@
+.header {
+  text-align: center;
+  margin-top: 32rpx;
+}
+.header image {
+  width: 91rpx;
+  height: 84rpx;
+  display: inline-block;
+}
+.header text {
+  display: block;
+  font-size: 34rpx;
+  color: rgb(68, 68, 68);
+  line-height: 60rpx;
+}
+
+.body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.body .box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 100rpx;
+  margin-top: 100rpx;
+}
+.body .box view {
+  flex: 1;
+  display: flex;
+}
+.body .box image {
+  width: 550rpx;
+  height: 200rpx;
+}

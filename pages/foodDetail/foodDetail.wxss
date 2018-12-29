@@ -1,0 +1,104 @@
+.textIntro-header {
+  padding: 40rpx;
+  border-bottom: 1px solid #f5f5f5;
+  position: relative;
+}
+.textIntro-header .reserve {
+  padding-left: 50rpx;
+  position: absolute;
+  right: 40rpx;
+  top: 40rpx;
+  font-size: 22rpx;
+  line-height: 145rpx;
+  color: rgb(249,216,94);
+  background: url("https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/yd.png") center left no-repeat/42rpx 42rpx;
+}
+
+
+.textIntro-bottom {
+  padding: 30rpx 40rpx;
+}
+
+.textIntro-bottom .title {
+  font-size: 36rpx;
+  color: rgb(51,51,51);
+}
+
+.food-detail .textIntro .title {
+  font-size: 36rpx;
+  color: rgb(51,51,51);
+}
+.textIntro .businessTime {
+  font-size: 24rpx;
+  margin-top: 20rpx;
+  color: rgb(102,102,102);
+  padding-left: 46rpx;
+  background: url("https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/yysj.png") center left no-repeat/21rpx 21rpx;
+}
+
+.addressPho {
+  margin-top: 30rpx;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.addressPho .adr {
+  font-size: 24rpx;
+  color: rgb(102,102,102);
+  padding-left: 46rpx;
+  background: url("https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/dw.png") center left no-repeat/18rpx 25rpx;
+}
+.addressPho .pho {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.textIntro-bottom .business-license {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 0 23rpx;
+  border-bottom: 1px solid #f5f5f5;
+}
+.textIntro-bottom .business-license>view {
+  font-size: 24rpx;
+  color: rgb(102,102,102);
+  background: url("https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/xkz.png") center left no-repeat/25rpx 25rpx;
+  padding-left: 46rpx;
+}
+.textIntro-bottom .business-license>image {
+  width: 11rpx;
+  height: 22rpx;
+}
+
+.textIntro-bottom .restaurant-service {
+  padding: 30rpx 0 23rpx;
+}
+.textIntro-bottom .restaurant-service>view {
+  font-size: 24rpx;
+  color: rgb(102,102,102);
+  background: url("https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/ctfw.png") center left no-repeat/25rpx 25rpx;
+  padding-left: 46rpx;
+}
+.textIntro-bottom .service-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 45rpx 20rpx;
+  border-bottom: 1px solid #f5f5f5;
+
+}
+.textIntro-bottom .service-list image {
+  width: 50rpx;
+}
+.textIntro-bottom .service-list .text {
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+}
+
+swiper {
+  height: 565rpx;
+}
+swiper image {
+  height: 565rpx;
+  width: 100%;
+}

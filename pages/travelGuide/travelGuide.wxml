@@ -1,0 +1,49 @@
+<!--游记攻略-->
+<view class="body">
+  <!-- 顶上的轮播图 -->
+  <swiper indicator-dots indicator-active-color="#fff">
+    <block wx:for="{{ bannerImgUrl }}" wx:key="">
+      <swiper-item>
+        <image mode="aspectFill" src="{{ item.bannerImgUrl }}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- <image class="ad" src="{{ bannerImgUrl }}"></image> -->
+  <view class="picker">
+    <block wx:for="{{ pickerArray }}" wx:key="">
+      <view class="type-list" data-id="{{ item.id }}" bindtap="clickType">
+        <view class="infomation {{clickType==item.id?'active':''}}">{{ item.name }}</view>
+        <view class="line {{clickType==item.id?'active':''}}"></view>
+      </view>
+    </block>
+  </view>
+  <view class="ul">
+    <block wx:for="{{ dataList }}" wx:key="">
+      <view class="li">
+        <view style="position: relative" data-id="{{ item.id }}" data-type="{{item.strategyType}}" bindtap="turnToDetail">
+          <!-- 图片 -->
+          <video wx:if="{{ item.strategyType == 2}}" src="{{ item.strategyImgUrl }}"></video>
+          <image wx:if="{{ item.strategyType == 1}}" src="{{ item.strategyImgUrl }}"></image>
+          <cover-view class="title">{{ item.strategyTitle }}</cover-view>
+          <cover-view class="label {{item.strategyType==2?'video':''}}">{{item.strategyTypeName}}</cover-view>
+        </view>
+        <!-- 人数 -->
+        <view class="numPeople">
+          <view class="left">
+            <view class="like" data-id="{{ item.id }}" bindtap="clickLike">
+              <image src="{{ item.imageSRC }}"></image>
+              <text>{{item.strategyLikeNumber}}</text>
+            </view>
+            <view class="eyes">
+              <image src="../../images/yj.png"></image>
+              <text>{{item.strategyViewNumber}}</text>
+            </view>
+          </view>
+          <view class="right">
+            <text class="time">{{item.timeStamp}}天前</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

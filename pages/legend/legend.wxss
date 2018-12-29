@@ -1,0 +1,113 @@
+/* 搜素 */
+.search {
+  width: 718rpx;
+  height: 60rpx;
+  background-color: rgba(255,255,255,.85);
+  z-index: 100;
+  position: absolute;
+  top: 14rpx;
+  left: 16rpx;
+  border-radius: 60rpx;
+}
+.search image {
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+}
+.search input {
+  width: 660rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
+  padding-left: 58rpx;
+  font-size: 24rpx;  
+}
+.placeholder-class {
+  font-size: 24rpx;
+}
+
+
+swiper {
+  width: 750rpx;
+  height: 320rpx;
+}
+swiper image {
+  width: 750rpx;
+  height: 320rpx;
+}
+
+.ul {
+  padding: 0 30rpx;
+}
+.ul .li {
+  padding: 25rpx 20rpx;
+  box-shadow: 0 0 10rpx 1rpx rgba(79,79,79,.07);
+  display: flex;
+  margin-top: 20rpx;
+  position: relative;
+}
+.ul .li > image {
+  width: 145rpx;
+  height: 145rpx;
+  position: absolute;
+  top: 25rpx;
+  left: 20rpx;
+}
+.ul .li .title {
+  font-size: 28rpx;
+  color: rgb(51,51,51);
+}
+.li-desc {
+  height: 145rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 185rpx;
+}
+.li .li-desc .hotel-rate {
+  display: flex;
+  align-items: center;
+}
+.li .li-desc .hotel-rate text {
+  font-size: 24rpx;
+  color: rgb(129,162,252);
+  display: inline-block;
+  margin-left: 20rpx;
+}
+.li .reserve {
+  position: absolute;
+  right: 20rpx;
+  top: 25rpx;
+  font-size: 22rpx;
+  line-height: 145rpx;
+  color: rgb(249,216,94);
+  display: flex;
+  align-items: center;
+}
+.li .reserve image {
+  width: 42rpx;
+  height: 42rpx;
+}
+.li .reserve text {
+  padding-left: 10rpx;
+}
+
+.selector {
+  display: flex;
+}
+.selector picker {
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  color: rgb(102,102,102);
+}
+.selector .picker {
+  background: url(" https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/jt.png") center right 40rpx no-repeat/21rpx 11rpx;
+}
+
+.tags {
+  margin-right: 20rpx;
+  font-size: 20rpx;
+  color: rgb(102,102,102);
+}

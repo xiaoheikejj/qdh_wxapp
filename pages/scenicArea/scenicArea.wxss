@@ -1,0 +1,117 @@
+.box {
+  height: 100%;
+  background-color: #fafafa;
+}
+/* 搜索 */
+.search {
+  width: 718rpx;
+  height: 60rpx;
+  background-color: #eee;
+  position: relative;
+  padding: 14rpx 16rpx;
+}
+.search image {
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 32rpx;
+}
+.search input {
+  width: 660rpx;
+  height: 60rpx;
+  background-color: #fff;
+  border-radius: 60rpx;
+  padding-left: 58rpx;
+  font-size: 24rpx;  
+}
+.placeholder-class {
+  font-size: 24rpx;
+}
+
+
+.classify {
+  border-bottom: 1rpx solid #f5f5f5;
+  padding: 40rpx 0;
+  display: flex;
+}
+.classify view {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+}
+.classify view.active {
+  color: #409EFF;
+  position: relative;
+}
+.classify view.active::after {
+  content: "";
+  width: 80rpx;
+  height: 1rpx;
+  background-color: #409EFF;
+  position: absolute;
+  bottom: -20rpx;
+  left: 55rpx;
+}
+
+/* 景点列表 */
+.attractionsList {
+  padding: 0 30rpx;
+  font-size: 12px;
+  margin-right: -50rpx;
+}
+.attractionsList .attractionsList-child {
+  float: left;
+  margin-right: 20rpx;
+  margin-top: 30rpx;
+  border-radius: 8rpx;
+  background-color: #fff;
+}
+.attractionsList .attractionsList-child .beauty-image {
+  width: 336rpx;
+  height: 228rpx;
+  border-radius: 8rpx;
+}
+.attractionsList .attractionsList-child .title {
+  margin-left: 20rpx;
+  font-weight: bold;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 230rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.attractionsList .attractionsList-child .intro {
+  font-size: 28rpx;
+  color: rgb(54,54,54);
+  margin-top: 18rpx;
+  position: relative;
+}
+.attractionsList .attractionsList-child .intro .five-a {
+  display: inline-block;
+  background: url(' https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/xx.png') center no-repeat/100% 100%;
+  color: #fff;
+  font-size: 18rpx;
+  width: 34rpx;
+  height: 34rpx;
+  text-align: center;
+  line-height: 34rpx;
+  position: absolute;
+  top: 0;
+  left: 152rpx;
+}
+.attractionsList .attractionsList-child .rate-box {
+  margin-left: 20rpx;
+  margin-bottom: 30rpx;
+}
+.rate {
+  margin-top: 15rpx !important;
+}
+
+.sentiment {
+  width: 55rpx;
+  height: 25rpx;
+  margin-left: 13rpx;
+  vertical-align: middle;
+}

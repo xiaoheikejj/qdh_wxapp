@@ -1,0 +1,179 @@
+/* pages/activityDetail/activityDetail.wxss */
+.box {
+  height: 100%;
+}
+image {
+  width: 750rpx;
+  height: 360rpx;
+}
+
+.nameAddress {
+  width: 690rpx;
+  margin: 32rpx auto 0;
+  box-shadow: 0 0 10rpx 5rpx rgba(0,0,0,.05);
+  background-color: #fff;
+  border-radius: 5rpx;
+  overflow: hidden;
+  padding-bottom: 30rpx;
+}
+.nameAddress .name, .intro .name {
+  font-weight: bold;
+  font-size: 30rpx;
+  color: #313131;
+  margin-top: 32rpx;
+  line-height: 30rpx;
+  padding-left: 20rpx;
+  border-left: 8rpx solid rgb(112, 164, 255);
+}
+.nameAddress .address {
+  margin-top: 38rpx;
+  padding: 0 30rpx;
+  font-size: 0;
+}
+.nameAddress .address .level1 {
+  font-size: 28rpx;
+  color: #a2a2a2;
+  vertical-align: middle;
+}
+.nameAddress .address .level2 {
+  font-size: 28rpx;
+  color: #a2a2a2;
+  vertical-align: middle;
+}
+.nameAddress .address .level3 {
+  display: block;
+  padding-left: 172rpx;
+  margin-top: 20rpx;
+}
+
+.intro {
+  width: 690rpx;
+  margin: 12rpx auto 0;
+  box-shadow: 0 0 10rpx 5rpx rgba(0,0,0,.05);
+  background-color: #fff;
+  border-radius: 5rpx;
+  overflow: hidden;
+  margin-bottom: 100rpx;  
+}
+.intro.x {
+  margin-bottom: 168rpx;
+}
+.intro .text {
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #a2a2a2;
+  padding: 0 30rpx 30rpx;
+  line-height: 40rpx;
+}
+
+.bottomBtn {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+	height: 88rpx;
+	background-color: #ffffff;
+	box-shadow: 0rpx -1rpx 0rpx 0rpx#f0f0f0;
+  display: flex;
+}
+.bottomBtn.x {
+  padding-bottom: 68rpx;
+}
+.bottomBtn text {
+  font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 28rpx;
+	letter-spacing: 0rpx;
+	color: #81a2fc;
+}
+.bottomBtn .share {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.bottomBtn .share::after {
+  position: absolute;
+  right: 0;
+  top: 18rpx;
+  content: "";
+  width: 2rpx;
+  height: 56rpx;
+  background-color: #f0f0f0;
+  display: inline-block;
+}
+.bottomBtn .share image {
+  width: 24rpx;
+  height: 24rpx;
+}
+.bottomBtn .location {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottomBtn .location image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.canvas {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  z-index: 101;
+  padding-top: 20rpx
+}
+canvas {
+  width: 400rpx;
+  border-radius: 8rpx;
+  box-shadow: 0 0 10rpx 5rpx #eee;
+  margin: 0 auto;
+  height: 736rpx;
+  margin-bottom: 90rpx
+}
+.canvas .remove {
+  padding: 0 30rpx;
+  text-align: right;
+  display: relative;
+  right: 30rpx;
+  top: 30rpx
+}
+.canvas .remove image {
+  width: 32rpx;
+  height: 32rpx
+}
+.canvas .btn {
+  border-top: 1rpx solid #f0f0f0;
+}
+.canvas .btn button {
+  width: 360rpx;
+  height: 72rpx;
+  background: #81a2fc;
+  border-radius: 36rpx;
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 72rpx;
+  margin: 46rpx auto;
+}
+
+.canvas-box {
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%
+}
+.canvas-box .shadom {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0,0,0,.5)
+}
+.hidden {
+  display: none
+}

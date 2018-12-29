@@ -1,0 +1,34 @@
+<!-- 特惠活动 -->
+<view class="body">
+  <!-- 广告 -->
+  <view style="position: relative">
+    <view class="search-box">
+      <view class="search" bindlongtap="turnToSearch">
+        <image src="../../images/sous.png"></image>
+        <input placeholder="搜索活动名称" placeholder-class="placeholder-class" disabled bindtap="turnToSearch"></input>
+      </view>
+    </view>
+    <swiper indicator-dots indicator-active-color="#fff">
+      <block wx:for="{{ bannerImgUrl }}" wx:key="">
+        <swiper-item>
+          <image mode="aspectFill" src="{{ item.bannerImgUrl }}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 特惠活动列表 -->
+  <block wx:for="{{ dataList }}" wx:key="">
+    <view class="list" data-id="{{ item.id }}" bindtap="turnToDetail">
+      <image mode="aspectFill" src="{{ item.activityImgUrl }}" ></image>
+      <view class="time-info">
+        <view class="title">{{ item.activityName }}</view>
+        <view class="timeText beginTime">开始时间：{{ item.activityBeginTime }}</view>
+        <view class="timeText">结束时间：{{ item.activityEndTime }}</view>      
+        <block>
+          <button wx:if="{{ item.participation }}" class="blue">立即参与</button>
+          <button wx:else disabled>已结束</button>      
+        </block>
+      </view> 
+    </view>
+  </block>
+</view>

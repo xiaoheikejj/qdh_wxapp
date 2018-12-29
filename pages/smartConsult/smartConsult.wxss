@@ -1,0 +1,102 @@
+page {
+  background-color: #fafafa;
+  /* position: relative; */
+}
+.box {
+  padding: 40rpx 32rpx 140rpx;
+}
+.box .li {
+  margin-bottom: 30rpx;
+}
+.box .li.right {
+  text-align: right;
+}
+.box .li image {
+  display: inline-block;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  vertical-align: top;
+  margin-right: 20rpx;
+  border: 1px solid #f0f0f0;
+}
+.box .li.right image {
+  margin-left: 20rpx;
+  margin-right: 0;
+}
+.box .li.right .boxText {
+  background-color: #81a2fc;
+  color: #fff;
+}
+.box .li .boxText {
+  background-color: #fff;
+  display: inline-block;
+  max-width: 460rpx;
+  font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 42rpx;
+	letter-spacing: 0rpx;
+	color: #333;
+  padding: 16rpx 21rpx;
+  border-radius: 10rpx;  
+}
+.box .li .boxText text {
+  display: inline-block;
+  color: #81a2fc;
+  margin-top: 5rpx;
+  line-height: 2.2;
+}
+
+.bottom {
+  /* position: absolute; */
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  height: 108rpx;
+  background-color: #fff;
+}
+
+.bottom .send {
+  position: relative;
+}
+.bottom .send input {
+  width: 547rpx;
+	height: 80rpx;
+	background-color: #fcfafa;
+	border-radius: 40rpx;
+	border: 1px solid #f0f0f0;
+  position: absolute;
+  top: 14rpx;
+  left: 20rpx;
+  padding-left: 32rpx;
+  font-size: 28rpx;
+}
+.placeholder-class {
+  font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 28rpx;
+	letter-spacing: 0rpx;
+	color: #d8d8d8;
+}
+.bottom .send button {
+  width: 120rpx;
+	height: 80rpx;
+	background-color: #81a2fc;
+	border-radius: 40rpx;
+	opacity: 0.64;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 80rpx;
+	letter-spacing: 0rpx;
+  position: absolute;
+  top: 14rpx;
+  right: 20rpx;
+}
+.bottom .send button.active {
+  color: #fff;
+  opacity: 1;
+}

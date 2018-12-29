@@ -1,0 +1,514 @@
+.image-overview .displayType {
+  width: 750rpx;
+  height: 420rpx;
+}
+.image-overview .displayType video {
+  width: 100%;
+  height: 420rpx;
+}
+.image-overview .videoTitle {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.image-overview .publicity-font {
+  text-align: center;
+  margin-top: 30rpx;
+}
+.image-overview .seeMore  {
+  margin-top: 20rpx;
+}
+.image-overview .seeMore text {
+  font-size: 28rpx;
+  color: #a2a2a2;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
+.image-overview .seeMore image {
+  width: 12rpx;
+  height: 24rpx;
+  vertical-align: middle;
+}
+
+.location {
+  padding: 0 30rpx;
+  margin-top: 64rpx;
+}
+.location .location-title {
+  font-size: 30rpx;
+  color: #313131;
+  font-weight: bold;
+}
+.location .location-address {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+.location .location-address view image {
+  width: 24rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+  vertical-align: middle;
+}
+.location .location-address view text {
+  font-size: 28rpx;
+  color: #a2a2a2;
+  vertical-align: middle;
+}
+.location .location-address image {
+  width: 30rpx;
+  height: 30rpx;
+}
+.turnMap {
+  display: flex;
+  justify-content: space-between;
+  width: 690rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+}
+.turnMap view {
+  width: 220rpx;
+  padding: 15rpx 0;
+  border: 1px solid #f5f5f5;
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.turnMap image {
+  width:40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+.turnMap text {
+  font-size: 28rpx;
+  color: #a2a2a2;
+}
+
+.scroll-view_H {
+  display: flex;
+}
+.scroll-view_H view {
+  display: inline-block;
+}
+.li1{
+  width: 200rpx;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  height: 200rpx;
+  transform: scale(0.9);
+}
+.selected{
+  transform: scale(1)
+}
+
+
+.travel-overview .overview-address {
+  padding: 20rpx 0;  
+}
+.travel-overview .overview-address .five-a {
+  font-size: 12px;
+}
+.travel-overview .cell-group image {
+  width: 100%;
+  height: 200rpx;
+}
+
+
+
+.ticketEntry {
+  display: flex;
+}
+.ticketEntry text {
+  font-size: 12px;
+}
+.travel-strategy {
+  margin: 0 30rpx;
+  margin-top: 88rpx;
+}
+.travel-strategy .travel-title image {
+  width: 45rpx;
+  height: 47rpx;
+  margin-right: 20rpx;
+}
+.travel-strategy .travel-title text {
+  font-size: 32rpx;
+  color: #333;
+}
+
+/* 攻略游记 */
+.ul {
+  overflow: hidden;
+  margin-bottom: 30rpx;
+}
+.ul .li {
+  background-color: #fff;
+  border-radius: 8rpx;
+}
+.ul .li .title {
+  position: absolute;
+  bottom: 12rpx;
+  left: 12rpx;
+  font-size: 30rpx;
+  color: #fff;
+}
+.ul .li .label {
+  position: absolute;
+  font-size: 24rpx;
+  color: #fff;
+  padding: 12rpx;
+  background-color: rgba(0, 0, 0, 0.61);
+  bottom: 10rpx;
+  right: 10rpx;
+  border-radius: 8rpx;
+  z-index: 100;
+}
+.ul .li .label.video {
+  background: #44acff;
+}
+.ul .title .time {
+  font-size: 26rpx;
+  color: rgb(153,153,153);
+}
+
+.ul .li image, .ul .li video {
+  width: 690rpx;
+  height: 272rpx;
+}
+
+.ul .li {
+  border: solid 1rpx #f5f5f5;
+  margin-top: 30rpx;
+  position: relative;
+}
+.ul .li .strategyName {
+  position: absolute;
+  right: 27rpx;
+  bottom: 110rpx;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+  z-index: 2;
+  width: 130rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  background-color: rgba(0,0,0,.5); 
+}
+.ul .li .numPeople {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 20rpx;
+}
+.ul .li .numPeople view {
+  font-size: 24rpx;
+  color: rgb(153,153,153);
+}
+/* 点赞和预览人数 */
+.numPeople .like {
+  display: inline-block;
+}
+.numPeople .like image {
+  width: 28rpx;
+  height: 25rpx;
+  vertical-align: middle;
+}
+.numPeople .like text {
+  vertical-align: middle;
+  margin-left: 14rpx;
+}
+.numPeople .eyes {
+  display: inline-block;
+  margin-left: 24rpx;
+}
+.numPeople .eyes image {
+  width: 32rpx;
+  height: 25rpx;
+  vertical-align: middle;
+}
+.numPeople .eyes text {
+  vertical-align: middle;
+  margin-left: 14rpx;
+}
+
+/* 景区概述的标题 */
+.title-level1 {
+  margin-top: 50rpx;
+}
+.title-level1 text:first-of-type {
+  display: inline-block;
+  width: 8rpx;
+	height: 34rpx;
+  border-top-right-radius: 4rpx;
+  border-bottom-right-radius: 4rpx;
+	background-color: #51a5ff;
+  vertical-align: middle;
+  margin-right: 12rpx;
+}
+.title-level1 text:last-of-type {
+  vertical-align: middle;
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+/* 语音 */
+.audio {
+  width: 690rpx;
+  height: 161rpx;
+  margin: 46rpx 0 0;
+  box-shadow: 0 0 5rpx 5rpx #f5f5f5;
+  display: flex;
+}
+.audio > image {
+  width: 125rpx;
+  height: 125rpx;
+  margin: 18rpx 35rpx 18rpx 20rpx;
+}
+.audio .control {
+  width: 395rpx;
+  position: relative;
+}
+.audio view .name {
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 35rpx;
+  font-weight: bold;
+}
+.audio slider {
+  margin: 0;
+}
+.audio .time {
+  color: #999;
+  font-size: 20rpx;
+  margin-top: 10rpx;
+  text-align: right
+}
+.audio .buttonIcon {
+  position: absolute;
+  right: -95rpx;
+  bottom: 64rpx; 
+}
+.audio .buttonIcon image {
+  width: 72rpx;
+  height: 72rpx;
+}
+
+/* 分类 */
+.travel-overview .hotRecommendList {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #313131;
+}
+.travel-overview .hotRecommendList view {
+  flex: 1;
+  text-align: center;
+  padding-top: 86rpx;
+}
+.travel-overview .hotRecommendList view.active {
+  position: relative;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+.travel-overview .hotRecommendList view.active::after {
+  content: "";
+  width: 40rpx;
+  height: 2px;
+  display: inline-block;
+  background-color: #81a2fc;
+  position: absolute;
+  bottom: -12rpx;
+  left: 50%;
+  margin-left: -20rpx;
+}
+
+/* 美食，景点，酒店列表 */
+.scroll-box {
+  width: 750rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 30rpx;
+  padding: 20rpx 0 18rpx;
+}
+.swiper-top view {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 5rpx;
+  display: inline-block;
+  margin-right: 24rpx;
+}
+.swiper-top image {
+  width: 140rpx;
+  height: 140rpx;
+}
+.swiper-top view:last-of-type {
+  margin-right: 0;
+}
+.travel-overview .swiperSpot {
+  margin-top: 40rpx;
+  -webkit-overflow-scrolling: touch
+}
+.travel-overview .scroll-box.hot-spot-box {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.travel-overview .swiperSpot text {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 12rpx;
+}
+.travel-overview .swiperSpot view {
+  display: inline-block;
+  margin-right: 30rpx;
+  padding-bottom: 30rpx;
+}
+.travel-overview .swiperSpot view:first-of-type {
+  margin-left: 30rpx;
+}
+.travel-overview .swiperSpot view:last-of-type {
+  margin-right: 30rpx;
+}
+.travel-overview .swiperSpot image {
+  width: 300rpx;
+  height: 176rpx;
+  border-radius: 8rpx
+}
+.travel-overview .swiperSpot view text:first-of-type {
+  font-size: 28rpx;
+  color: #313131;
+  font-weight: bold;
+  margin-top: 20rpx;
+  width: 280rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.travel-overview .swiperSpot view text:nth-of-type(2) {
+  margin-top: 24rpx;
+  color: #a2a2a2;
+  font-size: 24rpx;
+  display: inline-block;
+  width: 280rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+
+
+.bottomBtn {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+	height: 88rpx;
+	background-color: #ffffff;
+	box-shadow: 0rpx -1rpx 0rpx 0rpx#f0f0f0;
+  display: flex;
+}
+.bottomBtn.x {
+  padding-bottom: 68rpx;
+}
+.bottomBtn text {
+  font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 28rpx;
+	letter-spacing: 0rpx;
+	color: #81a2fc;
+}
+.bottomBtn .share {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.bottomBtn .share::after {
+  position: absolute;
+  right: 0;
+  top: 18rpx;
+  content: "";
+  width: 2rpx;
+  height: 56rpx;
+  background-color: #f0f0f0;
+  display: inline-block;
+}
+.bottomBtn .share image {
+  width: 24rpx;
+  height: 24rpx;
+}
+.bottomBtn .location {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0
+}
+.bottomBtn .location image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.canvas {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  z-index: 101;
+  padding-top: 20rpx
+}
+canvas {
+  width: 400rpx;
+  border-radius: 8rpx;
+  box-shadow: 0 0 10rpx 5rpx #eee;
+  margin: 0 auto;
+  height: 736rpx;
+  margin-bottom: 90rpx
+}
+.canvas .remove {
+  padding: 0 30rpx;
+  text-align: right;
+  display: relative;
+  right: 30rpx;
+  top: 30rpx
+}
+.canvas .remove image {
+  width: 32rpx;
+  height: 32rpx
+}
+.canvas .btn {
+  border-top: 1rpx solid #f0f0f0;
+}
+.canvas .btn button {
+  width: 360rpx;
+  height: 72rpx;
+  background: #81a2fc;
+  border-radius: 36rpx;
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 72rpx;
+  margin: 46rpx auto;
+}
+
+.canvas-box {
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%
+}
+.canvas-box .shadom {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0,0,0,.5)
+}
+.hidden {
+  display: none
+}

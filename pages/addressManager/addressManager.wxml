@@ -1,0 +1,25 @@
+<view class="ul">
+  <view class="li">
+    <image class="select left" src="{{select_img}}"></image>
+    <view class="right">
+      <text class="name">姓名</text>
+      <view>
+        <image class="location" src="../../images/dw.png"></image>
+        <text class="address-text">收货地址：浙江省杭州市西湖区文新街道政苑小区12幢2单元202室</text>
+      </view>
+      <image class="edit" src="../../images/bianji.png"></image>
+    </view>
+  </view>
+  <view class="li">
+    <image class="select left" src="{{select_img}}"></image>
+    <view class="right">
+      <text class="name">姓名</text>
+      <view>
+        <image class="location" src="../../images/dw.png"></image>
+        <text class="address-text">收货地址：浙江省杭州市西湖区文新街道政苑小区12幢2单元202室</text>
+      </view>
+      <image class="edit" src="../../images/bianji.png"></image>
+    </view>
+  </view>
+</view>
+<button class="add-address" bindtap="addAddress">新增地址</button>

@@ -1,0 +1,19 @@
+<!-- 查看更多图片、视频 -->
+<view class="select">
+  <view class="{{type_active==1?'active':''}}" data-type="1" bindtap="selectType">
+    <text>图片</text>
+    <text></text>
+  </view>
+  <view class="{{type_active==0?'active':''}}" data-type="0" bindtap="selectType">
+    <text>视频</text>
+    <text></text>
+  </view>
+</view>
+<view class="box clearfix">
+  <block wx:for="{{ list }}" wx:key="">
+     <view class="li">
+      <image wx:if="{{ item.sliderType == 1 }}" src="{{ item.sliderInfoUrl }}"></image>
+      <video wx:if="{{ item.sliderType == 0 }}" src="{{ item.sliderInfoUrl }}"></video>
+    </view>
+  </block>
+</view>

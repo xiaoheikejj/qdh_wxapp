@@ -1,0 +1,84 @@
+.content-box .banner {
+  width: 750rpx;
+  height: 320rpx;
+}
+.content-box .content {
+  box-shadow: 0 0 10rpx 5rpx #f5f5f5;
+  background-color: #fff;
+  width: 690rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+  padding: 30rpx;
+}
+.content-box .content .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 34rpx;
+  border-bottom: solid 2rpx #ededed;
+}
+.content-box .content .title .right {
+  font-size: 24rpx;
+  color: #a2a2a2;
+}
+.content-box .content .title .left {
+  font-size: 30rpx;
+  color: #313131;
+  font-weight: bold;
+}
+.content-box .content .title .left text:first-of-type {
+  width: 8rpx;
+  height: 34rpx;
+  border-top-right-radius: 4rpx;
+  border-bottom-right-radius: 4rpx;
+  background: #51a5ff;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 12rpx;
+}
+.content-box .content .title .left text:last-of-type {
+  vertical-align: middle;
+  line-height: 1;
+}
+.content-box .content image {
+  width: 690rpx;
+  margin-top: 30rpx;
+}
+.content-box .bottom-text {
+  border-bottom: solid 1rpx #d2d2d6;
+  padding-bottom: 20rpx;
+}
+.content-box .bottom-text text {
+  display: block;
+  font-size: 28rpx;
+  color: #a2a2a2;
+  margin-top: 20rpx;
+}
+
+.numPeople {
+  display: flex;
+  margin-top: 20rpx;
+  padding-bottom: 30rpx;
+  font-size: 28rpx;
+  color: #a2a2a2;
+}
+.numPeople text {
+  display: inline-block !important;
+  vertical-align: middle;
+  margin-top: 0 !important;
+  padding-left: 14rpx;
+}
+.numPeople .like image {
+  width: 28rpx;
+  height: 24rpx;
+  vertical-align: middle;
+  margin-top: 0;
+  padding-left: 20rpx;
+}
+.numPeople .eyes image {
+  width: 32rpx;
+  height: 24rpx;
+  vertical-align: middle;
+  margin-top: 0;
+  padding-left: 20rpx;
+}

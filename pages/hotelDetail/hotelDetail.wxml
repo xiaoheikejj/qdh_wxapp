@@ -1,0 +1,51 @@
+<!-- 酒店详情 -->
+<view class="food-detail">
+  <!-- 轮播 -->
+  <swiper indicator-dots indicator-active-color="#fff">
+    <block wx:for="{{ slider }}" wx:key="">
+      <swiper-item>
+        <image src="{{ item }}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 详情部分 -->
+  <view class="textIntro">
+    <!-- 详情部分的商家上半部分 -->
+    <view class="textIntro-header">
+      <view class="title">{{ hotelName }}</view>
+      <view class="rate">
+        <i-rate value="{{ hotelGrade }}" size="16"></i-rate>
+        <text>{{hotelGrade}}分</text>  
+      </view>
+      <view class="businessTime">{{ hotelDesc }}</view>
+      <view class="addressPho">
+        <view class="adr" bindtap="openMap">{{ hotelAddress }}</view>
+        <image class="pho" src="../../images/dh.png" bindtap="makeCall"></image>
+      </view>
+      <!-- 可预订 -->
+      <view class="reserve">
+        <image src='../../images/jdyd.png' style='width: 42rpx;height: 42rpx'></image>
+        <text>可预订</text>
+      </view>
+    </view>
+    <!-- 商家信息 -->
+    <view class="textIntro-bottom">
+      <view class="title">商家信息</view>
+      <view class="business-license">
+        <view>商家营业执照</view>
+        <image src="../../images/yjt.png"></image>
+      </view>
+      <view class="restaurant-service">
+        <view>酒店服务</view>
+      </view>
+      <view class="service-list">
+        <block wx:for="{{serviceList}}" wx:key="">
+          <view>
+            <image src="{{item.serviceIcon}}" mode="widthFix"></image>
+            <view class="text">{{item.serviceName}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

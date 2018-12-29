@@ -1,0 +1,19 @@
+<!-- 咨询投诉 -->
+<view class="body">
+  <view class="header">
+    <image src="../../images/logo.png"></image>
+    <text>千岛湖官方咨询服务平台</text>
+    <text>全程为您保驾护航</text>
+  </view>
+  <view class='box'>
+    <view>
+      <image src="../../images/znwd.png" bindtap="turnSmart"></image>
+    </view>
+    <view>
+      <image src="../../images/dhzx.png" bindtap="consult" style="align-self: flex-start"></image>
+    </view>
+    <view>
+      <image src="../../images/dhts.png" bindtap="complain" style="align-self: flex-start"></image>
+    </view>
+  </view>
+</view>

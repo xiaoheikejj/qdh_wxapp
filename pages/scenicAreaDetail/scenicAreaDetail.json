@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-cell-group": "../../components/cell-group/index",
+    "i-cell": "../../components/cell/index"
+  },
+  "navigationBarTitleText": "千岛概述"
+}

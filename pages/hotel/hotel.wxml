@@ -1,0 +1,43 @@
+<!-- 酒店 -->
+<view style="position: relative">
+  <view class="search-box">
+    <view class="search">
+      <image src="../../images/sous.png"></image>
+      <input placeholder="搜索酒店名称" placeholder-class="placeholder-class" disabled bindtap="turnToSearch"></input>
+    </view>
+  </view>
+  <!-- 广告 -->
+  <swiper indicator-dots indicator-active-color="#fff">
+    <block wx:for="{{ bannerImgUrl }}" wx:key="">
+      <swiper-item>
+        <image src="{{ item.bannerImgUrl }}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<view class="hotel">
+  <!-- 美食列表 -->
+  <view class="ul">
+    <block wx:for="{{ dataList }}" wx:key="">
+      <view class="li" data-id="{{ item.id }}" bindtap="turnDetail">
+        <image mode="aspectFill" src="{{ item.hotelImgUrl }}"></image>
+        <view class="li-desc">
+          <view class="title">{{ item.hotelName }}</view>
+          <view class='hotel-rate'>
+            <i-rate value="{{ item.hotelGrade }}" size="14" style="font-size: 0"></i-rate>          
+            <text>{{ item.hotelGrade }}分</text>
+          </view>
+          <view style="font-size: 0">
+            <text class="tags">{{ item.hotelType }}</text>
+            <text class="tags">{{ item.hotelAddress }}</text>
+          </view>
+        </view>
+        <view class="reserve">
+          <image src='../../images/jdyd.png' style='width: 42rpx;height: 42rpx'></image>
+          <text>可预订</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

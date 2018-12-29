@@ -1,0 +1,42 @@
+.body {
+  background-color: #eee;
+  padding: 0 30rpx;
+  padding-bottom: 22rpx;
+}
+.cover {
+  margin-top: 22rpx;
+}
+.top {
+  height: 348rpx;
+  width: 690rpx;
+  border-radius: 5rpx;
+  position: relative;
+}
+.top image {
+  width: 690rpx;
+  height: 348rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.top .text {
+  position: absolute;
+  text-align: center;
+}
+.top .text view {
+  width: 690rpx;
+  color: #fff;
+}
+.top .text .text-title {
+  font-size: 32rpx;
+  margin-top: 110rpx;
+}
+.top .text .text-content {
+  font-size: 24rpx;
+  margin-top: 32rpx;
+}
+
+.bottom image {
+  width: 690rpx;
+  height: 160rpx;
+}

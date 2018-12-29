@@ -1,0 +1,21 @@
+<!-- 交通指南 -->
+<view class="body">
+  <block wx:for="{{ data }}" wx:key="">
+    <view class="cover">
+      <!-- 上面 -->
+      <view class="top">
+        <image src="{{ item.trafficImgUrl }}"></image>
+        <view class="text">
+          <view class="text-title">{{ item.trafficName }}</view>
+          <view class="text-content">{{ item.trafficDesc }}</view>
+        </view>        
+      </view>
+      <!-- 下面 -->
+      <block wx:for="{{ item.list }}" wx:key="" wx:for-item="items">
+        <view data-link='{{items.trafficLinkUrl}}'  class="bottom" bindtap='turnToDetail'>
+          <image src="{{ items.trafficImgUrl }}"></image>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>

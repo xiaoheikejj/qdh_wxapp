@@ -1,0 +1,54 @@
+<!--首页-->
+<view class="body">
+  <!-- header -->
+  <view class="header">
+    <view class="top">
+      <image class="logo" src="../../images/logo.png" mode="aspectFill"></image>
+      <view class="search-style">
+        <image src='../../images/sous.png'></image>
+        <input placeholder="搜索景区" disabled bindtap="turnSpot"></input>
+      </view>
+    </view>   
+    <!-- 天气 -->
+    <view class="weather" bindtap="turnWea">
+      <image src="{{weatherImg}}"></image>
+      <view>{{weatherInfo.tem}}</view>      
+    </view>
+    <!-- 轮播 -->
+    <swiper class="header-banner" autoplay interval="3000" circular indicator-dots="{{indicatorDots}}" indicator-active-color="#fff">
+      <swiper-item wx:for="{{ recommend }}" wx:key="">
+        <image src="{{ item.imgUrl }}" class="slide-image"></image>
+        <view class='name'>{{ item.name }}</view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 菜单 -->
+  <view class="menu">
+    <view class="clearfix">
+      <block wx:for="{{ menuListArr }}" wx:key="">
+        <view class="menu-child" data-id="{{ item.orderNo }}" bindtap="linkJump">
+          <image src="{{ item.menuClass }}"></image>
+          <text>{{ item.menuName }}</text> 
+        </view>
+      </block>
+    </view>
+    <view class="menuList-more">
+      <view bindtap="addMore">
+        <image src="{{ showMore }}"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 推荐 -->
+  <view class="recommand">热门推荐</view>
+  <!-- 推荐的图片 -->
+  <view class="recommand-list">
+    <block wx:for="{{ hotList }}" wx:key="">
+      <view class="li" data-url="{{item.hotPageLinkUrl}}" bindtap="turnToDetail">
+        <image src="{{ item.hotPageImgUrl }}"></image>
+        <!-- <view class='name'>{{ item.hotPageName }}</view> -->
+        <!-- <view class='desc'>{{ item.hotPageDesc }}</view> -->
+        <view class="label">{{ item.hotPageName }}</view>
+      </view>
+    </block> 
+  </view>
+</view>

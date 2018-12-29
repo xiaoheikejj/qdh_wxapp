@@ -1,0 +1,77 @@
+<!-- 我的 -->
+<view class="body">
+  <!-- 微信头像 -->
+  <view class="avatar">    
+    <view class="img">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="name">
+      <open-data type="userNickName"></open-data>
+      <view>
+        <text class="member">普通会员</text>
+        <text class="integral">{{userIntegral}}  积分</text>
+      </view>
+    </view>
+  </view>
+  <!-- 每日签到和会议打卡 -->
+  <view class="box-bottom">
+    <view class="signAndClock">
+      <view class="sign" bindtap="getIntegral">
+        <image class="bg" src="../../images/usercenter_bg.png"></image>
+        <view class="sign-box">
+          <view class="top">
+            <text>每日好礼</text>
+            <image src="../../images/calender.png"></image>
+            <text class="has-sign" wx:if="{{has_sign}}">已签到</text>
+          </view>
+          <view class="bottom">今日签到可以获得5积分</view>
+        </view>
+      </view>
+      <view class="sign" bindtap="scanCode">
+        <image class="bg" src="../../images/usercenter_bg.png"></image>
+        <view class="sign-box">
+          <view class="top">
+            <text>会议签到</text>
+            <image src="../../images/scan.png"></image>
+          </view>
+          <view class="bottom">扫描会议签到墙的二维码</view>
+        </view>
+      </view>
+    </view>
+    <!-- 活动 -->
+    <view class="cell-group">
+      <view class="personInfo" bindtap="turnToAddress">
+        <view class="courier-address">
+          <image src="../../images/shdz.png"></image>
+          <text>收货地址</text>
+        </view>
+        <image src="../../images/yjt.png"></image>
+      </view>
+      <view class="integral-activity">
+        <image src="../../images/jfhd.png"></image>
+        <text>积分活动</text>
+      </view>
+      <view class="act">
+        <view class="li">
+          <image src="../../images/xydzp.png"></image>
+          <view class="right">
+            <text class="title">幸运大转盘</text>
+            <text class="timeText">结束时间：<text class="timeNum">2018-12-30</text></text>
+            <text class="timeText bottom">开始时间：<text class="timeNum">2018-11-21</text></text>
+            <button bindtap="goDial">立即参与</button>          
+          </view>
+        </view>
+        <view class="li">
+          <image src="../../images/ggl.png"></image>
+          <view class="right">
+            <text class="title">刮刮乐</text>
+            <text class="timeText">结束时间：<text class="timeNum">2018-12-30</text></text>
+            <text class="timeText bottom">开始时间：<text class="timeNum">2018-11-21</text></text>
+            <button bindtap="goCard">立即参与</button>          
+          </view>
+        </view>
+      </view>
+    </view>
+    <image mode="aspectFill" src="{{ bannerImgUrl }}" class="adverti"></image>
+  </view>
+</view>

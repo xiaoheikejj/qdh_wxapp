@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-rate": "../../components/rate/index",
+    "i-panel": "../../components/panel/index",
+    "i-icon": "../../components/icon/index",
+    "i-cell-group": "../../components/cell-group/index",
+    "i-cell": "../../components/cell/index"
+  },
+  "navigationBarTitleText": "酒店详情"
+}

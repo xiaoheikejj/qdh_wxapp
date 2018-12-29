@@ -1,0 +1,56 @@
+page {
+  background: #fafafa;
+}
+.ul {
+  width: 690rpx;
+  margin: 30rpx;
+  box-shadow: 0 8rpx 16rpx 0 rgba(172, 179, 199, 0.16);
+}
+.ul .li {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 30rpx 20rpx;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+.ul .li .right {
+  margin-left: 30rpx;
+  position: relative;
+}
+.ul .li .address-text {
+  color: #a2a2a2;
+  font-size: 24rpx;
+  vertical-align: middle;
+}
+.ul .li .location {
+  width: 20rpx;
+  height: 26rpx;
+  vertical-align: middle;
+  margin-right: 12rpx;
+}
+.ul .li .edit {
+  position: absolute;
+  width: 30rpx;
+  height: 28rpx;
+  top: 10rpx;
+  right: 0;
+}
+.ul .li .select {
+  width: 40rpx;
+  height: 40rpx;
+}
+.ul .li .name {
+  font-size: 30rpx;
+}
+
+.add-address {
+  width: 686rpx;
+	height: 89rpx;
+  line-height: 89rpx;
+	border-radius: 4rpx;
+	border: solid 2rpx #81a2fc;
+  color: #81a2fc;
+  font-size: 32rpx;
+  background: #fff;
+  margin-top: 50rpx;
+}

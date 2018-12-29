@@ -1,0 +1,131 @@
+.body swiper {
+  width: 750rpx;
+  height: 320rpx;
+}
+.body swiper image {
+  width: 750rpx;
+  height: 320rpx;
+}
+.picker {
+  display: flex;
+  justify-content: space-around;
+  height: 88rpx;
+  text-align: center;
+}
+.picker .type-list {
+  flex: 1;
+  color: #5d5d5d;
+  font-size: 24rpx;
+}
+.picker .type-list .infomation {
+  margin-top: 30rpx;
+  color: #5d5d5d;
+}
+.picker .type-list .infomation.active {
+  color: #6aa5fc;
+}
+.picker .type-list .line {
+  margin: 15rpx auto 0;
+  width: 108rpx;
+  height: 4rpx;
+  background-color: #fff;
+}
+.picker .type-list .line.active {
+  background-color: #6aa5fc;
+}
+
+.ul {
+  padding: 0 30rpx;
+  background-color: #fafafa;
+  overflow: hidden;
+  margin-bottom: 30rpx;
+}
+.ul .li {
+  background-color: #fff;
+  border-radius: 8rpx;
+}
+.ul .li .title {
+  position: absolute;
+  bottom: 12rpx;
+  left: 12rpx;
+  font-size: 30rpx;
+  color: #fff;
+}
+.ul .li .label {
+  position: absolute;
+  font-size: 24rpx;
+  color: #fff;
+  padding: 12rpx;
+  background-color: rgba(0, 0, 0, 0.61);
+  bottom: 10rpx;
+  right: 10rpx;
+  border-radius: 8rpx;
+  z-index: 100;
+}
+.ul .li .label.video {
+  background: #44acff;
+}
+.ul .title .time {
+  font-size: 26rpx;
+  color: rgb(153,153,153);
+}
+
+.ul .li image, .ul .li video {
+  width: 690rpx;
+  height: 272rpx;
+}
+
+.ul .li {
+  border: solid 1rpx #f5f5f5;
+  margin-top: 30rpx;
+  position: relative;
+}
+.ul .li .strategyName {
+  position: absolute;
+  right: 27rpx;
+  bottom: 110rpx;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+  z-index: 2;
+  width: 130rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  background-color: rgba(0,0,0,.5); 
+}
+.ul .li .numPeople {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 20rpx;
+}
+.ul .li .numPeople view {
+  font-size: 24rpx;
+  color: rgb(153,153,153);
+}
+/* 点赞和预览人数 */
+.numPeople .like {
+  display: inline-block;
+}
+.numPeople .like image {
+  width: 28rpx;
+  height: 25rpx;
+  vertical-align: middle;  
+}
+.numPeople .like text {
+  vertical-align: middle;
+  margin-left: 14rpx;
+}
+.numPeople .eyes {
+  display: inline-block;
+  margin-left: 24rpx;
+}
+.numPeople .eyes image {
+  width: 32rpx;
+  height: 25rpx;
+  vertical-align: middle;
+}
+.numPeople .eyes text {
+  vertical-align: middle;
+  margin-left: 14rpx;
+}

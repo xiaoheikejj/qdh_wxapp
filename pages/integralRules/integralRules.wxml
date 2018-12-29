@@ -1,0 +1,27 @@
+<view class="box">
+  <view class="level">
+    <view>
+      <text></text>
+      <text>抽奖规则</text>
+    </view>
+    <view class="p" style="margin-top: 30rpx">1关于积分消费</view>
+    <view class="p">1.1天猫会员每次抽奖需要扣除10个天猫积分，  扣除的积分不退还，每天参与抽奖次数不限。</view>
+    <view class="p">2关于奖品</view>
+    <view class="p">2.1本活动奖品为千岛湖小程序积分奖品。</view>
+    <view class="p">2.2实物奖品</view>
+    <view class="p">积分奖品不定期设置:8、10、18、20、50、 58和100个积分等奖品，积分直接发放到中奖用户的积分账户。</view>
+    <view class="p">3其他</view>
+    <view class="p">3.1如活动受政府机关指令需要停止举办的，或活动遭受严重网络攻击需暂停举办的，或者系统故障导致的其它意外问题，千岛湖官方运营团队无需为此承担赔偿或者进行补偿。</view>
+    <view class="p">3.2特别说明:声明本软件参加的商业活动，和微信无关</view>
+  </view>
+  <view class="level">
+    <view>
+      <text></text>
+      <text>积分使用规则</text>
+    </view>
+    <view class="p" style="margin-top: 30rpx">1通过本次活动获得的积分仅限千岛湖官方小程序内使用，可以和其他活动中获得积分累积使用。</view>
+    <view class="p">2积分可以继续参加官方的抽奖活动，但不能提现，不可转让他人。</view>
+    <view class="p">3在获取和使用积分过程中，如果出现违规行为(如作弊领取、刷分等)，千岛湖官方将取消您获得积分的资格，并有权撤销违规交易，收回活动中所得的积分(含已使用的积分及未使用的积分)，必要时将追究法律责任。</view>
+    <view class="p">5你可以在首页和个人中心查看积分余额。</view>
+  </view>
+</view>

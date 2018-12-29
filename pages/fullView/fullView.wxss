@@ -1,0 +1,40 @@
+.body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.body .boxTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.body .top {
+  width: 651rpx;
+  height: 507rpx;
+  margin-top: 100rpx;
+}
+.body .bottom {
+  width: 299rpx;
+  height: 97rpx;
+  margin-bottom: 50rpx;
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  width: 338rpx;
+  height: 296rpx;
+  margin-top: 32rpx;
+}
+.box .column {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.box .item {
+  width: 136rpx;
+  height: 137rpx;
+}
