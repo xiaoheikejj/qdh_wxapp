@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "千岛湖"
+    "navigationBarTitleText": "一机游千岛湖",
+    "navigationBarBackgroundColor": "#6aa5fc",
+    "navigationBarTextStyle": "white"
 }

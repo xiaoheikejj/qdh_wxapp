@@ -1,12 +1,14 @@
 {
-  "component": true,
-  "usingComponents": {
-    "i-avatar": "../../components/avatar/index",
-    "i-tag": "../../components/tag/index",
-    "i-cell-group": "../../components/cell-group/index",
-    "i-cell": "../../components/cell/index",
-    "i-input": "../../components/input/index",
-    "i-button": "../../components/button/index"
-  },
-  "navigationBarTitleText": "会员中心"
+    "component": true,
+    "usingComponents": {
+        "i-avatar": "../../components/avatar/index",
+        "i-tag": "../../components/tag/index",
+        "i-cell-group": "../../components/cell-group/index",
+        "i-cell": "../../components/cell/index",
+        "i-input": "../../components/input/index",
+        "i-button": "../../components/button/index"
+    },
+    "navigationBarTitleText": "个人中心",
+    "navigationBarBackgroundColor": "#A9B6FF",
+    "navigationBarTextStyle": "white"
 }

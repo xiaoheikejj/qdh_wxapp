@@ -1,37 +1,64 @@
-<!-- 酒店 -->
-<view style="position: relative">
-  <view class="search-box">
+<!-- 特色美食 -->
+<view id="food">
+    <!-- 搜索框 -->
     <view class="search">
-      <image src="../../images/sous.png"></image>
-      <input placeholder="搜索餐厅名称" placeholder-class="placeholder-class" disabled bindtap="turnToSearch"></input>
-    </view>
-  </view>
-  <!-- 广告 -->
-  <swiper indicator-dots indicator-active-color="#fff">
-    <block wx:for="{{ bannerImgUrl }}" wx:key="">
-      <swiper-item>
-        <image src="{{ item.bannerImgUrl }}"></image>
-      </swiper-item>
-    </block>
-  </swiper>
-</view>
-
-<view class="hotel">
-  <!-- 美食列表 -->
-  <view class="ul">
-    <block wx:for="{{ dataList }}" wx:key="">
-      <view class="li" data-id="{{ item.id }}" bindtap="turnDetail">
-        <image mode="aspectFill" src="{{item.cateImgUrl}}"></image>
-        <view class="li-desc">
-          <view class="title">{{ item.cateName }}</view>
-          <i-rate value="{{ item.cateGrade }}" size="14" style="font-size: 0"></i-rate>
-          <view style="font-size: 0;">
-            <text class="tags">{{ item.cateType }}</text>
-          </view>
-          <view class="businessTime">营业时间：{{item.cateOpenTime}}</view>
+        <view class="search-left">
+            <image src="../../images/sous.png"></image>
+            <input placeholder="搜索美食名" placeholder-class="placeholder-class" disabled bindtap="turnToSearch"></input>
         </view>
-        <view class="reserve">可预订</view>
-      </view>
-    </block>
-  </view>
+        <!-- 地图模式 -->
+        <view class="search-right" bindtap="tohanddrawnMap">
+            <image src="../../images/scenic-map.svg"></image>
+            <view>地图模式</view>
+        </view>
+    </view>
+    <!-- 选择栏 -->
+    <view class="chooseOptions">
+        <view class="scroll">
+            <scroll-view scroll-x>
+                <block wx:for="{{ tag.list }}" wx:key="">
+                    <view data-id="{{ item.tagID }}" bindtap="clickTag" data-select="{{ item.select }}" class="{{ item.select ? 'active': '' }}">{{ item.tagName }}</view>
+                </block>
+            </scroll-view>
+        </view>
+        <view class="select-picker">
+            <picker range="{{ range.list }}" range-key="{{ 'name' }}" value="{{ range.index }}" bindchange="bindPickerChange">
+                <view>
+                    <text>{{ range.list[range.index].name }}</text>
+                    <image src="../../images/hotel-limit.svg"></image>
+                </view>
+            </picker>
+        </view>
+    </view>
+    <!-- 饭店列表 -->
+    <view class="foodList">
+        <block wx:for="{{ restaurant.list }}" wx:key="">
+            <view data-id="{{ item.cateID }}" class="list-food" bindtap="jumpToInfo">
+                <image src="{{ item.imgUrl }}" mode="aspectFill"></image>
+                <view class="info">
+                    <view class="infoName">{{ item.cateName }}</view>
+                    <view class="infoGrade">
+                        <text>{{ item.score }}</text>
+                        <text>分</text>
+                        <text>{{ item.comments }}</text>
+                        <text>条评论</text>
+                    </view>
+                    <view class="infoLabel">
+                        <block wx:for="{{ item.tags }}" wx:for-item="childItem" wx:key="">
+                            <text>{{ childItem.tagName }}</text>
+                        </block>
+                    </view>
+                    <view class="infoDistance">
+                        <text>距您123km</text>
+                        <!-- <view wx:if="{{ item.price == 0 }}" style="color:rgba(49, 49, 49, 1)">免费</view>
+                        <view wx:else>
+                            <text>￥</text>
+                            <text>{{ item.price }}</text>
+                            <text>起</text>
+                        </view> -->
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
 </view>

@@ -1,49 +1,24 @@
 <!--游记攻略-->
-<view class="body">
-  <!-- 顶上的轮播图 -->
-  <swiper indicator-dots indicator-active-color="#fff">
-    <block wx:for="{{ bannerImgUrl }}" wx:key="">
-      <swiper-item>
-        <image mode="aspectFill" src="{{ item.bannerImgUrl }}"></image>
-      </swiper-item>
-    </block>
-  </swiper>
-  <!-- <image class="ad" src="{{ bannerImgUrl }}"></image> -->
-  <view class="picker">
-    <block wx:for="{{ pickerArray }}" wx:key="">
-      <view class="type-list" data-id="{{ item.id }}" bindtap="clickType">
-        <view class="infomation {{clickType==item.id?'active':''}}">{{ item.name }}</view>
-        <view class="line {{clickType==item.id?'active':''}}"></view>
-      </view>
-    </block>
-  </view>
-  <view class="ul">
-    <block wx:for="{{ dataList }}" wx:key="">
-      <view class="li">
-        <view style="position: relative" data-id="{{ item.id }}" data-type="{{item.strategyType}}" bindtap="turnToDetail">
-          <!-- 图片 -->
-          <video wx:if="{{ item.strategyType == 2}}" src="{{ item.strategyImgUrl }}"></video>
-          <image wx:if="{{ item.strategyType == 1}}" src="{{ item.strategyImgUrl }}"></image>
-          <cover-view class="title">{{ item.strategyTitle }}</cover-view>
-          <cover-view class="label {{item.strategyType==2?'video':''}}">{{item.strategyTypeName}}</cover-view>
-        </view>
-        <!-- 人数 -->
-        <view class="numPeople">
-          <view class="left">
-            <view class="like" data-id="{{ item.id }}" bindtap="clickLike">
-              <image src="{{ item.imageSRC }}"></image>
-              <text>{{item.strategyLikeNumber}}</text>
+<view id="travelGuide">
+    <block wx:for="{{ travel.list }}" wx:key="">
+        <view class="item" data-id="{{ item.id }}" data-isLike="{{ item.isLike }}" bindtap="jumpToDetail">
+            <view class="name">{{ item.name }}</view>
+            <view class="time">
+                <text wx:if="{{ item.label == 1 }}">旅游攻略</text>
+                <text wx:else>推荐路线</text>
+                <text>{{ item.date }}</text>
             </view>
-            <view class="eyes">
-              <image src="../../images/yj.png"></image>
-              <text>{{item.strategyViewNumber}}</text>
+            <view class="intro">{{ item.summary }}</view>
+            <view class="like">
+                <image src="{{ item.imgSrc }}" mode="aspectFill"></image>
+                <view>
+                    <image wx:if="{{ item.isLike == 1}}" src="../../images/strategy-yidianzan.png"></image>
+                    <image wx:else src="../../images/strategy-dianzan.png"></image>
+                    <text>{{ item.likeNumber }}</text>
+                    <image src="../../images/strategy-liulan.png"></image>
+                    <text>{{ item.viewNumber }}</text>
+                </view>
             </view>
-          </view>
-          <view class="right">
-            <text class="time">{{item.timeStamp}}天前</text>
-          </view>
         </view>
-      </view>
     </block>
-  </view>
 </view>

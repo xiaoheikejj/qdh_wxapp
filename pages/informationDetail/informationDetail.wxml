@@ -1,0 +1,14 @@
+<!--pages/informationDetail/informationDetail.wxml-->
+<view id="informationDetail">
+    <!-- 标题 -->
+    <view class="title">
+        <view class="left">
+            <text></text>
+            <text>{{ notice.result.title }}</text>
+        </view>
+        <text class="right">{{ notice.result.recordDate }}</text>
+    </view>
+    <view style="margin-top: 20rpx">
+        <rich-text nodes="{{ notice.result.content }}"></rich-text>
+    </view>
+</view>

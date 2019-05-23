@@ -1,122 +1,40 @@
-<scroll-view scroll-y class="box">
-  <view style="position: fixed;top: 0;z-index: 100">
-    <view class="search-input">
-      <image src="../../images/sous.png" class="search-image"></image>
-      <input value="{{input_val}}" auto-focus placeholder-class="placeholder" bindinput="inputValue"></input>
-      <image src="../../images/remove.png" wx:if="{{input_val?true:false}}" class="search-remove-image" bindtap="removeInputVal"></image>
-      <text bindtap="searchRequest">搜索</text>
+<!-- 搜索页面 -->
+<view id="search">
+    <!-- 头部搜索框 -->
+    <view class="top">
+        <view class="top-center">
+            <image src="../../images/sous.png"></image>
+            <input placeholder="请输入搜索关键词" 
+                bindconfirm="seek"
+                confirm-type="search"></input>
+        </view>
     </view>
-    <view class="select ul">
-      <block wx:for="{{searchType}}" wx:key="">
-        <view class="li" data-type="{{item.type}}" bindtap="selectType">
-          <view class="text {{lineShow==item.type?'active':''}}">{{item.name}}</view>
-          <!-- <view class="line {{lineShow==item.type?'active':''}}"></view> -->
-        </view>
-      </block>
+    <i-tabs current="{{ tab.current }}" scroll bindchange="handleChange">
+        <i-tab wx:for="{{ tab.list }}" wx:key="" key="{{ item.typeID }}" title="{{ item.typeName }}"></i-tab>
+    </i-tabs>
+    <view class="list">
+        <block wx:for="{{ list }}" wx:key="">
+            <view class="li" data-id="{{ item.recordID }}" bindtap="jumpToDetail">
+                <image src="{{ item.imghUrl }}" class="left"></image>
+                <view class="right">
+                    <view class="name">{{ item.title }}</view>
+                    <view class="score">
+                        <text>{{ item.score }}</text>
+                        <text>分</text>
+                        <text>{{ item.comments }}</text>
+                        <text>条点评</text>
+                    </view>
+                    <view class="labels">
+                        <block wx:for="{{ item.tags }}" wx:key="" wx:for-item="childItem">
+                            <text>{{ childItem.tagName }}</text>
+                        </block>
+                    </view>
+                    <view class="distance">
+                        <text>距您{{ item.distance/1000 }}km</text>
+                        <!-- <text>￥120起</text> -->
+                    </view>
+                </view>
+            </view>
+        </block>
     </view>
-  </view>
-  <!-- 酒店 -->
-  <view class="hotel" wx:if="{{lineShow==1}}">
-    <view class="ul">
-      <block wx:for="{{ array_list }}" wx:key="">
-        <view class="li" data-id="{{ item.id }}" bindtap="turnHotelDetail">
-          <image mode="aspectFill" src="{{ item.hotelImgUrl }}"></image>
-          <view class="li-desc">
-            <view class="title">{{ item.hotelName }}</view>
-            <view class="hotel-rate">
-              <i-rate value="{{ item.hotelGrade }}" size="14" style="font-size: 0"></i-rate>          
-              <text>{{ item.hotelGrade }}分</text>
-            </view>
-            <view style="font-size: 0">
-              <text class="tags">{{ item.hotelType }}</text>
-              <text class="tags">{{ item.hotelAddress }}</text>
-            </view>
-          </view>
-          <view class="reserve">
-            <image src="../../images/jdyd.png" style="width: 42rpx;height: 42rpx"></image>
-            <text>可预订</text>
-          </view>
-        </view>
-      </block>
-    </view>
-  </view>
-  <!-- 名宿 -->
-  <view class="hotel" wx:if="{{lineShow==2}}">
-    <view class="ul">
-      <block wx:for="{{ array_list }}" wx:key="">
-        <view class="li" data-id="{{ item.id }}" bindtap="turnLegendDetail">
-          <image mode="aspectFill" src="{{ item.homestayImgUrl }}"></image>
-          <view class="li-desc">
-            <view class="title">{{ item.homestayName }}</view>
-            <view class='hotel-rate'>
-              <i-rate value="{{ item.homestayGrade }}" size="14" style="font-size: 0"></i-rate>
-              <text>{{ item.homestayGrade }}分</text>
-            </view>
-            <view style="font-size: 0">
-              <text class="tags">{{ item.homestayType }}</text>
-              <text class="tags">{{ item.homestayAddress }}</text>
-            </view>
-          </view>
-          <view class="reserve">
-            <image src="../../images/jdyd.png" style="width: 42rpx;height: 42rpx"></image>
-            <text>可预订</text>
-          </view>
-        </view>
-      </block>
-    </view>
-  </view>
-  <!-- 美食 -->
-  <view class="food" wx:if="{{lineShow==3}}">
-    <view class="ul">
-      <block wx:for="{{ array_list }}" wx:key="">
-        <view class="li" data-id="{{ item.id }}" bindtap="turnFoodDetail">
-          <image mode="aspectFill" src="{{item.cateImgUrl}}"></image>
-          <view class="li-desc">
-            <view class="title">{{ item.cateName }}</view>
-            <i-rate value="{{ item.cateGrade }}" size="14" style="font-size: 0"></i-rate>
-            <view style="font-size: 0;">
-              <text class="tags">{{ item.cateType }}</text>
-            </view>
-            <view class="businessTime">营业时间：{{item.cateOpenTime}}</view>
-          </view>
-          <view class="reserve">可预订</view>
-        </view>
-      </block>
-    </view>
-  </view>
-  <!-- 景区 -->
-  <view class="attractionsList clearfix" wx:if="{{lineShow==4}}">
-    <block wx:for="{{ array_list }}" wx:key="">
-      <view class="attractionsList-child" data-id="{{ item.id }}" bindtap="turnScenicSpot">
-        <image src="{{ item.childImgUrl }}" class="beauty-image"></image>
-        <view class="intro">
-          <text class="title">{{ item.childName }}</text>
-          <!-- <text class="five-a">{{ item.childViewLevel }}</text> -->
-          <block wx:if="{{ item.childIsHot == 1 }}">
-            <image src="../../images/rq.png" class="sentiment"></image>       
-          </block>
-        </view>
-        <view class="rate-box">
-          <i-rate value="{{ item.childGrade }}" size="12" i-class="rate"></i-rate>
-        </view>
-      </view>
-    </block>
-  </view>
-  <!-- 特惠活动列表 -->
-  <view class="activityList">
-    <block wx:for="{{ array_list }}" wx:key="">
-      <view class="list" data-id="{{ item.id }}" bindtap="turnToActivityDetail">
-        <image mode="aspectFill" src="{{ item.activityImgUrl }}" ></image>
-        <view class="time-info">
-          <view class="title">{{ item.activityName }}</view>
-          <view class="timeText beginTime">开始时间：{{ item.activityBeginTime }}</view>
-          <view class="timeText">结束时间：{{ item.activityEndTime }}</view>      
-          <block>
-            <button wx:if="{{ item.participation }}" class="blue">立即参与</button>
-            <button wx:else disabled>已结束</button>      
-          </block>
-        </view> 
-      </view>
-    </block>
-  </view>
-</scroll-view>
+</view>

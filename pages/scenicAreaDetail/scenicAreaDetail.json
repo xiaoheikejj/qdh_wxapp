@@ -1,8 +1,5 @@
 {
-  "component": true,
-  "usingComponents": {
-    "i-cell-group": "../../components/cell-group/index",
-    "i-cell": "../../components/cell/index"
-  },
-  "navigationBarTitleText": "千岛概述"
+    "component": true,
+    "usingComponents": {},
+    "navigationBarTitleText": "景点详情"
 }

@@ -1,1 +1,36 @@
 /* pages/leader/leader.wxss */
+
+.placeholderClass {
+    font-size: 24rpx;
+}
+input {
+    margin-top: 100rpx;
+    border: 1rpx solid #fafafa;
+    font-size: 24rpx;
+    height: 60rpx;
+}
+#guidance {
+    position: relative;
+    width: 100%;
+    height: 100%
+}
+#guidance .gui-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#guidance button {
+    width: 336rpx;
+    height: 96rpx;
+    position: absolute;
+    z-index: 100;
+    top: 45%;
+    left: 50%;
+    color: #fff;
+    background: rgba(255,255,255,.1);
+    border: 2rpx solid #fff;
+    font-weight: 400;
+    transform: translateX(-50%);
+}

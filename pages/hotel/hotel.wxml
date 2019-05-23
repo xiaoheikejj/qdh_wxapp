@@ -1,43 +1,64 @@
-<!-- 酒店 -->
-<view style="position: relative">
-  <view class="search-box">
+<!-- 度假酒店 -->
+<view id="hotel">
+    <!-- 搜索框 -->
     <view class="search">
-      <image src="../../images/sous.png"></image>
-      <input placeholder="搜索酒店名称" placeholder-class="placeholder-class" disabled bindtap="turnToSearch"></input>
+        <view class="search-left">
+            <image src="../../images/sous.png"></image>
+            <input placeholder="搜索酒店名" placeholder-class="placeholder-class" disabled bindtap="turnToSearch"></input>
+        </view>
+        <!-- 地图模式 -->
+        <view class="search-right" bindtap="tohanddrawnMap">
+            <image src="../../images/scenic-map.svg"></image>
+            <view>地图模式</view>
+        </view>
     </view>
-  </view>
-  <!-- 广告 -->
-  <swiper indicator-dots indicator-active-color="#fff">
-    <block wx:for="{{ bannerImgUrl }}" wx:key="">
-      <swiper-item>
-        <image src="{{ item.bannerImgUrl }}"></image>
-      </swiper-item>
-    </block>
-  </swiper>
-</view>
-
-<view class="hotel">
-  <!-- 美食列表 -->
-  <view class="ul">
-    <block wx:for="{{ dataList }}" wx:key="">
-      <view class="li" data-id="{{ item.id }}" bindtap="turnDetail">
-        <image mode="aspectFill" src="{{ item.hotelImgUrl }}"></image>
-        <view class="li-desc">
-          <view class="title">{{ item.hotelName }}</view>
-          <view class='hotel-rate'>
-            <i-rate value="{{ item.hotelGrade }}" size="14" style="font-size: 0"></i-rate>          
-            <text>{{ item.hotelGrade }}分</text>
-          </view>
-          <view style="font-size: 0">
-            <text class="tags">{{ item.hotelType }}</text>
-            <text class="tags">{{ item.hotelAddress }}</text>
-          </view>
+    <!-- 选择栏 -->
+    <view class="chooseOptions">
+        <view class="scroll">
+            <scroll-view scroll-x>
+                <block wx:for="{{ tag.list }}" wx:key="">
+                    <view data-id="{{ item.tagID }}" bindtap="clickTag" data-select="{{ item.select }}" class="{{ item.select ? 'active': '' }}">{{ item.tagName }}</view>
+                </block>
+            </scroll-view>
         </view>
-        <view class="reserve">
-          <image src='../../images/jdyd.png' style='width: 42rpx;height: 42rpx'></image>
-          <text>可预订</text>
+        <view class="select-picker">
+            <picker range="{{ range.list }}" range-key="{{ 'name' }}" value="{{ range.index }}" bindchange="bindPickerChange">
+                <view>
+                    <text>{{ range.list[range.index].name }}</text>
+                    <image src="../../images/hotel-limit.svg"></image>
+                </view>
+            </picker>
         </view>
-      </view>
-    </block>
-  </view>
+    </view>
+    <!-- 酒店列表 -->
+    <view class="hotelList">
+        <block wx:for="{{ hotel.list }}"  wx:key="">
+            <view class="list-hotel" data-id="{{ item.hotelID }}" bindtap="jumpToInfo">
+                <image src="{{ item.imgUrl }}" mode="aspectFill"></image>
+                <view class="info">
+                    <view class="infoName">{{ item.hotelName }}</view>
+                    <view class="infoGrade">
+                        <text>{{ item.score }}</text>
+                        <text>分</text>
+                        <text>{{ item.comments }}</text>
+                        <text>条评论</text>
+                    </view>
+                    <view class="infoLabel">
+                        <block wx:for="{{ item.tags }}" wx:for-item="childItem" wx:key="">
+                            <text>{{ childItem.tagName }}</text>
+                        </block>
+                    </view>
+                    <view class="infoDistance">
+                        <text>距您{{ item.disntance }}km</text>
+                        <!-- <view wx:if="{{ item.hotPrice == 0 }}" style="color:rgba(49, 49, 49, 1)">免费</view>
+                        <view wx:else>
+                            <text>￥</text>
+                            <text>{{ item.hotPrice }}</text>
+                            <text>起</text>
+                        </view> -->
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
 </view>

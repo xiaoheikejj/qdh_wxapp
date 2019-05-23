@@ -1,0 +1,39 @@
+/* pages/information/information.wxss */
+#information {
+    background: #fafafa;
+    min-height: 100%;
+}
+
+/* 列表 */
+.list {
+    width: 650rpx;
+    padding: 30rpx 20rpx 20rpx;
+    margin: 20rpx auto 0;
+    background: #fff;
+    border-radius: 8rpx;
+    box-shadow: 0 2rpx 17rpx 0 rgba(234, 240, 254, 1);
+}
+.list .name {
+    font-size: 30rpx;
+    color: rgba(49, 49, 49, 1);
+    font-weight: bold;
+}
+.list .time {
+    font-size: 20rpx;
+    color: rgba(162, 162, 162, 1);
+    text-align: right;
+    margin-top: 20rpx;
+}
+.list .desc {
+    font-size: 24rpx;
+    color: rgba(162, 162, 162, 1);
+    margin-top: 20rpx;
+    max-height: 60rpx;
+    overflow: hidden;
+}
+.list image {
+    width: 650rpx;
+    height: 220rpx;
+    border-radius: 8rpx;
+    margin-top: 20rpx;
+}

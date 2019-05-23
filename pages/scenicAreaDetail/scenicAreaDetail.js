@@ -1,499 +1,554 @@
 //获取应用实例
 const app = getApp()
-const innerAudioContext = wx.createInnerAudioContext()
+import { favoriteCollect, favoriteCancel } from '../../api/favorite'
+import { formatTime } from '../../utils/util'
+import comment from '../../api/comment'
 
 Page({
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    sliderType: 0,
-    sliderSRC: "",  // 图片/视频的链接
-    introImgList: [], //轮播图的集合
-    scenicName: "", //景点名字
-    scenicVIewLevel: "", //景点等级
-    scenicAudioTitle: "", //语音地图导览
-    scenicAudioImgUrl: "",  //语音地图
-    audioSRC: "", //语音地址
-    audioPoster: "",  //语音海报
-    audioInfoName: "",  //语音名字
-    duration: "00:00",
-    currentTime: "00:00",
-    sliderVal: 0,
-    sliderDis: false,
-    audio_length: "",
-    pauseOrPlay: "../../images/zt.png",
-    hotSpotList: [],  //热门景点
-    scenicTicketName: "", //购票说明
-    scenicTicketTitle: "", // 购票标题
-    scenicTicketDesc: "", //购票描述
-    scenicTicketImgUrl: "", //购票图片链接
-    scenicDesc: "", //文字简介
-    scenicHotView: "", //热门景点推荐
-    scenicViewTime: "",  //最佳旅行时间
-    scenicViewRes: "",  //必备物品
-    tourism: [],  //旅游列表
-    like_list: [],
-    like_status: 0,
-    options_id: 0,
-    swiperItem_active: "",
-    longitude: "119.013795",
-    latitude: "29.59384",
-    zoom_scroll: false,
-    markers: [
-      {
-        iconPath: "../../images/beauty_spot.png",
-        id: 0,
-        longitude: 119.013795,
-        latitude: 29.59384,
-        width: "52rpx",
-        height: "60rpx"
-      }
-    ],
-    tickets_list: [],
-    label_x: false,
-    scroll_y: true,
-    poster_show: false,
-    lng: 0,
-    lat: 0,
-  },
-  //点击swiper图轮播的时候改变
-  getVideoResource({ currentTarget }) {
-    const itemID = currentTarget.dataset.id;
-    this.setData({
-      swiperItem_active: itemID
-    })
-    // [] 这种情况下面的代码就不执行
-    if (this.data.introImgList.length == 0) {
-      return false
-    }
-    // forEach循环匹配当前点击的id
-    this.data.introImgList.forEach(item => {
-      if (item.id == itemID) {
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        result: {},    // 详细数据
+        scenicID: 0,    // 景点ID
+        showMore: false,    // 展开更多默认是false
+        userInfo: {
+            openID: ''
+        },
+        comm: {
+            list: []
+        },  // 评论
+        classify: {
+            active: 0,
+            currentNum: 1
+        },
+        audio: {
+            innerAudioContext: null,
+            status: false,
+            duration: '00:00',
+            currentTime: '00:00',
+            audiolen: '',
+            sliderval: 0,
+            sliderdis: false
+        },  // 语音
+        canvas: {
+            show: false
+        },  // canvas 对象
+        wxCode: ''
+    },
+
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+        const userInfoOpenID = 'userInfo.openID';
+        const innerAudioContext = 'audio.innerAudioContext';
+        // 创建语音对象
         this.setData({
-          // 点击当前视频/图片的链接
-          sliderSRC: item.sliderViewUrl,
-          //点击当前图片/视频
-          sliderType: item.sliderType
+            [innerAudioContext]: wx.createInnerAudioContext(),
+            [userInfoOpenID]: wx.getStorageSync('openID').data
         })
-      }
-    })
-  },
-  /**
-   * 保存请求成功后所有数据的函数
-   * @params res 请求成功后所有数据
-   */
-  successFuntion(res) {
-    if (res.code == 1) {
-      const data = res.data;
-      // 对游记攻略做处理
-      data.info.strategy.forEach(item => {
-        item.imageSRC = "../../images/ax.png"
-      })
-      data.info.strategy.forEach((item) => {
-        // 添加标签
-        if (item.strategyType == 1) {
-          item.strategyTypeName = "攻略游记"
-        } else if (item.strategyType == 2) {
-          item.strategyTypeName = "视频"
-        }
-        item.gmtCreate = item.gmtCreate.split(" ")[0];        
-        item.timeStamp = Math.ceil((new Date().getTime() - new Date(item.gmtCreate).getTime()) / 60 / 60 / 24 / 1000)
-      })
-
-      // 将已经点过赞的储存
-      this.setData({
-        like_list: res.data.like
-      })
-      // 判断是否已经点过赞了
-      const like = data.like;
-      const list = data.info.strategy;
-      // 攻略游记不为空
-      if (like && list) {
-        list.forEach(item => {
-          like.forEach(i => {
-            if (item.id == i.strategyID) {
-              if (i.status == 1) {
-                item.imageSRC = "../../images/dax.png"
-              }
-            }
-          })
-        })
-      }
-      // 存储购票信息
-      wx.setStorageSync("childTicketInfo", data.info.childTicketInfo);
-
-      this.setData({
-        introImgList: data.info.childSlider,
-        scenicName: data.info.childName,
-        scenicVIewLevel: data.info.childVIewLevel,
-        scenicAudioTitle: data.info.viewAudioTitle,
-        scenicAudioImgUrl: data.info.viewAudioImgUrl,
-        hotSpotList: data.info.hotSpot,
-        scenicTicketName: data.info.childTicketName,
-        scenicTicketTitle: data.info.childTicketTitle,
-        scenicTicketDesc: data.info.childTicketDesc,
-        scenicTicketImgUrl: data.info.childTicketImgUrl,
-        scenicDesc: data.info.childDesc,
-        scenicHotView: data.info.childHotView,
-        scenicViewTime: data.info.childViewTime,
-        scenicViewRes: data.info.childViewRes,
-        audioPoster: data.info.childAudioImgUrl,
-        audioInfoName: data.info.childAudioName,
-        tourism: data.info.strategy,
-        tickets_list: data.info.ticket,
-        lng: data.info.longitude,
-        lat: data.info.latitude
-      })
-
-      if (data.info.childSlider.length != 0) {
-        this.drawCanvas(data.info.childSlider[0].sliderInfoUrl, data.info.childName, data.info.childDesc);
-      }
-
-      // 第一次进去显示第一个
-      if (this.data.introImgList.length != 0) {
+        // 在当前页面显示导航条加载动画
+        wx.showNavigationBarLoading()
+        // 赋值给景点ID
         this.setData({
-          sliderSRC: this.data.introImgList[0].sliderViewUrl,
-          sliderType: this.data.introImgList[0].sliderType,
-          swiperItem_active: this.data.introImgList[0].id
+            scenicID: options.id
         })
-      }
-
-      // 音频的地址
-      innerAudioContext.src = data.info.childAudioUrl;
-      wx.hideLoading();
-    }
-  },
-
-  //监听滑块滑动
-  listenerSlider(e) {
-    const per = e.detail.value / 100;
-    const long = per * this.data.audio_length;
-    this.setData({
-      currentTime: this.formatDate(long)
-    })
-    innerAudioContext.seek(long);
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    // 获取用户手机型号
-    wx.getSystemInfo({
-      success: res => {
-        let model = res.model;
-        if (model.split("iPhone ")[1] == "X") {
-          this.setData({
-            label_x: true
-          })
-        }
-      }
-    })
-    // 经纬度
-    wx.showLoading({
-      title: "加载中",
-    })
-    // 改变title
-    wx.setNavigationBarTitle({
-      title: options.name
-    })
-    this.requestList(options.id);
-    this.setData({
-      options_id: options.id
-    })
-  },
-
-  requestList(id) {
-    // 请求获取景区概况
-    const url = `${app.URL}/viewSpot/spotChildrenInfo`;
-    const params = {
-      spotChildID: id,
-      userID: 1,
-      userName: wx.getStorageSync("userInfo").nickName,
-      openID: wx.getStorageSync("openID").data,
-      longitude: wx.getStorageSync("longitude"),
-      latitude: wx.getStorageSync("latitude")
-    };
-    app.request.requestApi(url, params, "post", this.successFuntion)
-  },
-  //点击跳转到详情页
-  turnSpot({ currentTarget }) {
-    //调用navigateTo API跳转到详情页
-    wx.navigateTo({
-      url: `/pages/scenicAreaSpot/scenicAreaSpot?id=${currentTarget.dataset.id}&name=${currentTarget.dataset.name}`
-    });
-  },
-
-  // 点击了喜欢按钮
-  clickLike({ currentTarget }) {
-    // 点赞/取消的id
-    const has_give_like = currentTarget.dataset.id;
-    this.data.like_list.forEach(item => {
-      if (has_give_like == item.strategyID) {
-        // 设置点赞or取消点赞
-        if (item.status == 0) {
-          this.setData({
-            like_status: 1
-          })
-        } else {
-          this.setData({
-            like_status: 0
-          })
-        }
-      }
-    })
-    //循环数据数组，匹配点击后获取的id
-    this.data.tourism.forEach(item => {
-      // 如果匹配，变成红心
-      if (currentTarget.dataset.id == item.id) {
-        if (this.data.like_status == 1) {
-          item.imageSRC = "../../images/dax.png"
-        } else {
-          item.imageSRC = "../../images/ax.png"
-        }
-        
-        // 发送给后台已点赞
-        wx.request({
-          url: `${app.URL}/strategy/like`,
-          method: "post",
-          data: {
-            id: currentTarget.dataset.id,
-            status: this.data.like_status,
-            userName: wx.getStorageSync("userInfo").nickName,
-            openID: wx.getStorageSync("openID").data,
-            longitude: wx.getStorageSync("longitude"),
-            latitude: wx.getStorageSync("latitude")
-          },
-          header: { "content-type": "application/x-www-form-urlencoded"},
-          success: res => {
-            if (res.data.code == 1) {
-              wx.showLoading({
-                title: "加载中",
-              })
-              this.requestList(this.data.options_id)
+        // 获取实时评论
+        this.getComment(options.id);
+        // 首先判断图片是否已存在
+        // 1. 存在直接读取
+        // 2. 不存在直接调用此接口，然后一次性生成小程序码图片
+        wx.getImageInfo({
+            // 景点的业务类型是1
+            src: `${app.baseUrl}/qdh-qrcode/1-${options.id}.png`,
+            complete: res => {
+                // 如果图片路径访问不到res.width 是undefined, 真机中是-1, 真机测试才可通过
+                res.width > 0 ? console.log(true) : this.getCodeMart(options.id);
+                if (res.path) {
+                    this.setData({
+                        wxCode: res.path
+                    })
+                }
             }
-          }
         })
-      }
-    })
-    this.setData({
-      tourism: this.data.tourism
-    })
-  },
+    },
 
-  // 跳转到购票说明
-  turnToBuyTickets() {
-    wx.navigateTo({
-      url: "/pages/buyTicketsIntro/buyTicketsIntro",
-    })
-  },
-
-  //播放和暂停
-  pauseButton() {
-    if (innerAudioContext.paused) {
-      innerAudioContext.play();
-      this.setData({
-        sliderDis: false,
-        pauseOrPlay: "../../images/bf.png"
-      })
-
-      setTimeout(() => {
-        innerAudioContext.currentTime;
-        //必须先执行onPlay方法，才能继续执行onTimeUpdate方法
-        innerAudioContext.onTimeUpdate(() => {
-          this.setData({
-            duration: this.formatDate(innerAudioContext.duration),
-            currentTime: this.formatDate(innerAudioContext.currentTime),
-            audio_length: innerAudioContext.duration
-          })
-
-          const per = (innerAudioContext.currentTime / innerAudioContext.duration) * 100; 
-          //获取当前播放时间所对应的slider位置
-          this.setData({
-            sliderVal: per,//设置slider滑块所在位置
-          })
+    /**点击展开更多 */
+    bindMore() {
+        // 之前的showmore
+        const showMore = this.data.showMore;
+        // 和之前的showMore取反
+        this.setData({
+            showMore: !showMore
         })
-      }, 500)
-    } else {
-      innerAudioContext.pause();
-      this.setData({
-        sliderDis: true,
-        pauseOrPlay: "../../images/zt.png"
-      })
-    }
+    },
 
-  },
-
-  formatDate(date) {
-    if (date > 60) {
-      return this.formatNumber(parseInt(date / 60)) + ":" + this.formatNumber(parseInt(date % 60))
-    } else {
-      return "00:" + this.formatNumber(parseInt(date))
-    }
-  },
-  // 前面添加0
-  formatNumber(n) {
-    n = n.toString()
-    return n[1] ? n : '0' + n
-  },
-
-  // 跳转到语音导览
-  turnToAudio() {
-    wx.navigateTo({
-      url: "/pages/qdhAudio/qdhAudio",
-    })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    // 播放结束
-    innerAudioContext.onEnded(() => {
-      this.setData({
-        currentTime: "00:00",
-        sliderVal: 0,
-        pauseOrPlay: "../../images/zt.png"
-      })
-    })
-  },
-
-
-  // 跳转到详情
-  turnToDetail({ currentTarget }) {
-    // 攻略图文的时候就跳转，视频不跳转
-    if (currentTarget.dataset.type == 1) {
-      wx.navigateTo({
-        url: `/pages/travelGuideDetail/travelGuideDetail?id=${currentTarget.dataset.id}`,
-      })
-    }
-  },
-
-  // 打开地图
-  openMap() {
-    wx.openLocation({
-      latitude: +this.data.lng,
-      longitude: +this.data.lat,
-      name: this.data.scenicName,
-    })
-  },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    innerAudioContext.stop()  //退出页面后停止播放
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  // 关闭海报
-  removePoseter() {
-    this.setData({
-      scroll_y: true,
-      poster_show: false
-    })
-  },
-  // 打开海报
-  getPoster() {
-    this.setData({
-      poster_show: true,
-      scroll_y: false
-    })
-  },
-  // 绘制canvas
-  drawCanvas(image, title, text) {
-    wx.getImageInfo({
-      src: image,
-      success: res => {
-        let rpx;
-        // 获取屏幕宽度，获取自适应单位
-        wx.getSystemInfo({
-          success: function (res) {
-            rpx = res.windowWidth / 375;
-          },
+    /**获取用户评论 */
+    getComment(id) {
+        // 获取用户评论url
+        const url = `${app.URL}/base/getComments`;
+        // bizType 景点是 1
+        const params = {
+            bizType: 1,
+            recordID: id
+        };
+        comment(url, params).then(res => {
+            if (res.resultCode != 1) {
+                return false
+            }
+            // 去掉每一项日期的后缀.0
+            for (let item of res.module) {
+                item.commentDate = item.commentDate.split('.0')[0]
+            }
+            const commentlist = 'comm.list';
+            this.setData({
+                [commentlist]: res.module
+            })
+        }).catch(() => {
+            
         })
-        const ctx = wx.createCanvasContext("myCanvas");
-        // 画图
-        ctx.drawImage("../../images/code.jpg", 38 * rpx, 310 * rpx, 40 * rpx, 40 * rpx)
-        ctx.drawImage(res.path, 0, 0, 200 * rpx, 100 * rpx);
-        ctx.setFontSize(8 * rpx);
-        ctx.fillText(title, 5 * rpx, 120 * rpx);
-        ctx.setFillStyle("#51a5ff");
-        ctx.fillRect(0, 112 * rpx, 2 * rpx, 10 * rpx);
-        ctx.setFontSize(7 * rpx);
-        ctx.setFillStyle("#a2a2a2");
-        ctx.fillText("长按小程序查看详情", 87 * rpx, 325 * rpx);
-        ctx.fillText("分享自「千岛湖」", 87 * rpx, 340 * rpx);
-        let arr = this.textByteLength(text, 55);
-        if (arr[1].length > 4) {
-          ctx.fillText(arr[1][0], 5 * rpx, 135 * rpx);
-          ctx.fillText(arr[1][1], 5 * rpx, 145 * rpx);
-          ctx.fillText(arr[1][2], 5 * rpx, 155 * rpx);
-          ctx.fillText(arr[1][3], 5 * rpx, 165 * rpx);
-          ctx.fillText(arr[1][4], 5 * rpx, 175 * rpx);
-        }
-        ctx.draw()
-      },
-    })
+    },
 
-  },
+    /**点击分类切换的函数 */
+    classifyChangeFun(e) {
+        const type = e.currentTarget.dataset.type;
+        const classifyActive = 'classify.active';
+        // + string转化为number
+        const classifyCurrent = 'classify.currentNum';
+        // 当前轮播的下标为1
+        this.setData({
+            [classifyActive]: +type,
+            [classifyCurrent]: 1
+        })
+        // 在全景选项的时候跳转到webview页面
+        if (type == 2) {
+            wx.navigateTo({
+                url: `/pages/examinePanorama/examinePanorama?url=${this.data.result.vrs[0].resourceUrl}`,
+            })
+        }
+    },
 
-  textByteLength(text, num) { // text为传入的文本  num为单行显示的字节长度
-    let strLength = 0; // text byte length
-    let rows = 1;
-    let str = 0;
-    let arr = [];
-    for (let j = 0; j < text.length; j++) {
-      if (text.charCodeAt(j) > 255) {
-        strLength += 2;
-        if (strLength > rows * num) {
-          strLength++;
-          arr.push(text.slice(str, j));
-          str = j;
-          rows++;
+    /**轮播图改变 */
+    currentChangeFun(e) {
+        const classifyCurrent = 'classify.currentNum';
+        this.setData({
+            [classifyCurrent]: e.detail.current + 1
+        })
+    },
+
+    /**获取景点详情 */
+    getInformation(id) {
+        wx.showLoading({
+            title: '加载中',
+        })
+        // 获取景点详情的URL
+        const url = `${app.URL}/spots/info`;
+        // 获取景点的参数
+        const params = {
+            spotsID: id,
+            openID: this.data.userInfo.openID
+        };
+        const promise = app.request(url, 'post', params);
+        // 请求景点详情
+        promise.then(res => {
+            wx.hideLoading()
+            // 如果resultCode不等于1, 请求错误，不执行后面一系列操作
+            if (res.resultCode != 1) {
+                app.showError('获取景点详情失败');
+                return false
+            }
+            // 挂上语音链接
+            this.data.audio.innerAudioContext.src = res.module.audioUrl
+            this.setData({
+                result: res.module
+            })
+            const classifyActive = 'classify.active';
+            // 视频图片全景
+            if (res.module.imgs.length) {
+                this.setData({
+                    [classifyActive]: 0
+                })
+                return false
+            }
+            if (res.module.videos.length) {
+                this.setData({
+                    [classifyActive]: 1
+                })
+                return false
+            }
+            if (res.module.vrs.length) {
+                this.setData({
+                    [classifyActive]: 2
+                })
+                return false
+            }
+            this.setData({
+                [classifyActive]: -1
+            })
+            return false
+        }).catch(() => {
+            wx.hideLoading();
+            app.showError('获取景点详情失败')
+        })
+        return promise
+    },
+
+    /**收藏景点 */
+    collectScenic() {
+        const collection = 'result.collection';
+        // 改变collectStatus
+        if (this.data.result.collection == 1) {
+            this.setData({
+                [collection]: 0
+            })
+            app.saluteHint('已经取消收藏')
+        } else {
+            this.setData({
+                [collection]: 1
+            })
+            app.saluteHint('收藏成功')
         }
-      } else {
-        strLength++;
-        if (strLength > rows * num) {
-          arr.push(text.slice(str, j));
-          str = j;
-          rows++;
+        // 收藏酒店的URL
+        const collectUrl = `${app.URL}/favorite/collect`;
+        // 取消收藏url
+        const cancelUrl = `${app.URL}/favorite/cancel`
+        // 转化当前时间格式为‘2019-09-09 10:09:09’
+        const date = formatTime(new Date());
+        // type = 1是景点
+        if (this.data.result.collection == 1) {
+            favoriteCollect(collectUrl, 1, this.data.userInfo.openID, this.data.scenicID, date).then(res => {
+                if (res.resultCode != 1) {
+                    return false
+                } else {
+                    this.getInformation(this.data.scenicID)
+                }
+            })
+        } else {
+            favoriteCancel(cancelUrl, 1, this.data.userInfo.openID, this.data.scenicID).then(res => {
+                if (res.resultCode != 1) {
+                    return false
+                } else {
+                    this.getInformation(this.data.scenicID)
+                }
+            })
         }
-      }
+    },
+
+    /**监听滑块滑动 */
+    listenerSlider(e) {
+        // 当前时间
+        const currentTime = 'audio.currentTime';
+        const per = e.detail.value / 100;
+        const long = per * this.data.audio.audiolen;
+        this.setData({
+            [currentTime]: this.formatDate(long)
+        })
+        this.data.audio.innerAudioContext.seek(long);
+    },
+   
+    /**播放和暂停 */
+    pauseButton() {
+        if (this.data.audio.innerAudioContext.paused) {
+            this.data.audio.innerAudioContext.play();
+            // 语音即将出现的状态
+            const audiostatus = 'audio.status';
+            const sliderdis = 'audio.sliderdis';
+            this.setData({
+                [sliderdis]: false,
+                [audiostatus]: true
+            })
+            // 语音总时间
+            const duration = 'audio.duration';
+            // 当前时间
+            const currentTime = 'audio.currentTime';
+            const audiolen = 'audio.audiolen';
+            const sliderval = 'audio.sliderval';
+            setTimeout(() => {
+                this.data.audio.innerAudioContext.currentTime;
+                //必须先执行onPlay方法，才能继续执行onTimeUpdate方法
+                this.data.audio.innerAudioContext.onTimeUpdate(() => {
+                    this.setData({
+                        [duration]: this.formatDate(this.data.audio.innerAudioContext.duration),
+                        [currentTime]: this.formatDate(this.data.audio.innerAudioContext.currentTime),
+                        [audiolen]: this.data.audio.innerAudioContext.duration
+                    })
+                    const per = (this.data.audio.innerAudioContext.currentTime / this.data.audio.innerAudioContext.duration) * 100; 
+                    //获取当前播放时间所对应的slider位置
+                    this.setData({
+                        [sliderval]: per,//设置slider滑块所在位置
+                    })
+                })
+            }, 500)
+        } else {
+            // 语音即将出现的状态
+            const audiostatus = 'audio.status';
+            const sliderdis = 'audio.sliderdis';
+            this.data.audio.innerAudioContext.pause();
+            this.setData({
+                [sliderdis]: true,
+                [audiostatus]: false
+            })
+        }
+    },
+
+    formatDate(date) {
+        if (date > 60) {
+            return this.formatNumber(parseInt(date / 60)) + ":" + this.formatNumber(parseInt(date % 60))
+        } else {
+            return "00:" + this.formatNumber(parseInt(date))
+        }
+    },
+    // 前面添加0
+    formatNumber(n) {
+        n = n.toString()
+        return n[1] ? n : '0' + n
+    },
+
+    /**拨打电话 */
+    dial() {
+        wx.makePhoneCall({
+            phoneNumber: this.data.result.telno,
+        })
+    },
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
+        const currentTime = 'audio.currentTime';
+        // 语音即将出现的状态
+        const audiostatus = 'audio.status';
+        const sliderval = 'audio.sliderval'
+        // 播放结束
+        this.data.audio.innerAudioContext.onEnded(() => {
+            this.setData({
+                [currentTime]: "00:00",
+                [sliderval]: 0,
+                [audiostatus]: false
+            })
+        })
+    },
+
+    /**打开地图 */
+    openMap() {
+        wx.openLocation({
+            longitude: +this.data.result.longitude,
+            latitude: +this.data.result.latitude,
+            name: this.data.result.spotsName,
+            address: this.data.result.address
+        })
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+        this.getInformation(this.data.scenicID).then(res => {
+            wx.setNavigationBarTitle({
+                title: res.module.spotsName
+            })
+            // 在当前页面隐藏导航条加载动画
+            wx.hideNavigationBarLoading()
+        })
+    },
+
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
+        this.data.audio.innerAudioContext.src = '';
+        this.data.audio.innerAudioContext.stop()  //退出页面后停止播放
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
+
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
+
+    },
+
+    /**保存图片到相册 */
+    saveImage() {
+        const canvasshow = 'canvas.show';
+        wx.canvasToTempFilePath({
+            canvasId: 'myCanvas',
+            fileType: 'png',
+            success: res => {
+                wx.saveImageToPhotosAlbum({
+                    filePath: res.tempFilePath,
+                    complete: res => {
+                        app.showError('图片保存成功')
+                        // 关闭poster-show
+                        this.setData({
+                            [canvasshow]: false
+                        })
+                    }
+                })
+            }
+        })
+    },
+
+    /**关闭海报 */
+    removePoseter() {
+        const canvasshow = 'canvas.show';
+        this.setData({
+            [canvasshow]: false
+        })
+    },
+
+    /**打开海报 */
+    getPoster() {
+        const canvasshow = 'canvas.show';
+        // 如果posterImg图片不存在，就给posterImg设置默认图片
+        if (!this.data.result.posterImg) {
+            this.data.result.posterImg = 'https://develop.magicreal.net/qdh-qrcode/posterImg.jpeg'
+        }
+        this.drawCanvas(this.data.result.posterImg, this.data.result.spotsName, this.data.result.summary, this.data.result.address);
+        this.setData({
+            [canvasshow]: true,
+        })
+    },
+
+    /**获取菊花码 */
+    getCodeMart() {
+        const url = `${app.URL}/wxShareQRCode/getQRCode`;
+        const params = {
+            url: 'pages/scenicAreaDetail/scenicAreaDetail',
+            type: 1,
+            id: this.data.scenicID
+        };
+        app.request(url, 'post', params).then(() => {
+            wx.getImageInfo({
+                // 美食的业务类型是5
+                src: `${app.baseUrl}/qdh-qrcode/1-${this.data.scenicID}.png`,
+                complete: res => {
+                    if (res.path) {
+                        this.setData({
+                            wxCode: res.path
+                        })
+                    }
+                }
+            })
+        })
+    },
+
+    /**绘制canvas */
+    drawCanvas(image, title, text, address) {
+        wx.getImageInfo({
+            src: image,
+            success: res => {
+                let rpx;
+                // 获取屏幕宽度，获取自适应单位
+                wx.getSystemInfo({
+                    success: function (res) {
+                        rpx = res.windowWidth / 375;
+                    },
+                })
+                const ctx = wx.createCanvasContext("myCanvas");
+                let interTitle = title.length > 6 ? title.substring(0, 6) : title;
+                // 画图
+                ctx.setFillStyle("#fff");
+                ctx.fillRect(0, 0, 260 * rpx, 366 * rpx);
+                ctx.drawImage(res.path, 11 * rpx, 11 * rpx, 238 * rpx, 238 * rpx);
+                ctx.drawImage("../../images/qdh_canvas.png", 0 * rpx, 249 * rpx, 148 * rpx, 118 * rpx);
+                ctx.setFillStyle("#262626");
+                ctx.setFontSize(12 * rpx);
+                ctx.fillText(interTitle, 78 * rpx, 306 * rpx);
+                ctx.setFillStyle("#a2a2a2");
+                ctx.setFontSize(8 * rpx);
+                ctx.fillText(address, 17 * rpx, 326 * rpx);
+                ctx.fillText("识别小程序码查看详情", 163 * rpx, 325 * rpx);
+                ctx.fillText("分享自「千岛湖小程序」", 161 * rpx, 338 * rpx);
+                ctx.drawImage(this.data.wxCode, 179 * rpx, 270 * rpx, 43 * rpx, 43 * rpx);
+                ctx.beginPath();
+                ctx.setStrokeStyle("#ffffff");
+                ctx.moveTo(11 * rpx, 11 * rpx);
+                ctx.lineTo(11 * rpx, 21 * rpx);
+                ctx.quadraticCurveTo(11 * rpx, 11 * rpx, 21 * rpx, 11 * rpx);
+                ctx.closePath();
+                ctx.setFillStyle("#ffffff");
+                ctx.fill();
+                ctx.beginPath();
+                ctx.setStrokeStyle("#ffffff");
+                ctx.moveTo(249 * rpx, 11 * rpx);
+                ctx.lineTo(249 * rpx, 21 * rpx);
+                ctx.quadraticCurveTo(249 * rpx, 11 * rpx, 239 * rpx, 11 * rpx);
+                ctx.closePath();
+                ctx.setFillStyle("#ffffff");
+                ctx.fill();
+                ctx.beginPath();
+                ctx.setStrokeStyle("#ffffff");
+                ctx.moveTo(11 * rpx, 249 * rpx);
+                ctx.lineTo(11 * rpx, 239 * rpx);
+                ctx.quadraticCurveTo(11 * rpx, 249 * rpx, 21 * rpx, 249 * rpx);
+                ctx.closePath();
+                ctx.setFillStyle("#ffffff");
+                ctx.fill();
+                ctx.beginPath();
+                ctx.setStrokeStyle("#ffffff");
+                ctx.moveTo(249 * rpx, 249 * rpx);
+                ctx.lineTo(249 * rpx, 239 * rpx);
+                ctx.quadraticCurveTo(249 * rpx, 249 * rpx, 239 * rpx, 249 * rpx);
+                ctx.closePath();
+                ctx.setFillStyle("#ffffff");
+                ctx.fill();
+                ctx.setStrokeStyle("#ffffff");
+                ctx.strokeRect(11 * rpx, 11 * rpx, 238 * rpx, 238 * rpx);
+                ctx.draw()
+            }
+        })
+    },
+
+    /**canvas文字分段 */
+    textByteLength(text, num) { // text为传入的文本  num为单行显示的字节长度
+        let strLength = 0; // text byte length
+        let rows = 1;
+        let str = 0;
+        let arr = [];
+        for (let j = 0; j < text.length; j++) {
+            if (text.charCodeAt(j) > 255) {
+                strLength += 2;
+                if (strLength > rows * num) {
+                    strLength++;
+                    arr.push(text.slice(str, j));
+                    str = j;
+                    rows++;
+                }
+            } else {
+                strLength++;
+                if (strLength > rows * num) {
+                    arr.push(text.slice(str, j));
+                    str = j;
+                    rows++;
+                }
+            }
+        }
+        arr.push(text.slice(str, text.length));
+        return [strLength, arr, rows] //  [处理文字的总字节长度，每行显示内容的数组，行数]
+    },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
+        return {
+        title: "千岛湖小程序",
+            path: "/pages/leader/leader"
+        }
     }
-    arr.push(text.slice(str, text.length));
-    return [strLength, arr, rows] //  [处理文字的总字节长度，每行显示内容的数组，行数]
-  },
 })

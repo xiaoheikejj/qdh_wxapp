@@ -1,1 +1,1 @@
-<web-view src="https://budao.magicreal.net/qdh_yuyin?openID={{openID}}"></web-view>
+<web-view bindmessage="message" src="{{ src }}"></web-view>

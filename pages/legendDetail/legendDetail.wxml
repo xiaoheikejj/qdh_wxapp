@@ -1,51 +1,161 @@
-<!-- 酒店详情 -->
-<view class="food-detail">
-  <!-- 轮播 -->
-  <swiper indicator-dots indicator-active-color="#fff">
-    <block wx:for="{{ slider }}" wx:key="">
-      <swiper-item>
-        <image src="{{ item }}"></image>
-      </swiper-item>
-    </block>
-  </swiper>
-  <!-- 详情部分 -->
-  <view class="textIntro">
-    <!-- 详情部分的商家上半部分 -->
-    <view class="textIntro-header">
-      <view class="title">{{ hotelName }}</view>
-      <view class="rate">
-        <i-rate value="{{ hotelGrade }}" size="16"></i-rate>
-        <text>{{hotelGrade}}分</text>  
-      </view>
-      <view class="businessTime">{{ hotelDesc }}</view>
-      <view class="addressPho">
-        <view class="adr">{{ hotelAddress }}</view>
-        <image class="pho" src="../../images/dh.png" bindtap="makeCall"></image>
-      </view>
-      <!-- 可预订 -->
-      <view class="reserve">
-        <image src='../../images/jdyd.png' style='width: 42rpx;height: 42rpx'></image>
-        <text>可预订</text>
-      </view>
+<!-- 民宿详情 -->
+<scroll-view id="legend-detail" class="{{ checkInNotes.show ? 'active' : '' }}" >
+    <!-- 视频、图片、全景列表 -->
+    <view class="header" wx:if="{{ !canvas.show }}">
+        <swiper bindchange="currentChangeFun">
+        <!-- 默认图片 -->
+            <swiper-item wx:if="{{ !result.imgs.length && !result.videos.length && !result.vrs.length }}">
+                <image src="../../images/defaultPic.jpg" mode="aspectFill"></image>
+            </swiper-item>
+            <!-- 图片 -->
+            <swiper-item wx:if="{{ classify.active == 0 }}" wx:for="{{ result.imgs }}" wx:key="">
+                <image src="{{ item.resourceUrl }}" mode="aspectFill"></image>
+            </swiper-item>
+            <!-- 视频 -->
+            <swiper-item wx:if="{{ classify.active == 1 }}" wx:for="{{ result.videos }}" wx:key="">
+                <video src="{{ item.resourceUrl }}" mode="aspectFill"></video>
+            </swiper-item>
+            <!-- 全景 -->
+            <swiper-item wx:if="{{ classify.active == 2 }}" wx:for="{{ result.vrs }}" wx:key="">
+                <image src="{{ item.resourceUrl }}" mode="aspectFill"></image>
+            </swiper-item>
+        </swiper>
+        <cover-view class="header-select">
+            <cover-view wx:if="{{ result.imgs.length }}" data-type="0" bindtap="classifyChangeFun" class="select-img {{ classify.active == 0 ? 'active' : '' }}">图片</cover-view>
+            <cover-view wx:if="{{ result.videos.length }}" data-type="1" bindtap="classifyChangeFun" class="select-vid {{ classify.active == 1 ? 'active' : '' }}">视频</cover-view>
+            <cover-view wx:if="{{ result.vrs.length }}" data-type="2" bindtap="classifyChangeFun" class="select-pan {{ classify.active == 2 ? 'active' : '' }}">全景</cover-view>
+        </cover-view>
+        <cover-view wx:if="{{ classify.active == 0 }}" class="dots">{{ classify.currentNum }}/{{ result.imgs.length }}</cover-view>
+        <cover-view wx:if="{{ classify.active == 1 }}" class="dots">{{ classify.currentNum }}/{{ result.videos.length }}</cover-view>
+        <cover-view wx:if="{{ classify.active == 2 }}" class="dots">{{ classify.currentNum }}/{{ result.vrs.length }}</cover-view>
+        <cover-image wx:if="{{ result.favorite === 1}}" bindtap="collectHomestay" class="collect" src="../../images/scenicSpot-hasCollect.png"></cover-image>
+        <cover-image wx:else bindtap="collectHomestay" class="collect" src="../../images/scenicSpot-noCollect.png"></cover-image>
+        <cover-image bindtap="getPoster" class="share" src="../../images/summary-share.png"></cover-image>
     </view>
-    <!-- 商家信息 -->
-    <view class="textIntro-bottom">
-      <view class="title">商家信息</view>
-      <view class="business-license">
-        <view>商家营业执照</view>
-        <image src="../../images/yjt.png"></image>
-      </view>
-      <view class="restaurant-service">
-        <view>餐厅服务</view>
-      </view>
-      <view class="service-list">
-        <block wx:for="{{serviceList}}" wx:key="">
-          <view>
-            <image src="{{item.serviceIcon}}" mode="widthFix"></image>
-            <view class="text">{{item.serviceName}}</view>
-          </view>
-        </block>
-      </view>
+    <!-- 基本内容 -->
+    <view class="substance">
+        <view class="name">
+            <text>{{ result.hotelName }}</text>
+            <view>
+                <text wx:if="{{ result.score }}">{{ result.score }}</text>
+                <text wx:else>0</text>
+                <text>/5分</text>
+            </view>
+        </view>
+        <view class="label">
+            <view>
+                <text>￥{{ result.hotPrice }}</text>
+                <text>起</text>
+                <block wx:for="{{ result.tags }}" wx:key="">
+                    <text>{{ item.tagName }}</text>
+                </block>
+            </view>
+            <view>
+                <text class="number">{{ result.comments }}</text>
+                <text>条点评</text>
+            </view>
+        </view>
+        <view class="address telephone" bindtap="openMap">
+            <view>
+                <image src="../../images/scenicSpot-location.svg"></image>
+                <text>{{ result.address }}</text>
+            </view>
+            <text>导航</text>
+        </view>
+        <view class="telephone" bindtap="makeCall">
+            <view>
+                <image src="../../images/scenicSpot-phone.svg"></image>
+                <text>{{ result.telno }}</text>
+            </view>
+            <text>拨打</text>
+        </view>
     </view>
-  </view>
+    <!-- 简介 -->
+    <view class="introduce">
+        <view class="int-title">
+            <image src="../../images/scenicSpot-jianjie.svg"></image>
+            <text>简介</text>
+        </view>
+        <view class="int-text {{ showMore ? 'textactive' : '' }}">{{ result.desc }}</view>
+        <view wx:if="{{ !showMore }}" class="int-more" bindtap="bindMore">
+            <text>展开</text>
+            <image src="../../images/scenicSpot-more.svg"></image>
+        </view>
+        <view wx:else class="int-more" bindtap="bindMore">
+            <text>收起</text>
+            <image style="transform: rotate(180deg)" src="../../images/scenicSpot-more.svg"></image>
+        </view>
+    </view>
+    <!-- 支持 -->
+    <view class="fitment">
+        <view class="fitment-fit">
+            <view>
+                <text>{{ result.openYear }}年开业</text>
+                <text>{{ result.decorateYear }}装修</text>
+            </view>
+            <view bindtap="checkInNotesFun">
+                <text>入住须知</text>
+                <image src="../../images/legenddetail-right.svg"></image>
+            </view>
+        </view>
+        <view class="fitment-types">
+            <block wx:for="{{ result.mathings }}" wx:key="">
+                <view>
+                    <image src="{{ item.imgUrl }}" mode="aspectFill"></image>
+                    <text>{{ item.tagName }}</text>
+                </view>
+            </block>
+        </view>
+    </view>
+    <!-- 用户点评 -->
+    <!-- <view class="userComment">
+        <view class="comment-title">
+            <image src="../../images/scenicSpot-comment.svg"></image>
+            <text>用户点评</text>
+        </view>
+        <view class="comment-ul">
+            <block wx:for="{{ comm.list }}" wx:key="">
+                <view class="comment-li">
+                    <view class="comment-liTop">
+                        <view class="comment-liLeft">
+                            <image src="{{ item.userImgUrl }}" mode="aspectFill"></image>
+                            <view class="name">
+                                <view>{{ item.nickName }}</view>
+                                <view>
+                                    <text class="grade">{{ item.scroe }}</text>
+                                    <text>分</text>
+                                </view>
+                            </view>
+                        </view>
+                        <text class="comment-liRight">{{ item.commentDate }}</text>
+                    </view>
+                    <text>{{ item.commentInfo }}</text>
+                </view>
+            </block>
+        </view>
+    </view> -->
+</scroll-view>
+
+<!-- 入住须知 -->
+<view class="checkInNotes" wx:if="{{ checkInNotes.show }}">
+    <text>入住须知</text>
+    <image src="../../images/dialog_close.svg" bindtap="closeCheckInNotesFun"></image>
+    <view>
+        <rich-text nodes="{{ result.memo }}"></rich-text>
+    </view>
+</view>
+<view class="box-shadom" wx:if="{{ checkInNotes.show }}"></view>
+
+<!-- canvas -->
+<view class="canvas-box" catchtouchmove="true" wx:if="{{ canvas.show }}">
+    <view class="canvas">
+        <view class="remove">
+            <image src="../../images/remove.png" bindtap="removePoseter"></image>
+        </view>
+            <canvas disable-scroll="true" bindtouchmove="touchMove" canvas-id="myCanvas"></canvas>
+        <view class="btn">
+            <button bindtap="saveImage">保存图片至相册</button>
+        </view>
+    </view>
+    <view class="shadom"></view>
 </view>

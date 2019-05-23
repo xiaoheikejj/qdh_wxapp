@@ -1,543 +1,394 @@
-.displayType video, .displayType image {
-  width: 750rpx;
-  height: 420rpx
-}
-.scroll-box {
-  width: 690rpx;
-  overflow: hidden;
-  white-space: nowrap;
-  margin: 0 30rpx;
-  padding: 20rpx 0;
-  text-align: center
-}
-.swiper-top view {
-  width: 96rpx;
-  height: 96rpx;
-  border-radius: 8rpx;
-  display: inline-block;
-  margin-right: 10rpx;
-}
-.swiper-top view.active {
-  border: 4rpx solid #81a2fc;
-}
-.swiper-top image {
-  width: 96rpx;
-  height: 96rpx;
-}
-.swiper-top view:last-of-type {
-  margin-right: 0;
+/* 整体背景为灰色 */
+.body {
+    background: #F1F2F6;
 }
 
-.audioMap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 60rpx 30rpx 0;
+/* 图片、视频、全景 */
+.header {
+    width: 100%;
+    height: 420rpx;
+    position: relative;
 }
-.audioMap .left text:nth-of-type(1) {
-  display: inline-block;
-  width: 8rpx;
-	height: 34rpx;
-	background-color: #51a5ff;
-  border-bottom-right-radius: 4rpx;
-  border-top-right-radius: 4rpx;
-  margin-right: 12rpx;
-  vertical-align: middle;
+.header swiper, .header swiper-item {
+    width: 100%;
+    height: 100%;
 }
-.audioMap .left text:nth-of-type(2) {
-  font-size: 34rpx;
-  color: #333;
-  font-weight: bold;
-  vertical-align: middle;
+.header swiper image, .header swiper video {
+    width: 100%;
+    height: 100%;
 }
-.audioMap image {
-  width: 14rpx;
-  height: 28rpx;
+/* swiper指示器 */
+.header .dots {
+    position: absolute;
+    right: 20rpx;
+    bottom: 24rpx;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.28);
+    font-size: 24rpx;
+    border-radius: 22rpx;
+    padding: 10rpx 16rpx;
 }
-
-
-.travel-overview .map {
-  width: 690rpx;
-  height: 160rpx;
-  margin-top: 30rpx;
-  border-radius: 8rpx;
+.header .header-select  {
+    position: absolute;
+    bottom: 24rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
 }
-
-.travel-overview .swiperSpot {
-  margin-top: 30rpx;
+.header .header-select cover-view {
+    color: rgba(49, 49, 49, 1);
+    font-size: 24rpx;
+    margin-right: 16rpx;
+    padding: 10rpx 17rpx;
+    background: #fff;
+    border-radius: 22rpx;
 }
-.travel-overview .scroll-box.hot-spot-box {
-  margin: 0;
-  padding: 0;
-  border: 0;
+.header .header-select cover-view:last-of-type {
+    margin-right: 0;
 }
-.travel-overview .swiperSpot view {
-  border-radius: 8rpx;
-  display: inline-block;
-  margin-right: 20rpx;
-  position: relative;
+.header .header-select cover-view.active {
+    background: rgba(129, 162, 252, 1);
+    color: #fff;
 }
-.travel-overview .swiperSpot view:first-of-type {
-  margin-left: 30rpx;
+.header .collect {
+    position: absolute;
+    width: 48rpx;
+    height: 48rpx;
+    right: 103rpx;
+    top: 24rpx;
 }
-.travel-overview .swiperSpot view:last-of-type {
-  margin-right: 30rpx;
-}
-.travel-overview .swiperSpot image {
-  width: 300rpx;
-  height: 176rpx;
-}
-.travel-overview .swiperSpot view text:first-of-type {
-  color: #fff;
-  font-size: 28rpx;
-  font-weight: bold;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-.travel-overview .swiperSpot view text:nth-of-type(2) {
-  margin-top: 24rpx;
-  margin-left: 20rpx;
-  color: #a2a2a2;
-  font-size: 24rpx;
-  display: inline-block;
-  width: 280rpx;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+.header .share {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    right: 28rpx;
+    top: 21rpx;
 }
 
+/* 基本信息 */
+.substance {
+    width: 690rpx;
+    padding: 30rpx;
+    background: #fff;
+    overflow: hidden;
+}
+.substance .name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.substance .name>text {
+    font-size: 36rpx;
+    color: rgba(0, 0, 0, 1);
+    font-weight: bold;
+}
+.substance .name view text:first-of-type {
+    color: rgb(139,170,252);
+    font-size: 36rpx;
+    font-weight: 600;
+}
+.substance .name view text:last-of-type {
+    font-size: 24rpx;
+    color: rgba(162, 162, 162, 1);
+}
+.substance .label {
+    margin-top: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.substance .label view:first-of-type text {
+    font-size: 20rpx;
+    color: rgba(81, 165, 255, 1);
+    border: 1rpx solid rgba(81, 165, 255, 1);
+    padding: 2rpx 5rpx;
+    display: inline-block;
+    margin-right: 12rpx;
+    border-radius: 4rpx;
+}
+.substance .label view:last-of-type text {
+    font-size: 24rpx;
+    color: rgb(162, 162, 162);
+}
+.substance .label view .number {
+    margin-right: 12rpx;
+    display: inline-block;
+}
+.substance .telephone image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 14rpx;
+}
+.substance .address {
+    margin-top: 40rpx !important;
+}
+.substance .address image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 14rpx;
+}
+.substance .telephone {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10rpx;
+}
+.substance .telephone>view {
+    display: flex;
+    align-items: center;
+    max-width: 550rpx;
+}
+.substance .telephone>view text {
+    font-size: 28rpx;
+    color: rgba(49, 49, 49, 1);
+}
+.substance .telephone>text {
+    color: #fff;
+    font-size: 28rpx;
+    background: rgba(127, 160, 255, 1);
+    padding: 12rpx 14rpx;
+    border-radius: 8rpx;
+}
 
-.body .travel-overview .overview-address .five-a {
-  font-size: 12px;
+/* 简介 */
+.introduce {
+    margin-top: 24rpx;
+    padding: 0 30rpx;
+    overflow: hidden;
+    background: #fff;
 }
-.body .travel-overview .cell-group image {
-  width: 100%;
-  height: 200rpx;
+.introduce.textactive {
+    padding-bottom: 24rpx;
 }
-
-.travel-overview .spotRecommend {
-  margin-top: 50rpx;
+.introduce .int-title {
+    margin-top: 30rpx;
+    display: flex;
+    align-items: center;
 }
-.travel-overview .spotRecommend text {
-  font-size: 32rpx;
-  color: #333;
+.introduce .int-title image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 10rpx;
 }
-.travel-overview .spotRecommend .spot {
-  color: #777;
-  font-size: 26rpx;
-  margin-top: 38rpx;
+.introduce .int-title text {
+    font-size: 28rpx;
+    color: rgba(49, 49, 49, 1);
 }
-.travel-overview .travelTips {
-  margin: 40rpx 30rpx;
+.introduce .int-text {
+    margin-top: 30rpx;
+    max-height: 75rpx;
+    overflow: hidden;
+    font-size: 28rpx;
+    color: rgb(49, 49, 49);
 }
-.travel-overview .travelTips .left {
-  padding-bottom: 18rpx;
+.introduce .int-text.textactive {
+    max-height: initial;
 }
-.travel-overview .travelTips .left text:nth-of-type(1) {
-  display: inline-block;
-  width: 8rpx;
-	height: 34rpx;
-	background-color: #51a5ff;
-  border-bottom-right-radius: 4rpx;
-  border-top-right-radius: 4rpx;
-  margin-right: 12rpx;
-  vertical-align: middle;
+.introduce .int-more {
+    height: 88rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.travel-overview .travelTips .left text:nth-of-type(2) {
-  font-size: 34rpx;
-  color: #333;
-  font-weight: bold;
+.introduce .int-more text {
+    font-size: 24rpx;
+    color: rgba(112, 164, 255, 1);
+    display: inline-block;
+    margin-right: 12rpx;
 }
-.travel-overview .travelTips .title {
-  font-size: 26rpx;
-  color: #a2a2a2;
-}
-.travel-overview .travelTips .mainBody {
-  font-size: 26rpx;
-  color: #a2a2a2;
-  line-height: 40rpx;  
-}
-
-.travel-overview .intro {
-  margin-top: 36rpx;
-}
-.travel-overview .intro text {
-  font-size: 32rpx;
-  color: #444;
+.introduce .int-more image {
+    width: 22rpx;
+    height: 12rpx;
 }
 
 /* 语音 */
+.voice {
+    margin-top: 24rpx;
+    padding: 30rpx;
+    overflow: hidden;
+    background: #fff;
+}
+.voice .voice-title {
+    display: flex;
+    align-items: center;
+}
+.voice .voice-title image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 10rpx;
+}
+.voice .voice-title text {
+    font-size: 28rpx;
+    color: rgba(49, 49, 49, 1);
+}
 .audio {
-  width: 690rpx;
-  height: 161rpx;
-  margin: 46rpx 30rpx 0;
-  box-shadow: 0 0 5rpx 5rpx #f5f5f5;
-  display: flex;
+    width: 690rpx;
+    height: 161rpx;
+    display: flex;
+    margin-top: 20rpx;
 }
 .audio > image {
-  width: 125rpx;
-  height: 125rpx;
-  margin: 18rpx 35rpx 18rpx 20rpx;
+    width: 125rpx;
+    height: 125rpx;
+    margin: 18rpx 35rpx 18rpx 20rpx;
 }
 .audio .control {
-  width: 395rpx;
-  position: relative;
+    width: 395rpx;
+    position: relative;
 }
 .audio view .name {
-  font-size: 28rpx;
-  color: #666;
-  margin-top: 28rpx;
-  font-weight: bold;
+    font-size: 28rpx;
+    color: #666;
+    margin-top: 28rpx;
+    font-weight: bold;
+    max-width: 400rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .audio slider {
-  margin: 0;
+    margin: 0;
 }
 .audio .time {
-  color: #999;
-  font-size: 20rpx;
-  margin-top: 10rpx;
-  text-align: right
+    color: #999;
+    font-size: 20rpx;
+    margin-top: 10rpx;
+    text-align: right
 }
 .audio .buttonIcon {
-  position: absolute;
-  right: -98rpx;
-  bottom: 38rpx; 
+    position: absolute;
+    right: -98rpx;
+    bottom: 38rpx; 
 }
 .audio .buttonIcon image {
-  width: 72rpx;
-  height: 72rpx;
+    width: 72rpx;
+    height: 72rpx;
 }
 
-.recommendText {
-  font-size: 26rpx;
-  color: #a2a2a2;
-  text-indent: 2em;
-  margin: 40rpx 30rpx;
+/* 用户点评 */
+.userComment {
+    margin-top: 24rpx;
+    background: #fff;
+    overflow: hidden;
+    padding: 30rpx;
+}
+.userComment .comment-title {
+    display: flex;
+    align-items: center;
+}
+.userComment .comment-title image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 10rpx;
+}
+.userComment .comment-title text {
+    font-size: 28rpx;
+    color: rgba(49, 49, 49, 1);
+}
+.userComment .comment-li {
+    margin-top: 20rpx;
+    overflow: hidden;
+}
+.userComment .comment-li .comment-liTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.userComment .comment-li>text {
+    font-size: 28rpx;
+    color: rgba(49, 49, 49, 1);
+}
+.userComment .comment-li .comment-liRight {
+    font-size: 20rpx;
+    color: rgba(162, 162, 162, 1);
+}
+.userComment .comment-li .comment-liLeft {
+    display: flex;
+    align-items: center;
+}
+.userComment .comment-li .comment-liLeft image {
+    width: 54rpx;
+    height: 54rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10rpx;
+}
+.userComment .comment-li .comment-liLeft .name view:first-of-type {
+    color: rgba(49, 49, 49, 1);
+    font-size: 24rpx;
+}
+.userComment .comment-li .comment-liLeft .name view:last-of-type {
+    display: flex;
+    align-items: center;
+}
+.userComment .comment-li .comment-liLeft .name text {
+    color: rgba(162, 162, 162, 1);
+    font-size: 20rpx;
+}
+.userComment .comment-li .comment-liLeft .name .grade {
+    font-size: 24rpx;
+    color: rgba(112, 164, 255, 1);
+    display: inline-block;
+    margin-right: 10rpx;
 }
 
-
-.ticketEntry text {
-  font-size: 12px;
-}
-
-
-.travel-strategy {
-  padding: 0 30rpx;
-  margin-top: 40rpx;
-}
-.travel-strategy .travel-title text:nth-of-type(1) {
-  display: inline-block;
-  width: 8rpx;
-	height: 34rpx;
-	background-color: #51a5ff;
-  border-bottom-right-radius: 4rpx;
-  border-top-right-radius: 4rpx;
-  margin-right: 12rpx;
-  vertical-align: middle;
-}
-.travel-strategy .travel-title text:nth-of-type(2) {
-  font-size: 34rpx;
-  color: #333;
-  font-weight: bold;
-}
-
-
-.ul {
-  overflow: hidden;
-  margin-bottom: 30rpx;
-}
-.ul .li {
-  background-color: #fff;
-  border-radius: 8rpx;
-}
-.ul .li .title {
-  position: absolute;
-  bottom: 12rpx;
-  left: 12rpx;
-  font-size: 30rpx;
-  color: #fff;
-}
-.ul .li .label {
-  position: absolute;
-  font-size: 24rpx;
-  color: #fff;
-  padding: 12rpx;
-  background-color: rgba(0, 0, 0, 0.61);
-  bottom: 10rpx;
-  right: 10rpx;
-  border-radius: 8rpx;
-  z-index: 100;
-}
-.ul .li .label.video {
-  background: #44acff;
-}
-.ul .title .time {
-  font-size: 26rpx;
-  color: rgb(153,153,153);
-}
-
-.ul .li image, .ul .li video {
-  width: 690rpx;
-  height: 272rpx;
-}
-
-.ul .li {
-  border: solid 1rpx #f5f5f5;
-  margin-top: 30rpx;
-}
-.ul .li .strategyName {
-  position: absolute;
-  right: 27rpx;
-  bottom: 110rpx;
-  color: #fff;
-  font-size: 24rpx;
-  border-radius: 10rpx;
-  z-index: 2;
-  width: 130rpx;
-  height: 40rpx;
-  text-align: center;
-  line-height: 40rpx;
-  background-color: rgba(0,0,0,.5); 
-}
-.ul .li .numPeople {
-  display: flex;
-  justify-content: space-between;
-  padding: 30rpx 20rpx;
-}
-.ul .li .numPeople view {
-  font-size: 24rpx;
-  color: rgb(153,153,153);
-}
-/* 点赞和预览人数 */
-.numPeople .like {
-  display: inline-block;
-}
-.numPeople .like image {
-  width: 28rpx;
-  height: 25rpx;
-  vertical-align: middle;  
-}
-.numPeople .like text {
-  vertical-align: middle;
-  margin-left: 14rpx;
-}
-.numPeople .eyes {
-  display: inline-block;
-  margin-left: 24rpx;
-}
-.numPeople .eyes image {
-  width: 32rpx;
-  height: 25rpx;
-  vertical-align: middle;
-}
-.numPeople .eyes text {
-  vertical-align: middle;
-  margin-left: 14rpx;
-}
-
-
-.ticketEntry {
-  margin: 40rpx 30rpx;
-  display: flex;
-}
-.ticketEntry image {
-  width: 156rpx;
-  height: 196rpx;
-  border-radius: 8rpx;
-  margin-right: 20rpx;
-}
-.ticketEntry view view:nth-of-type(1) {
-  font-size: 28rpx;
-  color: #313131;
-  font-weight: bold;
-  margin-top: 26rpx;
-}
-.ticketEntry view view:nth-of-type(2) {
-  font-size: 24rpx;
-  color: #a2a2a2;
-  margin-top: 10rpx;
-}
-
-.tickets {
-  margin: 30rpx 30rpx;
-  width: 512rpx;
-  height: 196rpx;
-  position: relative;
-  display: inline-block;
-  margin-right: 32rpx;
-}
-.tickets image {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: -1;
-}
-.tickets .tickets-box {
-  display: flex;
-}
-.tickets .left {
-  width: 134rpx;
-  height: 196rpx;
-  line-height: 196rpx;
-  color: #fff;
-  font-size: 36rpx;
-  text-align: center;
-}
-.tickets .center {
-  width: 280rpx;
-  padding-left: 20rpx;
-  padding-top: 18rpx;
-}
-.tickets .center>text:first-of-type {
-  font-size: 30rpx;
-  color: #313131;
-  font-weight: bold;
-}
-.tickets .center>text:nth-of-type(2) {
-  font-size: 24rpx;
-  color: #a2a2a2;
-  margin-top: 26rpx;
-  display: block;
-}
-.tickets .center .label {
-  font-size: 16rpx;
-  color: #a2a2a2;
-  margin-top: 30rpx;
-}
-.tickets .center .label text {
-  padding: 6rpx 8rpx;
-  border: solid 1rpx #a2a2a2;
-  margin-right: 6rpx;
-  border-radius: 8rpx;
-}
-.tickets .right {
-  width: 24rpx;
-  color: #51a5ff;
-  font-size: 24rpx;
-  padding: 32rpx 22rpx 32rpx 29rpx;
-  white-space: normal;
-}
-.tickets-scroll {
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch
-}
-.tickets-scroll .tickets:last-of-type {
-  margin-right: 30rpx
-}
-
-
-.bottomBtn {
-  position: fixed;
-  bottom: 0;
-  width: 750rpx;
-	height: 88rpx;
-	background-color: #ffffff;
-	box-shadow: 0rpx -1rpx 0rpx 0rpx#f0f0f0;
-  display: flex;
-}
-.bottomBtn.x {
-  padding-bottom: 68rpx;
-}
-.bottomBtn text {
-  font-size: 28rpx;
-	font-weight: normal;
-	font-stretch: normal;
-	line-height: 28rpx;
-	letter-spacing: 0rpx;
-	color: #81a2fc;
-}
-.bottomBtn .share {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-.bottomBtn .share::after {
-  position: absolute;
-  right: 0;
-  top: 18rpx;
-  content: "";
-  width: 2rpx;
-  height: 56rpx;
-  background-color: #f0f0f0;
-  display: inline-block;
-}
-.bottomBtn .share image {
-  width: 24rpx;
-  height: 24rpx;
-}
-.bottomBtn .location {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0
-}
-.bottomBtn .location image {
-  width: 30rpx;
-  height: 30rpx;
-}
-
+/* canvas */
 .canvas {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background: #fff;
-  z-index: 101;
-  padding-top: 20rpx
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    z-index: 101;
+    padding-top: 20rpx
 }
 canvas {
-  width: 400rpx;
-  border-radius: 8rpx;
-  box-shadow: 0 0 10rpx 5rpx #eee;
-  margin: 0 auto;
-  height: 736rpx;
-  margin-bottom: 90rpx
+    width: 520rpx;
+    border-radius: 8rpx;
+    box-shadow: 0 0 10rpx 5rpx #eee;
+    margin: 0 auto;
+    height: 732rpx;
+    margin-bottom: 90rpx
 }
 .canvas .remove {
-  padding: 0 30rpx;
-  text-align: right;
-  display: relative;
-  right: 30rpx;
-  top: 30rpx
+    padding: 0 30rpx;
+    text-align: right;
+    display: relative;
+    right: 30rpx;
+    top: 30rpx
 }
 .canvas .remove image {
-  width: 32rpx;
-  height: 32rpx
+    width: 32rpx;
+    height: 32rpx
 }
 .canvas .btn {
-  border-top: 1rpx solid #f0f0f0;
+    border-top: 1rpx solid #f0f0f0;
 }
 .canvas .btn button {
-  width: 360rpx;
-  height: 72rpx;
-  background: #81a2fc;
-  border-radius: 36rpx;
-  color: #fff;
-  font-size: 32rpx;
-  line-height: 72rpx;
-  margin: 46rpx auto;
+    width: 360rpx;
+    height: 72rpx;
+    background: #81a2fc;
+    border-radius: 36rpx;
+    color: #fff;
+    font-size: 32rpx;
+    line-height: 72rpx;
+    margin: 46rpx auto;
 }
 
 .canvas-box {
-  position: fixed;
-  z-index: 100;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
 }
 .canvas-box .shadom {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background: rgba(0,0,0,.5)
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0,0,0,.5)
 }
 .hidden {
-  display: none
+    display: none
 }

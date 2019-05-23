@@ -1,9 +1,9 @@
 {
-  "component": true,
-  "usingComponents": {
-    "i-card": "../../components/card/index",
-    "i-rate": "../../components/rate/index",
-    "i-tag": "../../components/tag/index"
-  },
-  "navigationBarTitleText": "酒店"
+    "component": true,
+    "usingComponents": {
+        "i-card": "../../components/card/index",
+        "i-rate": "../../components/rate/index",
+        "i-tag": "../../components/tag/index"
+    },
+    "navigationBarTitleText": "宾馆酒店"
 }

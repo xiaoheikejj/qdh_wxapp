@@ -1,19 +1,19 @@
 <!-- 全景漫游 -->
 <view class="body">
-  <view class="boxTop">
-    <image src="../../images/fullview-qd.png" class="top"></image>
-    <view class="box">
-      <view class="column">
-        <block wx:for="{{ firstSeason }}" wx:key="">
-          <image class="item" bindtap="fullViewTo" src="{{ item.seasonImgUrl }}" data-type="{{ item.seasonType }}"></image>
-        </block>
-      </view>
-      <view class="column">
-        <block wx:for="{{ secondSeason }}" wx:key="">
-          <image class="item" bindtap="fullViewTo" src="{{ item.seasonImgUrl }}" data-type="{{ item.seasonType }}"></image>        
-        </block>
-      </view>
+    <view class="boxTop">
+        <image src="{{firstSeason[0].backImgUrl}}" class="top"></image>
+        <view class="box">
+            <view class="column">
+                <block wx:for="{{ firstSeason }}" wx:key="">
+                    <image class="item" bindtap="fullViewToFun" src="{{ item.seasonImgUrl }}" data-url="{{ item.seasonLinkUrl }}"></image>
+                </block>
+            </view>
+            <view class="column">
+                <block wx:for="{{ secondSeason }}" wx:key="">
+                    <image class="item" bindtap="fullViewToFun" src="{{ item.seasonImgUrl }}" data-url="{{ item.seasonLinkUrl }}"></image>        
+                </block>
+            </view>
+        </view>
     </view>
-  </view>
-  <image src="../../images/fullview-ca.png" class="bottom"></image>
+    <image src="../../images/fullview-ca.png" class="bottom"></image>
 </view>

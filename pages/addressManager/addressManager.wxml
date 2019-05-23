@@ -1,25 +1,21 @@
+<view class="wechat-address" bindtap="getWechatAddress">
+    <image src="../../images/beautyspot_detail_wechat.png"></image>
+    <text>获取微信收货地址</text>
+</view>
 <view class="ul">
-  <view class="li">
-    <image class="select left" src="{{select_img}}"></image>
-    <view class="right">
-      <text class="name">姓名</text>
-      <view>
-        <image class="location" src="../../images/dw.png"></image>
-        <text class="address-text">收货地址：浙江省杭州市西湖区文新街道政苑小区12幢2单元202室</text>
-      </view>
-      <image class="edit" src="../../images/bianji.png"></image>
-    </view>
-  </view>
-  <view class="li">
-    <image class="select left" src="{{select_img}}"></image>
-    <view class="right">
-      <text class="name">姓名</text>
-      <view>
-        <image class="location" src="../../images/dw.png"></image>
-        <text class="address-text">收货地址：浙江省杭州市西湖区文新街道政苑小区12幢2单元202室</text>
-      </view>
-      <image class="edit" src="../../images/bianji.png"></image>
-    </view>
-  </view>
+    <block wx:for="{{ list }}" wx:key="">
+        <view class="li">
+            <icon wx:if="{{item.status === 1}}" type="success" color="rgb(127,160,255)"></icon>
+            <image wx:else class="select left" data-id="{{ item.id }}" src="../../images/weigouxuan.png" bindtap="defaultSelect"></image>
+            <view class="right" data-id="{{ item.id }}" bindtap="defaultSelect">
+                <text class="name">{{ item.userName }}</text>
+                <view>
+                    <image class="location" src="../../images/dw.png"></image>
+                    <text class="address-text">收货地址：{{ item.userAddress }}</text>
+                </view>
+            </view>
+            <image data-id="{{ item.id }}" data-status="{{ item.status }}" bindtap="edit" class="edit" src="../../images/bianji.png"></image>
+        </view>
+    </block>
 </view>
 <button class="add-address" bindtap="addAddress">新增地址</button>

@@ -1,188 +1,147 @@
-<!--千岛概述-->
+<!--景点详情-->
 <view class="body">
-  <!-- 淳安千岛湖旅游概况 -->
-  <view class="image-overview">
-    <view class="displayType">
-      <image wx:if="{{sliderType == 1}}" src="{{ sliderSRC }}"></image>    
-      <video wx:else src="{{ sliderSRC }}"></video>
+    <!-- 视频、图片、全景列表 -->
+    <view class="header" wx:if="{{ !canvas.show }}">
+        <swiper bindchange="currentChangeFun">
+            <!-- 默认图片 -->
+            <swiper-item wx:if="{{ !result.imgs.length && !result.videos.length && !result.vrs.length }}">
+                <image src="../../images/defaultPic.jpg" mode="aspectFill"></image>
+            </swiper-item>
+            <!-- 图片 -->
+            <swiper-item wx:if="{{ classify.active == 0 }}" wx:for="{{ result.imgs }}" wx:key="">
+                <image src="{{ item.resourceUrl }}" mode="aspectFill"></image>
+            </swiper-item>
+            <!-- 视频 -->
+            <swiper-item wx:if="{{ classify.active == 1 }}" wx:for="{{ result.videos }}" wx:key="">
+                <video src="{{ item.resourceUrl }}" mode="aspectFill"></video>
+            </swiper-item>
+            <!-- 全景 -->
+            <swiper-item wx:if="{{ classify.active == 2 }}" wx:for="{{ result.vrs }}" wx:key="">
+                <image src="{{ item.resourceUrl }}" mode="aspectFill"></image>
+            </swiper-item>
+        </swiper>
+        <cover-view class="header-select">
+            <cover-view wx:if="{{ result.imgs.length }}" data-type="0" bindtap="classifyChangeFun" class="select-img {{ classify.active == 0 ? 'active' : '' }}">图片</cover-view>
+            <cover-view wx:if="{{ result.videos.length }}" data-type="1" bindtap="classifyChangeFun" class="select-vid {{ classify.active == 1 ? 'active' : '' }}">视频</cover-view>
+            <cover-view wx:if="{{ result.vrs.length }}" data-type="2" bindtap="classifyChangeFun" class="select-pan {{ classify.active == 2 ? 'active' : '' }}">全景</cover-view>
+        </cover-view>
+        <cover-view wx:if="{{ classify.active == 0 }}" class="dots">{{ classify.currentNum }}/{{ result.imgs.length }}</cover-view>
+        <cover-view wx:if="{{ classify.active == 1 }}" class="dots">{{ classify.currentNum }}/{{ result.videos.length }}</cover-view>
+        <cover-view wx:if="{{ classify.active == 2 }}" class="dots">{{ classify.currentNum }}/{{ result.vrs.length }}</cover-view>
+        <cover-image wx:if="{{ result.collection == 1}}" bindtap="collectScenic" class="collect" src="../../images/scenicSpot-hasCollect.png"></cover-image>
+        <cover-image wx:else bindtap="collectScenic" class="collect" src="../../images/scenicSpot-noCollect.png"></cover-image>
+        <cover-image bindtap="getPoster" class="share" src="../../images/summary-share.png"></cover-image>
     </view>
-    <!-- 轮播图 -->
-    <view class="scroll-box">
-      <scroll-view class="swiper-top" scroll-x>
-        <view wx:for="{{ introImgList }}" wx:key="" class="{{swiperItem_active==item.id?'active':''}}">
-          <image src="{{ item.sliderInfoUrl }}" mode="aspectFill" data-id="{{ item.id }}" bindtap="getVideoResource"></image>
-        </view>
-      </scroll-view>
-    </view>
-  </view>
-  
-  <view class="travel-overview">
-    <!-- 语音地图导览,热门景点,景区购票说明 -->
-    <view style="margin: 0 30rpx" bindtap="turnToAudio">
-      <view class="audioMap" style="margin: 60rpx 0 0">
-        <view class="left">
-          <text></text>
-          <text>{{ scenicAudioTitle }}</text>
-        </view> 
-        <image src="../../images/yjt.png"></image>
-      </view>
-      <!-- <image class="map" mode="aspectFill" src="{{ scenicAudioImgUrl }}"></image> -->
-      <map class="map" enable-zoom="{{zoom_scroll}}" enable-scroll="{{zoom_scroll}}" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}"></map>
-    </view>
-    <view class="audioMap hotSpot">
-      <view class="left">
-        <text></text>
-        <text>最佳摄影点</text>
-      </view>
-    </view>
-    <!-- 热门景点轮播图 -->
-    <view class="scroll-box hot-spot-box">
-      <scroll-view class="swiperSpot" scroll-x>
-        <block wx:for="{{ hotSpotList }}" wx:key="">
-          <view data-name="{{item.infoName}}" data-id="{{ item.id }}" bindtap="turnSpot">
-            <image mode="aspectFill" src="{{ item.infoImgUrl }}" mode="aspectFill" ></image>
-            <text>{{ item.infoName }}</text>
-            <!-- <text>{{item.infoAddress}}</text> -->
-          </view>
-        </block> 
-      </scroll-view>
-    </view>
-    <!-- 景区购票说明 -->
-    <view class="audioMap hotSpot">
-      <view class="left">
-        <text></text>
-        <text>{{ scenicTicketName }}</text>
-      </view>
-    </view>
-    <view class="ticketEntry" bindtap="turnToBuyTickets">
-      <view>
-        <image mode="aspectFill" src="{{ scenicTicketImgUrl }}"></image>        
-      </view>
-      <view>
-        <view>{{ scenicTicketTitle }}</view>
-        <view>{{ scenicTicketDesc }}</view>
-      </view>
-    </view>
-    <!-- 景区门票 -->
-    <view>
-      <view class="audioMap">
-        <view class="left">
-          <text></text>
-          <text>景区门票</text>
-        </view>
-      </view>
-      <scroll-view scroll-x class="tickets-scroll">
-        <block wx:for="{{tickets_list}}" wx:key="">
-          <view class="tickets">
-            <image src="../../images/pre_ticket.png"></image>
-            <view class="tickets-box">
-              <view class="left"><text style="font-size: 24rpx">￥</text>{{item.ticketPrize}}</view>
-              <view class="center">
-                <text>{{item.ticketName}}</text>
-                <text>成人票</text>
-                <view class="label">
-                  <text>{{item.ticketLabel}}</text>
-                  <!-- <text>一码通</text>
-                  <text>可订今日门票</text>               -->
-                </view>
-              </view>
-              <view class="right">立即购买</view>
+    <!-- 基本内容 -->
+    <view class="substance">
+        <view class="name">
+            <text>{{ result.spotsName }}</text>
+            <view>
+                <text>{{ result.score }}</text>
+                <text>/5分</text>
             </view>
-          </view>
-        </block>
-      </scroll-view>
+        </view>
+        <view class="label">
+            <view>
+                <!-- <text>主题公园</text>
+                <text>主题公园</text>
+                <text>主题公园</text> -->
+            </view>
+            <view>
+                <text class="number">{{ result.replyCount }}</text>
+                <text>条点评</text>
+            </view>
+        </view>
+        <view class="address telephone" bindtap="openMap">
+            <view>
+                <image src="../../images/scenicSpot-location.svg"></image>
+                <text>{{ result.address }}</text>
+            </view>
+            <text>导航</text>
+        </view>
+        <view class="telephone" bindtap="dial">
+            <view>
+                <image src="../../images/scenicSpot-phone.svg"></image>
+                <text>{{ result.telno }}</text>
+            </view>
+            <text>拨打</text>
+        </view>
     </view>
-    <view class="audioMap">
-      <view class="left">
-        <text></text>
-        <text>景区介绍</text>
-      </view>
+    <view class="introduce">
+        <view class="int-title">
+            <image src="../../images/scenicSpot-jianjie.svg"></image>
+            <text>简介</text>
+        </view>
+        <view class="int-text {{ showMore ? 'textactive' : '' }}">{{ result.summary }}</view>
+        <view wx:if="{{ !showMore }}" class="int-more" bindtap="bindMore">
+            <text>展开</text>
+            <image src="../../images/scenicSpot-more.svg"></image>
+        </view>
+        <view wx:else class="int-more" bindtap="bindMore">
+            <text>收起</text>
+            <image style="transform: rotate(180deg)" src="../../images/scenicSpot-more.svg"></image>
+        </view>
     </view>
     <!-- 语音 -->
-    <view class="audio">
-      <image src="{{audioPoster}}"></image>
-      <view class="control">
-        <view class="name">{{audioInfoName}}</view>
-        <view class="time">{{currentTime}} / {{duration}}</view>
-        <slider block-color="rgb(112,164,255)" block-size="12" activeColor="rgb(112,164,255)" value="{{sliderVal}}" bindchange="listenerSlider" disabled="{{sliderDis}}"></slider>
-        <view class="buttonIcon">
-          <image mode="aspectFill" src="{{pauseOrPlay}}" bindtap="pauseButton"></image>     
+    <view class="voice" wx:if="{{ result.audioUrl }}">
+        <view class="voice-title">
+            <image src="../../images/scenicSpot-audio.svg"></image>
+            <text>语音导览</text>
         </view>
-      </view>
-    </view>
-    <!-- 文字简介 -->
-    <view class="recommendText">{{scenicDesc}}</view>
-    <!-- 出行贴士 -->
-    <view class="travelTips">
-      <view class="left">
-        <text></text>
-        <text>出行贴士</text>
-      </view>
-      <view wx:if="{{scenicViewTime}}" class="title">最佳旅行时间</view>
-      <view class="mainBody">{{ scenicViewTime }}</view>
-      <view wx:if="{{scenicViewRes}}" class="title">必备物品</view>
-      <view class="mainBody">{{ scenicViewRes }}</view>
-    </view>
-  </view>
-  <!-- 游记攻略 -->
-  <view class="travel-strategy">
-    <view class="travel-title">
-      <text></text>
-      <text>攻略游记</text>   
-    </view>
-    <view class="ul">
-      <view class="li" wx:for="{{ tourism }}" wx:key="">
-        <!-- 头部标题 -->
-        <view style="position: relative" data-id="{{ item.id }}" data-type="{{item.strategyType}}" bindtap="turnToDetail">
-          <!-- 图片 -->
-          <video wx:if="{{ item.strategyType == 2 }}" src="{{ item.strategyImgUrl }}"></video>
-          <image wx:if="{{ item.strategyType == 1 }}" src="{{ item.strategyImgUrl }}"></image>
-          <cover-view class="title">{{ item.strategyTitle }}</cover-view>
-          <cover-view class="label {{item.strategyType==2?'video':''}}">{{item.strategyTypeName}}</cover-view>
-        </view>
-        <!-- 人数 -->
-        <view class="numPeople">
-          <view class="left">
-            <view class="like" bindtap="clickLike" data-id="{{ item.id }}">
-              <image src="{{ item.imageSRC }}"></image>
-              <text>{{ item.strategyLikeNumber }}</text>
+        <view class="audio">
+            <image src="{{ result.imgUrl }}" mode="aspectFill"></image>
+            <view class="control">
+                <view class="name">{{ result.spotsName }}</view>
+                <view class="time">{{ audio.currentTime }} / {{ audio.duration }}</view>
+                <slider block-color="rgb(112,164,255)" block-size="12" activeColor="rgb(112,164,255)" value="{{ sliderVal }}" bindchange="listenerSlider" disabled="{{ sliderDis }}"></slider>
+                <view class="buttonIcon">
+                    <!-- 播放 -->
+                    <image wx:if="{{ audio.status}}" mode="aspectFill" src="../../images/bf.png" bindtap="pauseButton"></image>
+                    <!-- 暂停 -->
+                    <image wx:else="{{ audio.status}}" mode="aspectFill" src="../../images/zt.png" bindtap="pauseButton"></image>   
+                </view>
             </view>
-            <view class="eyes">
-              <image src="../../images/yj.png"></image>
-              <text>{{ item.strategyViewNumber }}</text>
-            </view>
-          </view>
-          <view class="right">
-            <text class="time">{{item.timeStamp}}天前</text>
-          </view>
         </view>
-      </view>
     </view>
-  </view>
+    <!-- 用户点评 -->
+    <!-- <view class="userComment">
+        <view class="comment-title">
+            <image src="../../images/scenicSpot-comment.svg"></image>
+            <text>用户点评</text>
+        </view>
+        <view class="comment-ul">
+            <block wx:for="{{ comm.list }}" wx:key="">
+                <view class="comment-li">
+                    <view class="comment-liTop">
+                        <view class="comment-liLeft">
+                            <image src="{{ item.userImgUrl }}" mode="aspectFill"></image>
+                            <view class="name">
+                                <view>{{ item.nickName }}</view>
+                                <view>
+                                    <text class="grade">{{ item.scroe }}</text>
+                                    <text>分</text>
+                                </view>
+                            </view>
+                        </view>
+                        <text class="comment-liRight">{{ item.commentDate }}</text>
+                    </view>
+                    <text>{{ item.commentInfo }}</text>
+                </view>
+            </block>
+        </view>
+    </view> -->
 </view>
 
-<view class="bottomBtn {{label_x?'x':''}}">
-  <view class="share" bindtap="getPoster">
-    <image src="../../images/beautyspot_detail_download.png"></image>
-    <text>生成海报</text>
-  </view>
-  <view class="location" bindtap="openMap">
-    <image src="../../images/navi.png"></image>
-    <text>导航</text>
-  </view>
-</view>
-
-<view class="canvas-box {{poster_show?'':'hidden'}}">
-  <view class="canvas">
-    <view class="remove">
-      <image src="../../images/remove.png" bindtap="removePoseter"></image>
+<!-- canvas -->
+<view class="canvas-box" catchtouchmove="true" wx:if="{{ canvas.show }}">
+    <view class="canvas">
+        <view class="remove">
+            <image src="../../images/remove.png" bindtap="removePoseter"></image>
+        </view>
+            <canvas disable-scroll="true" bindtouchmove="touchMove" canvas-id="myCanvas"></canvas>
+        <view class="btn">
+            <button bindtap="saveImage">保存图片至相册</button>
+        </view>
     </view>
-    <canvas canvas-id="myCanvas" />
-    <view class="btn">
-      <button bindtap="saveImage">保存图片至相册</button>
-    </view>
-  </view>
-   <view class="shadom">
-  
-  </view>
+    <view class="shadom"></view>
 </view>

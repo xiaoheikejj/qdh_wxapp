@@ -1,0 +1,37 @@
+/* pages/informationDetail/informationDetail.wxss */
+#informationDetail {
+    padding: 0 30rpx;
+    overflow-x: hidden;
+}
+.title {
+    height: 88rpx;
+    border-bottom: 2rpx solid rgb(237,237,237);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.title .left {
+    display: flex;
+    align-items: center;
+}
+.title .left text:first-of-type {
+    width: 8rpx;
+    height: 34rpx;
+    background: rgba(81, 165, 255, 1);
+    border-top-right-radius: 8rpx;
+    border-bottom-right-radius: 8rpx;
+    margin-right: 12rpx;
+}
+.title .left text:nth-of-type(2) {
+    color: rgba(49, 49, 49, 1);
+    font-size: 30rpx;
+    font-weight: bold;
+    max-width: 420rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.title .right {
+    color: rgba(162, 162, 162, 1);
+    font-size: 24rpx;
+}

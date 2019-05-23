@@ -1,0 +1,2 @@
+<!--pages/examinePanorama/examinePanorama.wxml-->
+<web-view src="{{ url }}"></web-view>

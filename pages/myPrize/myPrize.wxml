@@ -1,0 +1,22 @@
+<view class="no-prize" wx:if="{{!has_prize}}">
+  <view>
+    <image src="../../images/no_huojiang.png"></image>
+    <text>您还没有中奖记录</text>
+  </view>
+</view>
+<view class="prize" wx:if="{{has_prize}}">
+  <block wx:for="{{advent_list}}" wx:key="">
+    <view class="integral">
+      <view class="top">领取时间：{{item.getDate}}</view>
+      <view class="center">
+        <image src="{{item.adventImgUrl}}"></image>
+        <text>{{item.adventName}}</text>
+        <button class="integral" wx:if="{{item.adventType===1}}">已自动领取</button>
+        <view class="clearfix" wx:elif="{{item.adventType===2}}">
+          <button bindtap="selectAddress">设置收货地址</button>
+          <button data-phone="{{item.adventPhone}}">联系客服</button>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,203 +1,231 @@
 /* pages/mine/index.wxss */
-.body {
-  padding: 25rpx 0
-}
-.body .avatar {
-  display: flex;
-  align-items: center;
-  padding: 0 25rpx
-}
-/* 头像 */
-.avatar .img {
-  width: 125rpx;
-  height: 125rpx;
-  border-radius: 50%;
-  overflow: hidden;
-}
-/* 名字 */
-.avatar .name open-data {
-  font-size: 30rpx;
-  color: rgb(51,51,51);
-}
-.avatar .name {
-  margin-left: 20rpx
-}
-.avatar .name view {
-  display: flex;
-  align-items: center;
-  margin-top: 10rpx
-}
-.avatar .name .member {
-  font-size: 20rpx;
-  color: #fff;
-  background: #2d8cf0;
-  padding: 6rpx 13rpx;
-  border-radius: 4rpx
-}
-.avatar .name .integral {
-  color: #707070;
-  font-size: 26rpx;
-  margin-left: 20rpx
+#personalCenter {
+    background: #fafafa;
+    min-height: 100%;
 }
 
-
-.box-bottom {
-  background: #fafafa;
-  padding-top: 12rpx
+/* 顶部个人信息 */
+.avatar {
+    width: 100%;
+    height: 320rpx;
+    position: relative;
 }
-.signAndClock {
-  width: 690rpx;
-  display: flex;
-  justify-content: space-between;
-  padding: 10rpx 16rpx;
-  background: #fff;
-  margin: 0 auto
+.avatar .avatar-baground {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
 }
-.signAndClock .sign {
-  width: 330rpx;
-  height: 140rpx;
-  position: relative;
+.avatar .avatar-basic {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    top: 50rpx;
+    z-index: 100;
 }
-.signAndClock .sign .bg {
-  width: 100%;
-  height: 100%;
+.avatar .avatar-basic .avatar-left {
+    display: flex;
+    align-items: center;
 }
-.signAndClock .sign .sign-box {
-  position: absolute;
-  top: 0;
-  left: 28rpx;
-  padding-top: 28rpx;
+.avatar .avatar-basic .avatar-left>open-data {
+    width: 96rpx;
+    height: 96rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+    margin: 0 32rpx;
 }
-.signAndClock .sign .sign-box image {
-  width: 28rpx;
-  height: 28rpx;
-  vertical-align: middle;
-  margin-left: 18rpx;
+.avatar .avatar-info .name {
+    display: block;
+    color: #fff;
+    font-size: 36rpx;
 }
-.signAndClock .sign .sign-box .top {
-  font-size: 28rpx;
-  color: #fff;
+.avatar .avatar-info .info-integral {
+    display: flex;
+    align-items: center;
+    margin-top: 10rpx;
 }
-.signAndClock .sign .sign-box text {
-  vertical-align: middle
+.avatar .avatar-info .info-integral image {
+    width: 28rpx;
+    height: 28rpx;
+    margin-right: 14rpx;
 }
-.signAndClock .sign .sign-box .bottom {
-  font-size: 24rpx;
-  color: rgba(255,255,255,.8);
-  margin-top: 20rpx;
+.avatar .avatar-info .info-integral text:nth-of-type(1) {
+    font-size: 28rpx;
+    color: #fff;
+    margin-right: 14rpx;
+    display: inline-block;
 }
-.sign .sign-box .has-sign {
-  font-size: 24rpx;
-  color: rgba(255,255,255,.8);
-  margin-left: 44rpx
+.avatar .avatar-info .info-integral text:nth-of-type(2) {
+    font-size: 32rpx;
+    color: #fff;
 }
-
-
-.cell-group {
-  width: 634rpx;
-  padding: 0 26rpx;
-  margin: 20rpx auto 0;
-  background: #fff;
-  border-radius: 8rpx
+.avatar .avatar-right {
+    width: 192rpx;
+    height: 58rpx;
+    background: rgba(255, 255, 255, 0.79);
+    border-top-left-radius: 100rpx;
+    border-bottom-left-radius: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.cell-group .personInfo {
-  height: 90rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 26rpx;
-  color: rgb(102, 102, 102);
-  border-bottom: 3rpx solid #e7e7e7
+.avatar .avatar-right image {
+    width: 28rpx;
+    height: 28rpx;
+    margin-right: 12rpx;
 }
-.cell-group .personInfo text, .cell-group .integral-activity text {
-  font-size: 26rpx;
-  color: rgb(102, 102, 102);
-  margin-left: 25rpx;
+.avatar .avatar-right text {
+    font-size: 28rpx;
+    color: rgba(113, 163, 255, 1);
 }
-.cell-group .personInfo>image {
-  width: 11rpx;
-  height: 22rpx;
+/* 会议签到 */
+.metting {
+    width: 646rpx;
+    height: 144rpx;
+    padding: 30rpx 20rpx;
+    background: #fff;
+    border-radius: 12rpx;
+    box-shadow: 0 0 6rpx 5rpx rgba(122,164,255,.1);
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: -102rpx;
+    left: 30rpx;
+    z-index: 100;
 }
-.cell-group .integral-activity {
-  display: flex;
-  align-items: center;
-  height: 90rpx;
-  font-size: 26rpx;
-  color: rgb(102, 102, 102)
+.metting .metting-left, .metting-right {
+    width: 316rpx;
+    height: 140rpx;
+    position: relative;
 }
-.cell-group .integral-activity image {
-  width: 26rpx;
-  height: 24rpx;
-  margin-left: 13rpx
+.metting .metting-left .left-background, .right-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
 }
-.cell-group .courier-address {
-  display: flex;
-  align-items: center
+.metting .metting-left>view, .metting .metting-right>view {
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
 }
-.cell-group .courier-address image {
-  width: 52rpx;
-  height: 52rpx
+.metting .metting-left .top {
+    display: flex;
+    align-items: center;
+    margin-top: 24rpx;
 }
-
-
-.act .li {
-  display: flex;
-  border-radius: 8rpx;
-  padding: 30rpx 0;
-  border-bottom: 3rpx solid #e7e7e7
+.metting .metting-left .top image {
+    width: 28rpx;
+    height: 28rpx;
+    margin: 0 30rpx 0 18rpx;
 }
-.act .li:first-of-type {
-  padding-top: 0
+.metting .metting-left .top text {
+    color: #fff;
+    font-size: 24rpx;
 }
-.act .li:last-of-type {
-  border: 0
+.metting .metting-left .top text:first-of-type {
+    font-size: 28rpx;
+    margin-left: 20rpx;
 }
-.act .li image {
-  width: 322rpx;
-  height: 198rpx;
-}
-.act .li .right {
-  margin-left: 32rpx;
-}
-.act .li .title {
-  display: block;
-  font-size: 30rpx;
-  color: #313131;
-}
-.act .li .timeText {
-  display: block;
-  margin-top: 20rpx;
-  font-size: 22rpx;
-  color: rgb(153, 153, 153);
-}
-.act .li .timeText.bottom {
-  margin-top: 5rpx;
-}
-.act .li .timeNum {
-  color: rgb(187, 187, 187);
-}
-.act .li button {
-  width: 200rpx;
-  height: 56rpx;
-  border-radius: 8rpx;
-  font-size: 28rpx;
-  color: #81a2fc;
-  line-height: 50rpx;
-  border: solid 2rpx #81a2fc;
-  margin-top: 10rpx;
-  margin-left: 0;
-  background-color: #fff;
+.metting .metting-left .bottom {
+    font-size: 24rpx;
+    color: #fff;
+    margin: 20rpx 0 0 20rpx;
 }
 
-.i-input {
-  padding: 7px 15px 7px 25px !important;
+/* 旅游资讯 */
+.message {
+    width: 630rpx;
+    background: #fff;
+    border-radius: 8rpx;
+    margin: 132rpx auto 0;
+    padding: 0 30rpx;
+}
+.message>view {
+    height: 92rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.message>view .right image {
+    width: 10rpx;
+    height: 20rpx;
+}
+.message .msg-collect .left image {
+    width: 30rpx;
+    height: 27rpx;
+}
+.message .msg-info {
+    border-top: 1rpx solid rgba(240, 240, 240, 1);
+}
+.message .msg-info .left image {
+    width: 30rpx;
+    height: 35rpx;
+}
+.message .msg-travel {
+    border-top: 1rpx solid rgba(240, 240, 240, 1);
+}
+.message .msg-travel .left image {
+    width: 30rpx;
+    height: 45rpx;
+}
+.message>view .left, .message>view .right {
+    display: flex;
+    align-items: center;
+}
+.message>view .left text {
+    font-size: 28rpx;
+    color: rgba(49, 49, 49, 1);
+    margin-left: 10rpx;
+    display: inline-block;
+}
+.message>view .right text {
+    font-size: 24rpx;
+    color: rgba(162, 162, 162, 1);
+    margin-right: 10rpx;
+    display: inline-block;
 }
 
-/* 广告 */
-.adverti {
-  width: 690rpx;
-  height: 276rpx;
-  margin: 20rpx auto 0;
-  display: block;
-  border-radius: 8rpx
+/* 活动 */
+.activity {
+    width: 690rpx;
+    margin: 30rpx auto 0;
+    border-radius: 8rpx;
+    overflow: hidden;
+    background: #fff;
+    padding-bottom: 30rpx;
+    text-align: center;
+}
+.activity .label {
+    display: flex;
+    align-items: center;
+    margin-top: 30rpx;
+}
+.activity .label text:nth-of-type(1) {
+    width: 8rpx;
+    height: 34rpx;
+    display: inline-block;
+    background: rgba(81, 165, 255, 1);
+    border-top-right-radius: 4rpx;
+    border-bottom-right-radius: 4rpx;
+    margin-right: 12rpx;
+}
+.activity .label text:nth-of-type(2) {
+    font-size: 30rpx;
+    color: rgba(49, 49, 49, 1);
+    font-weight: bold;
+}
+.activity image {
+    width: 638rpx;
+    height: 220rpx;
+    border-radius: 8rpx;
+    margin-top: 20rpx;
+}
+.activity image:nth-of-type(1) {
+    margin-top: 30rpx;
 }

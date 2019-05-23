@@ -1,1 +1,5 @@
-<button open-type="getUserInfo" bindgetuserinfo="getUserInfo">进入千岛湖</button>
+<!-- <input placeholder-class="placeholderClass" bindinput="inputVal" placeholder="请输入密钥"></input> -->
+<view id="guidance">
+    <image class="gui-bg" mode="aspectFill" src="../../images/backBg.jpg"></image>
+    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">开启智慧之旅</button>
+</view>

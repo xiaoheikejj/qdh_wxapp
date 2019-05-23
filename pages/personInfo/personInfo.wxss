@@ -3,46 +3,47 @@ page {
   background: #fafafa;
 }
 .box {
-  border-top: 2rpx solid rgba(0, 0, 0, .12);
-  margin: 20rpx 16rpx;
-  padding: 0 16rpx 50rpx;
-  background: #fff;
+  margin: 30rpx 32rpx 50rpx;
+  background: #fff
 }
-button {
-  width: 686rpx;
-	height: 88rpx;
-	border-radius: 2rpx;
-	border: solid 2rpx #81a2fc;
-  line-height: 88rpx;
-  margin-top: 50rpx;
-  color: #81a2fc;
+.box .options {
+  display: flex;
+  border-bottom: 1rpx solid #dbdbdc;
+  margin: 0 32rpx
+}
+.box .options textarea {
+  height: 110rpx;
+  width: 400rpx;
+  font-size: 28rpx;
+  padding: 30rpx 0;
+  margin-top: -23rpx;
+  margin-left: -7rpx
+}
+.box .options:last-of-type {
+  border-bottom: 0
+}
+.box .options text {
+  color: #333;
+  font-size: 28rpx;
+  width: 156rpx;
+  height: 87rpx;
+  line-height: 87rpx
+}
+.box .options input {
+  width: 400rpx;
+  height: 87rpx;
+  font-size: 28rpx
+}
+.placeholder-class {
+  color: #bbb;
+  font-size: 28rpx
 }
 
-.i-input {
-  font-size: 24rpx;
-  color:#999;
-  border-bottom: 1px solid rgba(0, 0, 0, .12);
-}
-.i-cell {
-  padding-left: 20rpx;
-  height: 90rpx;
-  display:flex;
-  background:#fff;
-  align-items:center;
-  line-height:1.4;
-  font-size:26rpx;
-  overflow:hidden;
-}
-.i-input-title {
-  color:#495060;
-  min-width:65px;
-  padding-right:10px;
-}
-input {
-  flex:1;
-  line-height:1.6;
-  padding:4px 0;
-  min-height:22px;
-  height:auto;
-  font-size:14px;
+.save {
+  width: 686rpx;
+  height: 86rpx;
+  border: 1rpx solid #81a2fc;
+  line-height: 86rpx;
+  border-radius: 4rpx;
+  color: #81a2fc
 }

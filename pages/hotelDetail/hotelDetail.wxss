@@ -1,111 +1,375 @@
-.textIntro-header {
-  padding: 40rpx;
-  border-bottom: 1px solid #f5f5f5;
-  position: relative;
-}
-/* 可预订 */
-.textIntro-header .reserve {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  right: 40rpx;
-  top: 40rpx;
-  font-size: 22rpx;
-  line-height: 145rpx;
-  color: rgb(249,216,94);
-}
-.textIntro-header .reserve image {
-  margin-right: 20rpx;
-}
-.textIntro-header .rate text {
-  font-size: 24rpx;
-  color: #8aa1f9;
+/* 整体背景为灰色 */
+#hotel-detail {
+    background: #F1F2F6;
 }
 
-
-.textIntro-bottom {
-  padding: 30rpx 40rpx;
+/* 图片、视频、全景 */
+.header {
+    width: 100%;
+    height: 420rpx;
+    position: relative;
+}
+.header swiper, .header swiper-item {
+    width: 100%;
+    height: 100%;
+}
+.header swiper image, .header swiper video {
+    width: 100%;
+    height: 100%;
+}
+/* swiper指示器 */
+.header .dots {
+    position: absolute;
+    right: 20rpx;
+    bottom: 24rpx;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.28);
+    font-size: 24rpx;
+    border-radius: 22rpx;
+    padding: 10rpx 16rpx;
+}
+.header .header-select  {
+    position: absolute;
+    bottom: 24rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+.header .header-select cover-view {
+    color: rgba(49, 49, 49, 1);
+    font-size: 24rpx;
+    margin-right: 16rpx;
+    padding: 10rpx 17rpx;
+    background: #fff;
+    border-radius: 22rpx;
+}
+.header .header-select cover-view:last-of-type {
+    margin-right: 0;
+}
+.header .header-select cover-view.active {
+    background: rgba(129, 162, 252, 1);
+    color: #fff;
+}
+.header .collect {
+    position: absolute;
+    width: 48rpx;
+    height: 48rpx;
+    right: 103rpx;
+    top: 24rpx;
+}
+.header .share {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    right: 28rpx;
+    top: 21rpx;
 }
 
-.textIntro-bottom .title {
-  font-size: 36rpx;
-  color: rgb(51,51,51);
+/* 基本信息 */
+.substance {
+    padding: 30rpx;
+    background: #fff;
+    overflow: hidden;
+}
+.substance .name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.substance .name>text {
+    font-size: 36rpx;
+    color: rgba(0, 0, 0, 1);
+    font-weight: bold;
+}
+.substance .name view text:first-of-type {
+    color: rgb(139,170,252);
+    font-size: 36rpx;
+    font-weight: 600;
+}
+.substance .name view text:last-of-type {
+    font-size: 24rpx;
+    color: rgba(162, 162, 162, 1);
+}
+.substance .label {
+    margin-top: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.substance .label view:first-of-type text {
+    font-size: 20rpx;
+    color: rgba(81, 165, 255, 1);
+    border: 1rpx solid rgba(81, 165, 255, 1);
+    padding: 2rpx 5rpx;
+    display: inline-block;
+    margin-right: 12rpx;
+    border-radius: 4rpx;
+}
+.substance .label view:first-of-type text:first-of-type {
+    border: none;
+    color: rgba(255, 158, 81, 1);
+    margin-right: 4rpx;
+    font-size: 24rpx;
+    display: none;
+}
+.substance .label view:first-of-type text:nth-of-type(2) {
+    font-size: 24rpx;
+    border: none;
+    color: rgba(255, 158, 81, 1);
+    display: none;
+}
+.substance .label view:last-of-type text {
+    font-size: 24rpx;
+    color: rgb(162, 162, 162);
+}
+.substance .label view .number {
+    margin-right: 12rpx;
+    display: inline-block;
+}
+.substance .telephone image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 14rpx;
+}
+.substance .address {
+    margin-top: 40rpx !important;
+}
+.substance .address image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 14rpx;
+}
+.substance .telephone {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10rpx;
+}
+.substance .telephone>view {
+    display: flex;
+    align-items: center;
+    max-width: 550rpx;
+}
+.substance .telephone>view text {
+    font-size: 28rpx;
+    color: rgba(49, 49, 49, 1);
+}
+.substance .telephone>text {
+    color: #fff;
+    font-size: 28rpx;
+    background: rgba(127, 160, 255, 1);
+    padding: 12rpx 14rpx;
+    border-radius: 8rpx;
 }
 
-.food-detail .textIntro .title {
-  font-size: 36rpx;
-  color: rgb(51,51,51);
+/* 简介 */
+.introduce {
+    margin-top: 24rpx;
+    padding: 0 30rpx;
+    overflow: hidden;
+    background: #fff;
 }
-.textIntro .businessTime {
-  font-size: 24rpx;
-  margin-top: 20rpx;
-  color: rgb(102,102,102);
+.introduce.textactive {
+    padding-bottom: 24rpx;
 }
-
-.addressPho {
-  margin-top: 35rpx;  
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.introduce .int-title {
+    margin-top: 30rpx;
+    display: flex;
+    align-items: center;
 }
-.addressPho .adr {
-  font-size: 24rpx;
-  color: rgb(102,102,102);
-  padding-left: 42rpx;
-  background: url("https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/dw.png") center left no-repeat/18rpx 25rpx;
+.introduce .int-title image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 10rpx;
 }
-.addressPho .pho {
-  width: 30rpx;
-  height: 30rpx;
+.introduce .int-title text {
+    font-size: 28rpx;
+    color: rgba(49, 49, 49, 1);
 }
-
-.textIntro-bottom .business-license {
-  display: flex;
-  justify-content: space-between;
-  padding: 30rpx 0 20rpx;
-  border-bottom: 1px solid #f5f5f5;
+.introduce .int-text {
+    margin-top: 30rpx;
+    max-height: 75rpx;
+    overflow: hidden;
+    font-size: 28rpx;
+    color: rgb(49, 49, 49);
 }
-.textIntro-bottom .business-license>view {
-  font-size: 24rpx;
-  color: rgb(102,102,102);
-  background: url("https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/xkz.png") center left no-repeat/25rpx 25rpx;
-  padding-left: 46rpx;
+.introduce .int-text.textactive {
+    max-height: initial;
 }
-.textIntro-bottom .business-license>image {
-  width: 11rpx;
-  height: 22rpx;
+.introduce .int-more {
+    height: 88rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-.textIntro-bottom .restaurant-service {
-  padding: 20rpx 0 25rpx;
+.introduce .int-more text {
+    font-size: 24rpx;
+    color: rgba(112, 164, 255, 1);
+    display: inline-block;
+    margin-right: 12rpx;
 }
-.textIntro-bottom .restaurant-service>view {
-  font-size: 24rpx;
-  color: rgb(102,102,102);
-  background: url("https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/ctfw.png") center left no-repeat/25rpx 25rpx;
-  padding-left: 46rpx;
-}
-.textIntro-bottom .service-list {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 45rpx 20rpx;
-  border-bottom: 1px solid #f5f5f5;
-
-}
-.textIntro-bottom .service-list image {
-  width: 50rpx;
-}
-.textIntro-bottom .service-list .text {
-  font-size: 22rpx;
-  color: #999;
-  text-align: center;
+.introduce .int-more image {
+    width: 22rpx;
+    height: 12rpx;
 }
 
-swiper {
-  width: 100%;
-  height: 565rpx;
+/* 支持 */
+.fitment {
+    background: #fff;
+    margin-top: 30rpx;
+    padding: 0 30rpx;
+    overflow: hidden;
 }
-swiper image {
-  width: 100%;
-  height: 565rpx;
+.fitment .fitment-fit {
+    color: rgb(49, 49, 49);
+    font-size: 28rpx;
+    margin-top: 30rpx;
+}
+.fitment .fitment-fit text {
+    display: inline-block;
+    margin-right: 20rpx;
+}
+.fitment .fitment-types {
+    margin: 30rpx 0;
+}
+.fitment .fitment-types view {
+    display: flex;
+    align-items: center;
+    margin-right: 20rpx;
+}
+.fitment .fitment-types image {
+    width: 28rpx;
+    height: 28rpx;
+    margin-right: 10rpx;
+}
+.fitment .fitment-types text {
+    font-size: 24rpx;
+    color: rgba(143, 143, 143, 1);
+}
+
+/* 用户点评 */
+.userComment {
+    margin-top: 24rpx;
+    background: #fff;
+    overflow: hidden;
+    padding: 30rpx;
+}
+.userComment .comment-title {
+    display: flex;
+    align-items: center;
+}
+.userComment .comment-title image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 10rpx;
+}
+.userComment .comment-title text {
+    font-size: 28rpx;
+    color: rgba(49, 49, 49, 1);
+}
+.userComment .comment-li {
+    overflow: hidden;
+    margin-top: 20rpx;
+}
+.userComment .comment-li .comment-liTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.userComment .comment-li>text {
+    font-size: 28rpx;
+    color: rgba(49, 49, 49, 1);
+}
+.userComment .comment-li .comment-liRight {
+    font-size: 20rpx;
+    color: rgba(162, 162, 162, 1);
+}
+.userComment .comment-li .comment-liLeft {
+    display: flex;
+    align-items: center;
+}
+.userComment .comment-li .comment-liLeft image {
+    width: 54rpx;
+    height: 54rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10rpx;
+}
+.userComment .comment-li .comment-liLeft .name view:first-of-type {
+    color: rgba(49, 49, 49, 1);
+    font-size: 24rpx;
+}
+.userComment .comment-li .comment-liLeft .name view:last-of-type {
+    display: flex;
+}
+.userComment .comment-li .comment-liLeft .name text {
+    color: rgba(162, 162, 162, 1);
+    font-size: 20rpx;
+}
+.userComment .comment-li .comment-liLeft .name .grade {
+    font-size: 24rpx;
+    color: rgba(112, 164, 255, 1);
+    display: inline-block;
+    margin-right: 10rpx;
+}
+
+/* canvas */
+.canvas {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    z-index: 101;
+    padding-top: 20rpx;
+}
+canvas {
+    width: 520rpx;
+    border-radius: 8rpx;
+    box-shadow: 0 2rpx 17rpx 0 rgba(234, 240, 254, 1);
+    margin: 0 auto;
+    height: 732rpx;
+    margin-bottom: 90rpx;
+}
+.canvas .remove {
+    padding: 0 30rpx;
+    text-align: right;
+    display: relative;
+    right: 30rpx;
+    top: 30rpx;
+}
+.canvas .remove image {
+    width: 32rpx;
+    height: 32rpx;
+}
+.canvas .btn {
+    border-top: 1rpx solid #f0f0f0;
+}
+.canvas .btn button {
+    width: 360rpx;
+    height: 72rpx;
+    background: #81a2fc;
+    border-radius: 36rpx;
+    color: #fff;
+    font-size: 32rpx;
+    line-height: 72rpx;
+    margin: 46rpx auto;
+}
+
+.canvas-box {
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+.canvas-box .shadom {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0,0,0,.5)
+}
+.hidden {
+    display: none
 }

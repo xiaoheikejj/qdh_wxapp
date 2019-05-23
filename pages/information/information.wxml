@@ -1,0 +1,17 @@
+<!-- 资讯 -->
+<view id="information">
+    <!-- tab选项 -->
+    <i-tabs current="{{ tabs.current }}" scroll bindchange="handleChange">
+        <i-tab wx:for="{{ tabs.tabList }}" wx:key="" key="{{ item.id }}" title="{{ item.name }}"></i-tab>
+    </i-tabs>
+    <!-- 列表 -->
+    <block wx:for="{{ notice.list }}" wx:key="">
+        <view class="list" data-id="{{ item.id }}" data-type="{{ item.type }}" bindtap="jumpToDetail">
+            <view class="name">{{ item.title }}</view>
+            <view class="time">{{ item.recordDate }}</view>
+            <!-- <view class="desc">很多了粉红色的疯狂闪电发货适得府君书的链接风口浪尖水电费昆仑决第三方接口了圣诞节疯狂几十块京东方副科级加速度快放假了开始就风口浪尖凉快圣诞节饭就开始了的纠纷垃圾毒素教室里的解放军奥斯卡了放假了开始就快放假萨利福利卡上是点击导航方式</view> -->
+            <image wx:if="{{ item.targetUrl }}"
+                src="{{ item.targetUrl }}" mode="aspectFill"></image>
+        </view>
+    </block>
+</view>

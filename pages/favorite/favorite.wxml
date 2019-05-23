@@ -1,0 +1,50 @@
+<!-- 收藏列表 -->
+<i-tabs current="{{ favorite.current }}" scroll bindchange="handleChange">
+    <i-tab wx:for="{{ favorite.list }}" wx:key="" key="{{ item.id }}" title="{{ item.name }}"></i-tab>
+</i-tabs>
+<!-- 收藏列表为空 -->
+<view class="empty" wx:if="{{ result.length == 0 }}">
+    <image src="../../images/favorite-empty.svg"></image>
+    <text>您目前的收藏空空如也</text>
+</view>
+<!-- 收藏列表,列表为空不显示 -->
+<view class="favorite-ul" wx:else>
+    <block wx:for="{{ result }}" wx:key="">
+        <view data-type="{{ item.type }}" data-id="{{ item.reocrdID }}" bindtap="toDetailFun">
+            <movable-area>
+                <movable-view direction="horizontal" x="{{ x }}" damping="100" inertia friction="0.1">
+                    <view class="favorite-li">
+                        <image src="{{ item.imgUrl }}" mode="aspectFill"></image>
+                        <view class="right">
+                            <view class="right-title">{{ item.title }}</view>
+                            <view class="right-score">
+                                <text>{{ item.score }}</text>
+                                <text>分</text>
+                                <text>{{ item.comments }}</text>
+                                <text>条评价</text>
+                            </view>
+                            <view class="right-labels">
+                                <block wx:for="{{ item.tags }}" wx:key="" wx:for-item="childItem">
+                                    <text>{{ childItem.tagName }}</text>
+                                </block>
+                            </view>
+                            <view class="right-distance">
+                                <text>距您{{ item.distance }}km</text>
+                                
+                                <text wx:if="{{ item.ticketPrice == 0 || !item.ticketPrice }}"></text>
+                                <text wx:elif="{{ item.ticketPrice == -1 }}" style="color:rgba(49, 49, 49, 1)">免费</text>
+                                <view wx:elif="{{ item.ticketPrice }}">
+                                    <text>￥{{ item.ticketPrice }}</text>
+                                    <text>起</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </movable-view>
+            </movable-area>
+            <view data-id="{{ item.reocrdID }}" data-type="{{ item.type }}" bindtap="cancelFavorite" class="delete">
+                取消收藏
+            </view>
+        </view>
+    </block>
+</view>

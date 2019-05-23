@@ -6,14 +6,6 @@ view {
   align-items: center;
 }
 image {
-  width: 192rpx;
-  height: 192rpx;
-}
-text {
-	font-size: 32rpx;
-	font-weight: normal;
-	font-stretch: normal;
-	line-height: 32rpx;
-	letter-spacing: 0px;
-	color: #a2a2a2;
+  width: 526rpx;
+  height: 582rpx;
 }

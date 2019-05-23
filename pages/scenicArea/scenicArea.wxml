@@ -1,27 +1,95 @@
-<!--景区-->
-<scroll-view scroll-y class="box">
-  <view class="search">
-    <image src="../../images/sous.png"></image>
-    <input placeholder="搜索千岛湖内景点" placeholder-class="placeholder-class" disabled bindtap="turnToSearch"></input>
-  </view>
-  <i-tabs current="{{ current }}" scroll bindchange="handleChange">
-      <i-tab wx:for="{{ tabList }}" wx:key="" key="{{ item.id }}" title="{{ item.parentName }}"></i-tab>
-  </i-tabs>
-  <!-- 景点 -->
-  <view class="attractionsList clearfix">
-    <block wx:for="{{ scenicList }}" wx:key="">
-      <view class="attractionsList-child" data-name="{{item.childName}}" data-id="{{ item.id }}" bindtap="turnScenicSpot">
-        <image src="{{ item.childImgUrl }}" class="beauty-image"></image>
-        <view class="intro">
-          <text class="title">{{ item.childName }}</text>
-          <block wx:if="{{ item.childIsHot == 1 }}">
-            <image src="../../images/rq.png" class="sentiment"></image>       
-          </block>
+<!--景区门票列表-->
+<view class="box">
+    <!-- 搜索 -->
+    <view class="search-box">
+        <view class="search">
+            <view class="search-left">
+                <image src="../../images/sous.png"></image>
+                <input placeholder="搜索千岛湖内景点" placeholder-class="placeholder-class" disabled bindtap="turnToSearch"></input>
+            </view>
+            <!-- 地图模式 -->
+            <view class="search-right" bindtap="tohanddrawnMap">
+                <image src="../../images/scenic-map.svg"></image>
+                <view>地图模式</view>
+            </view>
         </view>
-        <view class="rate-box">
-          <i-rate value="{{ item.childGrade }}" size="12" i-class="rate"></i-rate>
+        <i-tabs current="{{ tab.current }}" scroll bindchange="handleChange">
+            <i-tab wx:for="{{ tab.list }}" wx:key="" key="{{ item.typeID }}" title="{{ item.typeName }}"></i-tab>
+        </i-tabs>
+    </view>
+    <!-- 景区列表 -->
+    <block wx:for="{{ scenic.arealist }}" wx:key="">
+        <view wx:if="{{ scenic.arealist.length != 0 }}" class="scenicSpotList">
+            <!-- 景区 -->
+            <view class="list-scenicArea">
+                <view class="list-scenicArea-left">
+                    <image src="{{ item.imgUrl }}" mode="aspectFill"></image>
+                    <text>{{ item.name }}</text>
+                    <text>({{ item.spotsSize }})</text>
+                </view>
+                <text wx:if="{{ item.price }}">{{ item.price }}</text>
+                <!-- <text wx:else style="color: #313131">免费</text> -->
+            </view>
+            <!-- 景点 -->
+            <block wx:for="{{ item.spotsVOList }}" wx:key="" wx:for-item="childItem">
+                <view class="list-scenicSpot {{ item.unfoldCurrent ? 'scenicspotHeight' : '' }}" 
+                    data-id="{{ childItem.spotsID }}"
+                    bindtap="jumpToInfo">
+                    <image src="{{ childItem.imgUrl }}" mode="aspectFill"></image>
+                    <view class="scenicSpot-info">
+                        <view class="scenicSpot-infoName">{{ childItem.spotsName }}</view>
+                        <view class="scenicSpot-infoGrade">
+                            <text>{{ childItem.score }}</text>
+                            <text>分</text>
+                            <text>{{ childItem.evaluateNumber }}</text>
+                            <text>条评论</text>
+                        </view>
+                        <view class="scenicSpot-infoLabel">
+                            <block wx:for="{{ childItem.labels }}" wx:key="" wx:for-item="grandChildItem">
+                                <text>{{ grandChildItem.tagName }}</text>
+                            </block>
+                        </view>
+                        <view class="scenicSpot-infoDistance">
+                            <text>距您{{ childItem.distance }}km</text>
+                            <text wx:if="{{ childItem.ticketPrice == 0 }}"></text>
+                            <text wx:elif="{{ childItem.ticketPrice == -1 }}" style="color:rgba(49, 49, 49, 1)">免费</text>
+                            <text wx:else>￥{{ childItem.ticketPrice }}起</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <!-- 点击更多 -->
+            <view class="list-more" data-id="{{ item.id }}" bindtap="showMore">
+                <image wx:if="{{ item.unfoldCurrent }}" src="../../images/more_selected_2013.png"></image>
+                <image wx:else src="../../images/more_2013.png"></image>
+            </view>
         </view>
-      </view>
     </block>
-  </view>
-</scroll-view>
+    <!-- 景点 -->
+    <block wx:for="{{ scenic.spotlist }}" wx:key="">
+        <view class="list-scenicSpot own-scenicSpot"  data-id="{{ item.spotsID }}" bindtap="jumpToInfo">
+            <image src="{{ item.imgUrl }}" mode="aspectFill"></image>
+            <view class="scenicSpot-info">
+                <view class="scenicSpot-infoName">{{ item.spotsName }}</view>
+                <view class="scenicSpot-infoGrade">
+                    <text>{{ item.score }}</text>
+                    <text>分</text>
+                    <text wx:if="{{ item.evaluateNumber }}">{{ item.evaluateNumber }}</text>
+                    <text wx:else>0</text>
+                    <text>条评论</text>
+                </view>
+                <view class="scenicSpot-infoLabel">
+                    <block wx:for="{{ item.labels }}" wx:key="" wx:for-item="grandChildItem">
+                        <text>{{ grandChildItem.tagName }}</text>
+                    </block>
+                </view>
+                <view class="scenicSpot-infoDistance">
+                    <text>距您{{ item.distance }}km</text>
+                    <text wx:if="{{ item.ticketPrice == 0 }}"></text>
+                    <text wx:elif="{{ item.ticketPrice == -1 }}" style="color:rgba(49, 49, 49, 1)">免费</text>
+                    <text wx:else>￥{{ item.ticketPrice }}起</text>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>

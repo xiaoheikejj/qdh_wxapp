@@ -1,0 +1,117 @@
+/* pages/videoVisit/videoVisit.wxss */
+#video-visiting {
+    background: #fafafa;
+    min-height: 100%;
+}
+.header {
+    width: 718rpx;
+    padding: 14rpx 16rpx;
+    height: 60rpx;
+    background: #eee;
+}
+.header view {
+    width: 100%;
+    height: 60rpx;
+    background: #fff;
+    border-radius: 30rpx;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.header view image {
+    width: 28rpx;
+    height: 28rpx;
+    margin: 0 14rpx 0 16rpx;
+}
+.header view text {
+    font-size: 28rpx;
+    color: rgba(142, 142, 147, 1);
+}
+
+/* 滚动点击 */
+.scroll {
+    width: 718rpx;
+    padding: 0 16rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #fff;
+}
+.scroll scroll-view {
+    margin: 15rpx 0 23rpx;
+}
+.scroll text {
+    display: inline-block;
+    font-size: 24rpx;
+    color: rgba(137, 137, 137, 1);
+    padding: 8rpx 25rpx;
+    border-radius: 100rpx;
+    background: rgba(239, 239, 244, 1);
+    margin-right: 32rpx;
+}
+.scroll text.active {
+    background: rgba(106, 165, 252, 1);
+    color: #fff;
+}
+.scroll text:last-of-type {
+    margin-right: 0;
+}
+
+/* 列表 */
+.videoList {
+    margin: 30rpx auto 0;
+    width: 690rpx;
+    border-radius: 8rpx;
+    overflow: hidden;
+    box-shadow: 0 2rpx 17rpx 0 rgba(234, 240, 254, 1);
+}
+.videoList .video {
+    width: 100%;
+    height: 272rpx;
+    position: relative;
+}
+#videoControl {
+    width: 0;
+    height: 0;
+}
+.videoList .video image {
+    width: 100%;
+    height: 100%;
+}
+.videoList .video view {
+    position: absolute;
+    bottom: 19rpx;
+    left: 12rpx;
+    font-size: 30rpx;
+    color: #fff;
+    font-weight: 600;
+}
+.videoList .describe {
+    width: 650rpx;
+    padding: 0 20rpx;
+    height: 84rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.videoList .describe view {
+    display: flex;
+    align-items: center;
+}
+.videoList .describe view image:nth-of-type(1) {
+    width: 28rpx;
+    height: 24rpx;
+    margin: 14rpx;
+}
+.videoList .describe text {
+    display: inline-block;
+    font-size: 24rpx;
+    color: rgba(162, 162, 162, 1);
+}
+.videoList .describe view text:nth-of-type(1) {
+    margin-right: 24rpx
+}
+.videoList .describe view image:nth-of-type(2) {
+    width: 32rpx;
+    height: 24rpx;
+    margin-right: 14rpx;
+}

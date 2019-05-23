@@ -24,10 +24,10 @@ page {
 	color: #44acff;
 }
 .time {
-  margin-top: 20rpx;
+  margin-top: 20rpx
 }
 .wea {
-  margin-top: 114rpx;
+  margin-top: 32rpx
 }
 .wea text {
   font-size: 128rpx;
@@ -132,16 +132,16 @@ page {
 }
 
 .address {
-  padding-top: 64rpx;
+  padding-top: 50rpx;
   display: flex;
-  margin-left: -15rpx;
+  margin-left: -15rpx
 }
 .address image {
   width: 168rpx;
-  height: 168rpx;
+  height: 168rpx
 }
 .address .name {
   font-size: 56rpx;
 	color: #44acff;
-	margin-top: 16rpx;
+	margin-top: 16rpx
 }

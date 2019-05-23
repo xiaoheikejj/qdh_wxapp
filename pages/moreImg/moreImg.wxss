@@ -1,52 +1,55 @@
 .box {
-  padding: 0 30rpx;
-  margin-right: -40rpx;
+    width: 692rpx;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .box .li {
-  float: left;
-  margin-right: 20rpx;
-  margin-top: 20rpx;
-  width: 336rpx;
-  height: 228rpx;
-  border-radius: 8rpx;
+    margin-right: 20rpx;
+    margin-top: 20rpx;
+    width: 336rpx;
+    height: 228rpx;
+    border-radius: 8rpx;
 }
-
+.box .li:nth-of-type(2n) {
+    margin-right: 0;
+}
 .box .li image,.box .li video  {
-  width: 336rpx;
-  height: 228rpx;
-  border-radius: 8rpx;
+    width: 336rpx;
+    height: 228rpx;
+    border-radius: 8rpx;
 }
 
 .select {
-  height: 88rpx;
-  width: 426rpx;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
+    height: 88rpx;
+    width: 426rpx;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 .select view {
-  width: 176rpx;
-  height: 88rpx;
-  text-align: center;
+    width: 176rpx;
+    height: 88rpx;
+    text-align: center;
 }
 .select view text:first-of-type {
-  font-size: 28rpx;
-  color: #5d5d5d;
-  display: block;
-  margin-top: 28rpx;
+    font-size: 28rpx;
+    color: #5d5d5d;
+    display: block;
+    margin-top: 28rpx;
 }
 .select view.active text:first-of-type {
-  color: #6aa5fc;
+    color: #6aa5fc;
 }
 .select view text:last-of-type {
-  display: block;
-  width: 108rpx;
-	height: 4rpx;
-	background-color: #fff;
-	border-radius: 2rpx;
-  margin: 18rpx auto 0;
+    display: block;
+    width: 108rpx;
+    height: 4rpx;
+    background-color: #fff;
+    border-radius: 2rpx;
+    margin: 18rpx auto 0;
 }
 .select view.active text:last-of-type {
-  background-color: #6aa5fc;
+    background-color: #6aa5fc;
 }

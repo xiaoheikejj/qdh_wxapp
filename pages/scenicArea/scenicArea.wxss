@@ -1,117 +1,182 @@
-.box {
-  height: 100%;
-  background-color: #fafafa;
+page {
+    background-color: #fafafa;
 }
+
 /* 搜索 */
 .search {
-  width: 718rpx;
-  height: 60rpx;
-  background-color: #eee;
-  position: relative;
-  padding: 14rpx 16rpx;
+    width: 718rpx;
+    height: 88rpx;
+    background-color: #eee;
+    padding: 0 16rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-.search image {
-  width: 28rpx;
-  height: 28rpx;
-  position: absolute;
-  top: 30rpx;
-  left: 32rpx;
+.search .search-left {
+    width: 588rpx;
+    height: 60rpx;
+    position: relative;
 }
-.search input {
-  width: 660rpx;
-  height: 60rpx;
-  background-color: #fff;
-  border-radius: 60rpx;
-  padding-left: 58rpx;
-  font-size: 24rpx;  
+.search .search-left image {
+    width: 28rpx;
+    height: 28rpx;
+    position: absolute;
+    top: 16rpx;
+    left: 16rpx;
+}
+.search .search-left input {
+    width: 100%;
+    height: 60rpx;
+    background-color: #fff;
+    border-radius: 60rpx;
+    padding-left: 58rpx;
+    font-size: 24rpx;  
+}
+.search .search-right {
+    text-align: center;
+}
+.search .search-right image {
+    width: 40rpx;
+    height: 41rpx;
+}
+.search .search-right view {
+    font-size: 16rpx;
+    color: rgba(106, 165, 252, 1);
 }
 .placeholder-class {
-  font-size: 24rpx;
+    font-size: 24rpx;
 }
 
-
-.classify {
-  border-bottom: 1rpx solid #f5f5f5;
-  padding: 40rpx 0;
-  display: flex;
+/* 景区列表 */
+.scenicSpotList {
+    width: 650rpx;
+    margin: 0 auto;
+    border-radius: 8rpx;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 2rpx 17rpx 0 rgba(234, 240, 254, 1);
+    padding: 0 20rpx;
 }
-.classify view {
-  flex: 1;
-  text-align: center;
-  font-size: 12px;
+.scenicSpotList .list-scenicArea {
+    padding: 32rpx 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-.classify view.active {
-  color: #409EFF;
-  position: relative;
+.scenicSpotList .list-scenicArea .list-scenicArea-left {
+    display: flex;
+    align-items: center;
 }
-.classify view.active::after {
-  content: "";
-  width: 80rpx;
-  height: 1rpx;
-  background-color: #409EFF;
-  position: absolute;
-  bottom: -20rpx;
-  left: 55rpx;
+.scenicSpotList .list-scenicArea .list-scenicArea-left image {
+    width: 68rpx;
+    height: 68rpx;
+    border-radius: 50%;
+    margin-right: 10rpx;
+    overflow: hidden;
 }
-
-/* 景点列表 */
-.attractionsList {
-  padding: 0 30rpx;
-  font-size: 12px;
-  margin-right: -50rpx;
+.scenicSpotList .list-scenicArea .list-scenicArea-left text:nth-of-type(1) {
+    font-size: 32rpx;
+    color: rgba(49, 49, 49, 1);
+    font-weight: bold;
 }
-.attractionsList .attractionsList-child {
-  float: left;
-  margin-right: 20rpx;
-  margin-top: 30rpx;
-  border-radius: 8rpx;
-  background-color: #fff;
+.scenicSpotList .list-scenicArea .list-scenicArea-left text:nth-of-type(2) {
+    color: rgba(162, 162, 162, 1);
+    font-size: 24rpx;
+    margin-left: 10rpx;
 }
-.attractionsList .attractionsList-child .beauty-image {
-  width: 336rpx;
-  height: 228rpx;
-  border-radius: 8rpx;
+.scenicSpotList .list-scenicArea>text:nth-of-type(1) {
+    font-size: 24rpx;
+    color: rgba(255, 158, 81, 1);
+    font-weight: bold;
 }
-.attractionsList .attractionsList-child .title {
-  margin-left: 20rpx;
-  font-weight: bold;
-  display: inline-block;
-  vertical-align: middle;
-  max-width: 230rpx;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+/* 更多 */
+.scenicSpotList .list-more {
+    width: 100%;
+    height: 66rpx;
+    text-align: center;
 }
-.attractionsList .attractionsList-child .intro {
-  font-size: 28rpx;
-  color: rgb(54,54,54);
-  margin-top: 18rpx;
-  position: relative;
-}
-.attractionsList .attractionsList-child .intro .five-a {
-  display: inline-block;
-  background: url(' https://sxhycos-1256774438.cos.ap-shanghai.myqcloud.com/qdh_image/xx.png') center no-repeat/100% 100%;
-  color: #fff;
-  font-size: 18rpx;
-  width: 34rpx;
-  height: 34rpx;
-  text-align: center;
-  line-height: 34rpx;
-  position: absolute;
-  top: 0;
-  left: 152rpx;
-}
-.attractionsList .attractionsList-child .rate-box {
-  margin-left: 20rpx;
-  margin-bottom: 30rpx;
-}
-.rate {
-  margin-top: 15rpx !important;
+.scenicSpotList .list-more image {
+    width: 20rpx;
+    height: 14rpx;
+    vertical-align: middle;
 }
 
-.sentiment {
-  width: 55rpx;
-  height: 25rpx;
-  margin-left: 13rpx;
-  vertical-align: middle;
+/* 景点 */
+.scenicSpotList .list-scenicSpot.scenicspotHeight {
+    max-height: initial;
+    padding: 30rpx 0;
+}
+.scenicSpotList {
+    margin-top: 30rpx;
+}
+.own-scenicSpot {
+    border-radius: 8rpx;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 2rpx 17rpx 0 rgba(234, 240, 254, 1);
+    width: 650rpx;
+    margin: 30rpx auto;
+    padding: 30rpx 20rpx !important;
+}
+.scenicSpotList .list-scenicSpot {
+    max-height: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+}
+.list-scenicSpot {
+    display: flex;
+    border-top: 1rpx solid rgba(238, 238, 238, 1);
+    padding: 30rpx 0;
+}
+.list-scenicSpot>image {
+    width: 172rpx;
+    height: 172rpx;
+    margin-right: 20rpx;
+}
+.list-scenicSpot .scenicSpot-info {
+    width: 458rpx;
+}
+.list-scenicSpot .scenicSpot-info .scenicSpot-infoName {
+    font-size: 28rpx;
+    color: rgba(49, 49, 49, 1);
+    font-weight: bold;
+}
+.list-scenicSpot .scenicSpot-info .scenicSpot-infoGrade {
+    display: flex;
+    margin-top: 12rpx;
+    align-items: center;
+}
+.list-scenicSpot .scenicSpot-info .scenicSpot-infoGrade text {
+    font-size: 24rpx;
+    color: rgba(162, 162, 162, 1);
+    display: inline-block;
+    margin-right: 12rpx;
+}
+.list-scenicSpot .scenicSpot-info .scenicSpot-infoGrade text:first-of-type {
+    color: rgb(76, 163, 255);
+    font-weight: bold;
+}
+.list-scenicSpot .scenicSpot-info .scenicSpot-infoGrade text:last-of-type {
+    margin-right: 0;
+}
+.list-scenicSpot .scenicSpot-info .scenicSpot-infoLabel {
+    height: 40rpx;
+}
+.list-scenicSpot .scenicSpot-info .scenicSpot-infoLabel text {
+    display: inline-block;
+    font-size: 20rpx;
+    color: rgb(76, 163, 255);
+    padding: 2rpx 5rpx;
+    border: 1rpx solid rgb(76, 163, 255);
+    border-radius: 8rpx;
+    margin-right: 8rpx;
+}
+.list-scenicSpot .scenicSpot-info .scenicSpot-infoDistance {
+    color: rgba(162, 162, 162, 1);
+    font-size: 24rpx;
+    margin-top: 12rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.list-scenicSpot .scenicSpot-info .scenicSpot-infoDistance text:nth-of-type(2) {
+    color:rgba(255, 158, 81, 1);
 }

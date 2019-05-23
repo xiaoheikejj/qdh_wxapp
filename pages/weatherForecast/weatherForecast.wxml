@@ -1,47 +1,43 @@
 <!-- 天气预报 -->
 <view class="box">
-  <view class="address">
-    <image src="{{weatherImg}}"></image>
-    <view style="margin-left: 50rpx">
-      <view class="name">千岛湖</view>
-      <view class="date">
-        <text style="margin-right: 20rpx;">{{week}}</text>
-        <text>{{date}}</text>
-      </view>
+    <view class="address">
+        <image src="{{ weatherImg }}"></image>
+        <view style="margin-left: 50rpx">
+            <view class="name">千岛湖</view>
+            <view class="date">
+                <text style="margin-right: 20rpx;">{{week}}</text>
+                <text>{{date}}</text>
+            </view>
+        </view>
     </view>
-  </view>
-  <view class="wea">
-    <text>{{weatherInfo.tem}}</text>
-  </view>
-  <view class="wea-text">
-    <text style="margin-right: 20rpx;">{{wea}}</text>
-    <text>{{win}}{{win_speed}}</text>
-  </view>
-  <view class="exponent">
-    <view>
-      <image src="../../images/kqzl.png"></image>
-      <text>空气质量：{{air_level}}</text>
+    <view class="wea">
+        <text>{{weatherTem}}</text>
     </view>
-    <view>
-      <image src="../../images/zwx.png"></image>
-      <text>紫外线强度：{{index_level}}</text>
+    <view class="wea-text">
+        <text style="margin-right: 20rpx;">{{wea}}</text>
+        <text>{{win}}{{win_speed}}</text>
     </view>
-  </view>
+    <view class="exponent">
+        <view>
+            <image src="../../images/kqzl.png"></image>
+            <text>空气质量：{{air_level}}</text>
+        </view>
+        <view>
+            <image src="../../images/zwx.png"></image>
+            <text>紫外线强度：{{index_level}}</text>
+        </view>
+    </view>
 </view>
 <view class="feature-wea {{active_x?'x':''}}">
-  <view class="feature-wea-child">
-    <block wx:for="{{feature_list}}" wx:key="">
-      <view class="li">
-        <!-- <view>{{item.day}}</view> -->
-        <view>{{item.week}}</view>
-        <!-- <view wx:if="{{item.tomorrow == 1}}">明天</view> -->
-        <!-- <view wx:else> </view> -->
-        <image src="{{item.tomorrowImg}}"></image>
-        <view>{{item.wea}}</view>
-        <view>{{item.tem2}}~{{item.tem1}}</view>
-        <!-- <view>{{item.win[0]}}{{item.win_speed}}</view> -->
-      </view>
-    </block>
-  </view>
+    <view class="feature-wea-child">
+        <block wx:for="{{feature_list}}" wx:key="">
+            <view class="li">
+                <view>{{item.week}}</view>
+                <image src="{{item.tomorrowImg}}"></image>
+                <view>{{item.wea}}</view>
+                <view>{{item.tem2}}~{{item.tem1}}</view>
+            </view>
+        </block>
+    </view>
 </view>
 <image class="bg" src="{{weather_bg}}"></image>

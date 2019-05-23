@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="6px" viewBox="0 0 10 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>评价排序</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M1.41421356,0 L8.58578644,0 C9.13807119,-1.01453063e-16 9.58578644,0.44771525 9.58578644,1 C9.58578644,1.26521649 9.4804296,1.5195704 9.29289322,1.70710678 L5.70710678,5.29289322 C5.31658249,5.68341751 4.68341751,5.68341751 4.29289322,5.29289322 L0.707106781,1.70710678 C0.316582489,1.31658249 0.316582489,0.683417511 0.707106781,0.292893219 C0.89464316,0.10535684 1.14899707,4.92808689e-16 1.41421356,4.4408921e-16 Z" id="评价排序" fill="#313131"></path>
+    </g>
+</svg>

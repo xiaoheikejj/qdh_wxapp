@@ -1,54 +1,87 @@
 <!--首页-->
 <view class="body">
-  <!-- header -->
-  <view class="header">
-    <view class="top">
-      <image class="logo" src="../../images/logo.png" mode="aspectFill"></image>
-      <view class="search-style">
-        <image src='../../images/sous.png'></image>
-        <input placeholder="搜索景区" disabled bindtap="turnSpot"></input>
-      </view>
-    </view>   
-    <!-- 天气 -->
-    <view class="weather" bindtap="turnWea">
-      <image src="{{weatherImg}}"></image>
-      <view>{{weatherInfo.tem}}</view>      
-    </view>
-    <!-- 轮播 -->
-    <swiper class="header-banner" autoplay interval="3000" circular indicator-dots="{{indicatorDots}}" indicator-active-color="#fff">
-      <swiper-item wx:for="{{ recommend }}" wx:key="">
-        <image src="{{ item.imgUrl }}" class="slide-image"></image>
-        <view class='name'>{{ item.name }}</view>
-      </swiper-item>
-    </swiper>
-  </view>
-  <!-- 菜单 -->
-  <view class="menu">
-    <view class="clearfix">
-      <block wx:for="{{ menuListArr }}" wx:key="">
-        <view class="menu-child" data-id="{{ item.orderNo }}" bindtap="linkJump">
-          <image src="{{ item.menuClass }}"></image>
-          <text>{{ item.menuName }}</text> 
+    <!-- header -->
+    <view class="header">
+        <!-- 搜索模块 -->
+        <view class="header-search">
+            <image class="search-logo" src="../../images/logo.png" mode="aspectFill"></image>
+            <view bindtap="turnSpot" class="search-frame">
+                <image src="../../images/sous.png"></image>
+                <input placeholder="搜索景区" placeholder-class="placeholder" disabled></input>
+            </view>
+            <view bindtap="turnWea" class="search-weather">
+                <view class="name">千岛湖</view>
+                <view class="tempBox">
+                    <image src="{{ weatherImg }}"></image>
+                    <text class="temp">{{ weatherTem }}</text>
+                </view>
+            </view>
         </view>
-      </block>
+        <!-- 轮播 -->
+        <view class="header-banner">
+            <swiper autoplay bindchange="swiperChange" interval="3000" circular>
+                <block wx:for="{{ recommend }}" wx:key="">
+                    <swiper-item>
+                        <image src="{{ item.imgUrl }}" class="slide-image"></image>
+                        <view class="name">{{ item.name }}</view>
+                    </swiper-item>
+                </block> 
+            </swiper>
+            <!-- 自定义dots点 -->
+            <view class="dots">
+                <block wx:for="{{ recommend }}" wx:key="">
+                    <view class="dot {{ swiper.index === index ? 'active' : '' }}"></view>
+                </block>
+            </view>
+        </view>
     </view>
-    <view class="menuList-more">
-      <view bindtap="addMore">
-        <image src="{{ showMore }}"></image>
-      </view>
+    <!-- 菜单 -->
+    <view class="menu">
+        <view class="menu-list">
+            <block wx:for="{{ menuListArr }}" wx:key="">
+                <view bindtap="linkJump" class="menu-child" data-orderNo="{{ item.orderNo }}">
+                    <image src="{{ item.menuClass }}"></image>
+                    <text>{{ item.menuName }}</text> 
+                </view>
+            </block>
+        </view>
+        <view class="menuList-more">
+            <view bindtap="addMore">
+                <image wx:if="{{ showMore }}" src="../../images/more_selected_2013.png"></image>
+                <image wx:else src="../../images/more_2013.png"></image>
+            </view>
+        </view>
     </view>
-  </view>
-  <!-- 推荐 -->
-  <view class="recommand">热门推荐</view>
-  <!-- 推荐的图片 -->
-  <view class="recommand-list">
-    <block wx:for="{{ hotList }}" wx:key="">
-      <view class="li" data-url="{{item.hotPageLinkUrl}}" bindtap="turnToDetail">
-        <image src="{{ item.hotPageImgUrl }}"></image>
-        <!-- <view class='name'>{{ item.hotPageName }}</view> -->
-        <!-- <view class='desc'>{{ item.hotPageDesc }}</view> -->
-        <view class="label">{{ item.hotPageName }}</view>
-      </view>
-    </block> 
-  </view>
+    <!-- 旅游资讯 -->
+    <view class="travel" bindtap="jumpToNotice">
+        <image src="../../images/index-lyzx.png" class="travel-logo"></image>
+        <swiper vertical display-multiple-items="2" previous-margin="-3rpx" next-margin="-3rpx" circular autoplay interval="3000">
+            <block wx:for="{{ notice.list }}" wx:key="">
+                <swiper-item>
+                    <text wx:if="{{ item.type === 1 }}">通知</text>
+                    <text wx:elif="{{ item.type === 2 }}">公告</text>
+                    <text wx:elif="{{ item.type === 3 }}">活动</text>
+                    <text wx:elif="{{ item.type === 9 }}">其它</text>
+                    <text>{{ item.title }}</text>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!-- 推荐 -->
+    <view class="recommand">
+        <text></text>
+        <text>为您推荐精彩千岛湖</text>
+    </view>
+    <!-- 推荐的图片 -->
+    <view class="recommand-list">
+        <block wx:for="{{ hotList }}" wx:key="">
+            <view class="li" data-type="{{ item.type }}" data-id="{{ item.id }}" bindtap="turnToDetail">
+                <image mode="aspectFill" src="{{ item.imgUrl }}"></image>
+                <text class="label" wx:if="{{item.type==1}}">优选景点</text>                 
+                <text class="label" style="background:#FF8F51" wx:elif="{{item.type==2}}">文化之旅</text>
+                <text class="label" style="background:#E5C082" wx:elif="{{item.type==3}}">宾馆酒店</text>          
+                <text class="label" style="background:#2DBF98" wx:elif="{{item.type==4}}">精品民宿</text>                
+                <text class="label" style="background:#FF8F51" wx:elif="{{item.type==5}}">特色美食</text>                 </view>
+        </block> 
+    </view>
 </view>

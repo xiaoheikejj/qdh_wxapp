@@ -1,30 +1,32 @@
+<!-- 攻略游记 -->
 <view class="content-box">
-  <image class="banner" src="{{strategyImgUrl}}"></image>
-  <view class="content">
-    <view class="title">
-      <view class="left">
-        <text></text>
-        <text>{{strategyTitle}}</text>
-      </view>
-      <text class="right">{{gmtCreate}}天前</text>
+    <view class="content">
+        <view class="title">
+            <view class="name">
+                <text></text>
+                <text>{{ strategy.result.strategyTitle }}</text>
+            </view>
+            <view class="time">
+                <text>旅游攻略</text>
+                <text>{{ strategy.result.gmtCreate }}</text>
+            </view>
+        </view>
+        <!-- 内容 -->
+        <view class="describe">
+            <rich-text nodes="{{ strategy.result.strategyInfo }}"></rich-text>
+        </view>
+        <!-- 人数 -->
+        <view class="statistical">
+            <view class="statistical-praise" bindtap="setLike">
+                <image wx:if="{{ strategy.result.isLike == 1}}" src="../../images/strategy-likeActive.png"></image>
+                <image wx:else src="../../images/ax.png"></image>
+                <text wx:if="{{ strategy.result.isLike == 1}}" style="color: #FF6565">{{ strategy.result.strategyLikeNumber }}</text>
+                <text wx:else>{{ strategy.result.strategyLikeNumber }}</text>
+            </view>
+            <view class="statistical-browse">
+                <image src="../../images/eye-1@2x.png"></image>
+                <text>{{ strategy.result.strategyViewNumber }}</text>
+            </view>
+        </view>
     </view>
-    <view class="bottom-text">
-      <!-- <image src="../../images/gongluo.jpg" mode="widthFix"></image>
-      <text>千岛湖，又称新安江水库，位于浙江省杭州市淳安县。千岛湖东面是杭州、西边是黄山，北接临安市、南接常山县、西南与开化县、衢州市为邻，东南与桐庐和建德二县市接壤，西北与安徽省交界。这样的地理位置，造就了千岛湖多样化的文化底蕴。千岛湖湖形呈树枝型，湖中大小岛屿1078个，千岛湖中大小岛屿形态各异，群岛分布有疏有密，罗列有致。</text>
-      <image src="../../images/gongluo.jpg" mode="widthFix"></image>
-      <text>千岛湖秀水度假公寓酒店位于千岛湖边上，听说这湖边的公寓酒店一共有一千九百多间房，全都是湖景房，位置又在市区，吃饭和游玩都非常方便。</text> -->
-      <rich-text nodes="{{strategyInfo}}"></rich-text>
-    </view>
-    <!-- 人数 -->
-    <view class="numPeople">
-      <view class="like" bindtap="clickLike">
-        <image src="{{like_image}}"></image>
-        <text>{{strategyLikeNumber}}</text>
-      </view>
-      <view class="eyes">
-        <image src="../../images/eye-1@2x.png"></image>
-        <text>{{strategyViewNumber}}</text>
-      </view>
-    </view>
-  </view>
 </view>

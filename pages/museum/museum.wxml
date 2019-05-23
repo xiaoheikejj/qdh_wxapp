@@ -1,0 +1,53 @@
+<!-- 特色美食 -->
+<view id="museum">
+    <!-- 搜索框 -->
+    <view class="search">
+        <view class="search-left">
+            <image src="../../images/sous.png"></image>
+            <input placeholder="搜索千岛湖文体场馆" placeholder-class="placeholder-class" disabled bindtap="turnToSearch"></input>
+        </view>
+        <!-- 地图模式 -->
+        <view class="search-right" bindtap="tohanddrawnMap">
+            <image src="../../images/scenic-map.svg"></image>
+            <view>地图模式</view>
+        </view>
+    </view>
+    <!-- 选择栏 -->
+    <i-tabs current="{{ tab.current }}" scroll bindchange="handleChange">
+        <i-tab wx:for="{{ tab.list }}" wx:key="" key="{{ item.typeID }}" title="{{ item.typeName }}"></i-tab>
+    </i-tabs>
+    <!-- 饭店列表 -->
+    <view class="museumList">
+        <block wx:for="{{ museum.list }}" wx:key="">
+            <view class="list-museum" data-id="{{ item.spotsID }}" bindtap="jumpToInfo">
+                <image src="{{ item.imgUrl }}" mode="aspectFill"></image>
+                <view class="info">
+                    <view class="infoName">{{ item.spotsName }}</view>
+                    <view class="infoGrade">
+                        <text>{{ item.score }}</text>
+                        <text>分</text>
+                        <text>{{ item.evaluateNumber }}</text>
+                        <text>条评论</text>
+                    </view>
+                    <view class="infoLabel">
+                        <block wx:for="{{ item.labels }}" wx:key="" wx:for-item="childItem">
+                            <text>{{ childItem.tagName }}</text>
+                        </block>
+                    </view>
+                    <view class="infoDistance">
+                        <text>距您123km</text>
+
+                        <view wx:if="{{ item.ticketPrice == 0 }}"></view>
+                        <view wx:elif="{{ item.ticketPrice == -1 }}" style="color:rgba(49, 49, 49, 1)">免费</view>
+                        <view wx:else>
+                            <text>￥</text>
+                            <text>{{ item.ticketPrice }}</text>
+                            <text>起</text>
+                        </view>
+                    </view>
+                    <view class="infoOpentime">{{ item.memo }}</view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>

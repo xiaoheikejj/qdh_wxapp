@@ -2,15 +2,14 @@
 const app = getApp()
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     openID: "",
     name: "",
-    phone: null,
-    IDcode: null,
+    phone: "",
+    IDcode: "",
     address: ""
   },
 
@@ -18,37 +17,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //获取userMessage
-    const userMessage = wx.getStorageSync("userMessage").data;
-    wx.request({
-      url: app.URL + "/login/h5userInfo",
-      method: "post",
-      header: {
-        "content-type": "application/x-www-form-urlencoded"        
-      },
-      data: {
-        openID: wx.getStorageSync("openID").data
-      },
-      success: res => {
-        const result = res.data;
-        const user = result.data.user;
-        if (result.code == 1) {
-          this.setData({
-            name: user.userRealName,
-            phone: user.userMobile,
-            IDcode: user.userIDCode,
-            address: user.userAddress,
-          })
-        }
-      }
-    })
+    
+    
   },
   // input失去焦点后的值
   getDetail(e) {
     // 唯一标识
-    let id = e.currentTarget.id;
+    const id = e.currentTarget.dataset.id;
     // 值
-    let value = e.detail.value;
+    const value = e.detail.value;
     if (id == 1) {
       this.setData({
         name: value
@@ -67,32 +44,39 @@ Page({
       })
     }
   },
-  // 保存个人信息
+  
+  /**
+   * 保存个人信息
+   */
   saveMessage() {
-    wx.request({
-      url: app.URL + "/login/getUserInfo",
-      method: "post",
-      header: {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      data: {
-        userOpenID: wx.getStorageSync("openID").data,
-        userRealName: this.data.name,
-        userMobile: this.data.phone,
-        userIDCode: this.data.IDcode,
-        userAddress: this.data.address
-      },
-      success: res => {
+    if (this.data.name && this.data.phone && this.data.IDcode && this.data.address) {
+      let url = `${app.URL}/address/addAddress`,
+        params = {
+          openID: wx.getStorageSync("openID").data,
+          userName: this.data.name,
+          userMobile: this.data.phone,
+          userPostCode: this.data.IDcode,
+          userAddress: this.data.address,
+          status: 0
+        };
+      app.request(url, 'post', params).then(res => {
         // 跳转到个人中心
-        if (res.data.code == 1) {
+        if (res.code === 1) {
           setTimeout(() => {
-            wx.switchTab({
-              url: "/pages/mine/mine"
+            wx.navigateBack({
+              delta: 1
             })
-          }, 2000)
+          }, 1000)
         }
-      }
-    })
+      })
+    } else {
+      wx.showToast({
+        title: "请填写完整",
+        icon: "none"
+      })
+      return false
+    }
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -140,6 +124,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: "千岛湖小程序",
+      path: "/pages/leader/leader"
+    }
   }
 })

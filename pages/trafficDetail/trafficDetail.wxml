@@ -1,1 +1,1 @@
-<web-view src="{{link}}"></web-view>
+<web-view src="{{ link }}"></web-view>

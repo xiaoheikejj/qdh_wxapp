@@ -1,0 +1,59 @@
+/* pages/personInfo/personInfo.wxss */
+page {
+  background: #fafafa;
+}
+.box {
+  margin: 30rpx 32rpx 50rpx;
+  background: #fff
+}
+.box .options {
+  display: flex;
+  border-bottom: 1rpx solid #dbdbdc;
+  margin: 0 32rpx
+}
+.box .options textarea {
+  height: 110rpx;
+  width: 400rpx;
+  font-size: 28rpx;
+  padding: 30rpx 0;
+  margin-top: -23rpx;
+  margin-left: -7rpx
+}
+.box .options:last-of-type {
+  border-bottom: 0
+}
+.box .options text {
+  color: #333;
+  font-size: 28rpx;
+  width: 156rpx;
+  height: 87rpx;
+  line-height: 87rpx
+}
+.box .options input {
+  width: 400rpx;
+  height: 87rpx;
+  font-size: 28rpx
+}
+.placeholder-class {
+  color: #bbb;
+  font-size: 28rpx
+}
+
+.save {
+  width: 686rpx;
+  height: 86rpx;
+  border: 1rpx solid #81a2fc;
+  line-height: 86rpx;
+  border-radius: 4rpx;
+  color: #81a2fc
+}
+.delete {
+  width: 686rpx;
+  height: 86rpx;
+  border: 1rpx solid #a2a2a2;
+  line-height: 86rpx;
+  border-radius: 4rpx;
+  background: #fff;
+  color: #a2a2a2;
+  margin-top: 20rpx
+}

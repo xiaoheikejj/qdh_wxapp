@@ -1,0 +1,155 @@
+<!-- 文体场馆详情 -->
+<view id="museum-particular">
+    <!-- 视频、图片、全景列表 -->
+    <view class="header" wx:if="{{ !canvas.show }}">
+        <swiper bindchange="currentChangeFun">
+        <!-- 默认图片 -->
+            <swiper-item wx:if="{{ !museum.result.imgs.length && !museum.result.videos.length && !museum.result.vrs.length }}">
+                <image src="../../images/defaultPic.jpg" mode="aspectFill"></image>
+            </swiper-item>
+            <!-- 图片 -->
+            <swiper-item wx:if="{{ classify.active == 0 }}" wx:for="{{ museum.result.imgs }}" wx:key="">
+                <image src="{{ item.resourceUrl }}" mode="aspectFill"></image>
+            </swiper-item>
+            <!-- 视频 -->
+            <swiper-item wx:if="{{ classify.active == 1 }}" wx:for="{{ museum.result.videos }}" wx:key="">
+                <video src="{{ item.resourceUrl }}" mode="aspectFill"></video>
+            </swiper-item>
+            <!-- 全景 -->
+            <swiper-item wx:if="{{ classify.active == 2 }}" wx:for="{{ museum.result.vrs }}" wx:key="">
+                <image src="{{ item.resourceUrl }}" mode="aspectFill"></image>
+            </swiper-item>
+        </swiper>
+        <cover-view class="header-select">
+            <cover-view wx:if="{{ museum.result.imgs.length }}" data-type="0" bindtap="classifyChangeFun" class="select-img {{ classify.active == 0 ? 'active' : '' }}">图片</cover-view>
+            <cover-view wx:if="{{ museum.result.videos.length }}" data-type="1" bindtap="classifyChangeFun" class="select-vid {{ classify.active == 1 ? 'active' : '' }}">视频</cover-view>
+            <cover-view wx:if="{{ museum.result.vrs.length }}" data-type="2" bindtap="classifyChangeFun" class="select-pan {{ classify.active == 2 ? 'active' : '' }}">全景</cover-view>
+        </cover-view>
+        <cover-view wx:if="{{ classify.active == 0 }}" class="dots">{{ classify.currentNum }}/{{ museum.result.imgs.length }}</cover-view>
+        <cover-view wx:if="{{ classify.active == 1 }}" class="dots">{{ classify.currentNum }}/{{ museum.result.videos.length }}</cover-view>
+        <cover-view wx:if="{{ classify.active == 2 }}" class="dots">{{ classify.currentNum }}/{{ museum.result.vrs.length }}</cover-view>
+        <cover-image wx:if="{{ museum.result.collection === 1}}" bindtap="collectMuseum" class="collect" src="../../images/scenicSpot-hasCollect.png"></cover-image>
+        <cover-image wx:else bindtap="collectMuseum" class="collect" src="../../images/scenicSpot-noCollect.png"></cover-image>
+        <cover-image bindtap="getPoster" class="share" src="../../images/summary-share.png"></cover-image>
+    </view>
+    <!-- 基本内容 -->
+    <view class="substance">
+        <view class="name">
+            <text>{{ museum.result.spotsName }}</text>
+            <view>
+                <text>{{ museum.result.score }}</text>
+                <text>/5分</text>
+            </view>
+        </view>
+        <view class="label">
+            <view>
+                <block wx:for="{{ museum.result.tags }}" wx:key="">
+                    <text>{{ item.tagName }}</text>
+                </block>
+            </view>
+            <view>
+                <text class="number">{{ museum.result.comments }}</text>
+                <text>条点评</text>
+            </view>
+        </view>
+        <view class="address telephone" bindtap="orientation">
+            <view>
+                <image src="../../images/scenicSpot-location.svg"></image>
+                <text>{{ museum.result.address }}</text>
+            </view>
+            <text>导航</text>
+        </view>
+        <view class="telephone" bindtap="dial">
+            <view>
+                <image src="../../images/scenicSpot-phone.svg"></image>
+                <text>{{ museum.result.telno }}</text>
+            </view>
+            <text>拨打</text>
+        </view>
+    </view>
+    <!-- 营业时间 -->
+    <view class="office-hours">
+        <view class="officeHours-center">
+            <image src="../../images/fooddetail-time.svg"></image>
+            <text>{{ museum.result.memo }}</text>
+        </view>
+    </view>
+    <!-- 简介 -->
+    <view class="introduce">
+        <view class="int-title">
+            <image src="../../images/scenicSpot-jianjie.svg"></image>
+            <text>简介</text>
+        </view>
+        <view class="int-text {{ showMore ? 'textactive' : '' }}">{{ museum.result.summary }}</view>
+        <view wx:if="{{ !showMore }}" class="int-more" bindtap="bindMore">
+            <text>展开</text>
+            <image src="../../images/scenicSpot-more.svg"></image>
+        </view>
+        <view wx:else class="int-more" bindtap="bindMore">
+            <text>收起</text>
+            <image style="transform: rotate(180deg)" src="../../images/scenicSpot-more.svg"></image>
+        </view>
+    </view>
+    <!-- 语音 -->
+    <view class="voice" wx:if="{{ museum.result.audioUrl }}">
+        <view class="voice-title">
+            <image src="../../images/scenicSpot-audio.svg"></image>
+            <text>室内讲解</text>
+        </view>
+        <view class="audio">
+            <image src="{{ museum.result.imgUrl }}" mode="aspectFill"></image>
+            <view class="control">
+                <view class="name">{{ museum.result.spotsName }}</view>
+                <view class="time">{{ audio.currentTime }} / {{ audio.duration }}</view>
+                <slider block-color="rgb(112,164,255)" block-size="12" activeColor="rgb(112,164,255)" value="{{sliderVal}}" bindchange="listenerSlider" disabled="{{sliderDis}}"></slider>
+                <view class="buttonIcon">
+                    <!-- 播放 -->
+                    <image wx:if="{{ audio.status}}" mode="aspectFill" src="../../images/bf.png" bindtap="pauseButton"></image>
+                    <!-- 暂停 -->
+                    <image wx:else="{{ audio.status}}" mode="aspectFill" src="../../images/zt.png" bindtap="pauseButton"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 用户点评 -->  
+    <!-- <view class="userComment">
+        <view class="comment-title">
+            <image src="../../images/scenicSpot-comment.svg"></image>
+            <text>用户点评</text>
+        </view>
+        <view class="comment-ul">
+            <block wx:for="{{ comm.list }}" wx:key="">
+                <view class="comment-li">
+                    <view class="comment-liTop">
+                        <view class="comment-liLeft">
+                            <image src="{{ item.userImgUrl }}" mode="aspectFill"></image>
+                            <view class="name">
+                                <view>{{ item.nickName }}</view>
+                                <view>
+                                    <text class="grade">{{ item.scroe }}</text>
+                                    <text>分</text>
+                                </view>
+                            </view>
+                        </view>
+                        <text class="comment-liRight">{{ item.commentDate }}</text>
+                    </view>
+                    <text>{{ item.commentInfo }}</text>
+                </view>
+            </block>
+        </view>
+    </view> -->
+</view>
+
+<!-- canvas -->
+<view class="canvas-box" catchtouchmove="true" wx:if="{{ canvas.show }}">
+    <view class="canvas">
+        <view class="remove">
+            <image src="../../images/remove.png" bindtap="removePoseter"></image>
+        </view>
+            <canvas disable-scroll="true" bindtouchmove="touchMove" canvas-id="myCanvas"></canvas>
+        <view class="btn">
+            <button bindtap="saveImage">保存图片至相册</button>
+        </view>
+    </view>
+    <view class="shadom"></view>
+</view>

@@ -1,27 +1,26 @@
 <!-- 在线问答 -->
 <view class="box">
-  <view class="li">
-    <image src="../../images/jqr.jpg"></image>
-    <text class="boxText">HI，尊敬的用户，欢迎来到千岛湖，请问有什么可以帮助您？</text>
-  </view>
-  <block wx:for="{{askList}}" wx:key="">
-    <view class="li {{item.me==1?'right':''}}">
-      <view class="boxText" wx:if="{{item.me==1}}">{{item.text}}</view>
-      <image wx:if="{{item.me==1}}" src="{{mineImgUrl}}"></image>
-      <image wx:if="{{item.me==2}}" src="../../images/jqr.jpg"></image>
-      <view class="boxText" wx:if="{{item.me==2}}">
-        <text style="color: #333;line-height: 1.55">{{item.text}}</text>
-        <view wx:for="{{item.list}}" wx:key="" wx:for-item="items" style="display: flex;flex-direction: column">
-          <text class="linkText" data-link="{{items.linkUrl}}" bindtap="turnToLink">{{items.answer}}</text>
+    <view class="li">
+        <image src="../../images/jqr.jpg"></image>
+        <view class="boxText">
+            <text>Hi,尊敬的用户，欢迎来到千岛湖，请问有什么可以帮助您？您可以选择在线咨询或者投诉，我们的工作人员会第一时间处理您的问题。</text>
         </view>
-      </view>
     </view>
-  </block>
+    <block wx:for="{{ listArray.module }}" wx:key="">
+        <view class="li right">
+            <view class="boxText">{{ item.message }}</view>
+            <image src="{{ mineImgUrl }}"></image>
+        </view>
+        <view class="li" wx:if="{{ item.replay }}">
+            <image src="../../images/jqr.jpg"></image>
+            <text class="boxText">{{ item.replay }}</text>
+        </view>
+    </block>
 </view>
 
 <view class="bottom">
-  <view class="send">
-    <input value="{{inputText}}" confirm-type="done" placeholder="请输入你要咨询的问题" placeholder-class="placeholder-class" bindconfirm="inputConfrim" bindblur="inputConfrim" bindinput="importMsg"></input>
-    <button class="{{button_active?'active':''}}" bindtap="sendMsg">发送</button>
-  </view> 
+    <view class="send">
+        <input value="{{ user.message }}" confirm-type="done" placeholder="请输入你要咨询的问题" placeholder-class="placeholder-class" bindconfirm="inputConfrim" bindblur="inputConfrim" bindinput="importMsg"></input>
+        <button bindtap="sendMsg">发送</button>
+    </view>
 </view>

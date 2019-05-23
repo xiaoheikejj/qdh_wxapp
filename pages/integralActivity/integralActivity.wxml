@@ -1,1 +1,1 @@
-<web-view src="https://budao.magicreal.net/lottery-master/examples/{{type}}.html?openID={{openID}}"></web-view>
+<web-view src="{{ url }}"></web-view>

@@ -1,0 +1,20 @@
+<view class="box">
+  <view class="options">
+    <text>姓名</text>
+    <input value="{{name}}" placeholder-class="placeholder-class" placeholder="请输入姓名" bindinput="getDetail" data-id="1"></input>
+  </view>
+  <view class="options">
+    <text>电话</text>
+    <input value="{{phone}}" placeholder-class="placeholder-class" type="number" maxlength="11" placeholder="请输入手机号" bindinput="getDetail" data-id="2"></input>
+  </view>
+  <view class="options">
+    <text>邮编</text>
+    <input value="{{IDcode}}" placeholder-class="placeholder-class" type="number" maxlength="18" placeholder="请输入邮编" bindinput="getDetail" data-id="3"></input>
+  </view>
+  <view class="options">
+    <text>收货地址</text>
+    <textarea value="{{address }}" placeholder-class="placeholder-class" placeholder="请输入收货地址" bindinput="getDetail" data-id="4"></textarea>
+  </view>
+</view>
+<button bindtap="saveMessage" class="save">保存并使用</button>
+<button bindtap="deleteMessage" class="delete">删除收货地址</button>

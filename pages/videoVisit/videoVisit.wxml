@@ -1,0 +1,43 @@
+<!-- 跟着视频游 -->
+<view id="video-visiting">
+    <!-- 搜索 -->
+    <!-- <view class="header">
+        <view>
+            <image src="../../images/sous.png"></image>
+            <text>搜索视频标题</text>
+        </view>
+    </view> -->
+    <!-- 滚动点击 -->
+    <view class="scroll">
+        <scroll-view scroll-x>
+            <block wx:for="{{ tag.list }}" wx:key="">
+                <text bindtap="clickTag" data-select="{{ item.select }}" class="{{ item.select ? 'active': '' }}" data-id="{{ item.tagID }}">{{ item.tagName }}</text>
+            </block>
+        </scroll-view>
+    </view>
+    <!-- 列表 -->
+    <block wx:for="{{ video.list }}" wx:key="">
+        <view class="videoList">
+            <view class="video">
+                <image wx:if="{{ item.imgUrl }}" src="{{ item.imgUrl }}" data-id="{{ item.newsID }}" data-src="{{ item.videoUrl }}" mode="aspectFill" bindtap="play"></image>
+                <image wx:else src="../../images/defult_image.jpg" data-id="{{ item.newsID }}" data-src="{{ item.videoUrl }}" mode="aspectFill" bindtap="play"></image>
+                <view>{{ item.newTitle }}</view>
+            </view>
+            <view class="describe">
+                <view>
+                    <view data-id="{{ item.newsID }}" data-isLike="{{ item.isLike }}" bindtap="salute">
+                        <image wx:if="{{ item.isLike == 1 }}" src="../../images/strategy-likeActive.png"></image>
+                        <image wx:else src="../../images/ax.png"></image>
+                        <text>{{ item.likes }}</text>
+                    </view>
+                    <view>
+                        <image src="../../images/yj.png"></image>
+                        <text>{{ item.views }}</text>
+                    </view>
+                </view>
+                <text>{{ item.publishDate }}</text>
+            </view>
+        </view>
+    </block>
+    <video src="{{ video.url }}" bindfullscreenchange="screenChange" show-fullscreen-btn="{{ showFullScreen }}" id="videoControl"></video>
+</view>
